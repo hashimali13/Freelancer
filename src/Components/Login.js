@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography'
 import axios from 'axios'
 import Dialog from './Dialog'
 import { render } from '@testing-library/react';
-  
+import Paper from '@material-ui/core/Paper';
+
   const Login =(props) =>{
 
     const [ username, setUser ] = useState()
@@ -56,9 +57,9 @@ import { render } from '@testing-library/react';
   return(
     
       <Grid container justify = "center">
-        
+        <Paper elevation={3} style={{padding:"50pt",paddingTop:"15px"}} >
         <form onSubmit={handleSubmit}>
-        <Typography style={{color:'#828f85'}}variant="h5" gutterBottom>
+        <Typography style={{color:'#black'}}variant="h5" gutterBottom>
         Enter user details
       </Typography>
         <TextField  label="Username" onChange={HandleUser} />
@@ -72,7 +73,7 @@ import { render } from '@testing-library/react';
         Register   
         </Button> 
       </form>   
-     
+     </Paper>
   
           
       </Grid>

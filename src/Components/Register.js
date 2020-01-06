@@ -9,11 +9,8 @@ import DateFnsUtils from '@date-io/date-fns';
 import axios from 'axios'
 import Dialog from './Dialog'
 import { render } from '@testing-library/react';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import Paper from '@material-ui/core/Paper';
+
 
 const Register =(props)=>{
  
@@ -71,10 +68,10 @@ const Register =(props)=>{
     }
 
     return <div className='message-box'>
-         <Grid container justify = "center">
-
+      <Grid container justify = "center">
+      <Paper elevation={3} style={{padding:"50pt",paddingTop:"15px"}} >
         <form onSubmit={handleSubmit}>
-        <Typography style={{color:'#828f85'}}variant="h5" gutterBottom>
+        <Typography style={{color:'#black'}}variant="h5" gutterBottom>
         Registration
       </Typography>
         <TextField  label="Username" onChange={HandleUser} />
@@ -99,7 +96,8 @@ const Register =(props)=>{
         <Button variant="contained" type="submit" color="primary">
         Create Account   
         </Button>   
-      </form>       
+      </form>    
+      </Paper>   
       </Grid>
     </div>
   
