@@ -46,17 +46,17 @@ function App(props) {
           <Grid container spacing={3} direction="column" alignItems="center">
             <Grid item>
               <Paper>
-                <Typography>Recent Projects</Typography>
+                <Typography onClick={()=>props.history.push({pathname:'/myprojects'})}>Recent Projects</Typography>
               </Paper>
             </Grid>
             <Grid item>
               <Paper>
-                <Typography>News Feed</Typography>
+                <Typography onClick={()=>props.history.push({pathname:'/newsfeed'})}>News Feed</Typography>
               </Paper>
             </Grid>
             <Grid item>
               <Paper>
-                <Typography>Browse Projects</Typography>
+                <Typography onClick={()=>props.history.push({pathname:'/projects'})}>Browse Projects</Typography>
               </Paper>
             </Grid>
           </Grid>

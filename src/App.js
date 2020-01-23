@@ -17,6 +17,10 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Container } from '@material-ui/core';
 import Register from './Components/Register';
+import AllProjects from './Components/AllProjects';
+import Projects from './Components/Projects';
+import Newsfeed from './Components/Newsfeed';
+
 
 const drawerWidth = 240;
 
@@ -143,6 +147,9 @@ function App() {
       <Route exact path="/" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/register" component={Register} />
+      <Route path="/projects" component={AllProjects} />
+      <Route path="/newsfeed" component={Newsfeed} />
+      <Route path="/myprojects" component={Projects} />
     </div>
     
   );
