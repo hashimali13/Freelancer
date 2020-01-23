@@ -21,11 +21,11 @@ app.get('/', (request, response) => {
 
 
 app.get('/authuser',db.authUser)
-  app.get('/userid/id', db.searchUser)
+app.get('/userid/id', db.searchUser)
 app.get('/users', db.getUsers)
 app.post('/create', db.createUser)
 
 
-  app.listen(port, () => {
-    console.log(`App running on port ${port}.`)
-  })
+app.listen(port, () => {
+  console.log(`App running on port ${port}.`)
+})

@@ -4,7 +4,7 @@ const pool = new Pool({
   host: 'freelancerproject.csglr5v9qttk.eu-west-2.rds.amazonaws.com',
   database: 'postgres',
   password: 'hashnathbail',
-  port: 5432,
+  port: 5432
 })
 
 const getUsers = (request, response) => {
@@ -26,7 +26,7 @@ const getUsers = (request, response) => {
     let pass = request.body.pass;
     let email = request.body.email;
     let dob = request.body.dob;
-    pool.query('INSERT INTO users (username, password, email, dob) VALUES ($1, $2, $3, $4)', [user, pass,email,dob], (error, results) => {
+    pool.query('INSERT INTO users (username, password, email, dob) VALUES ($1, $2, $3, $4)', [user, pass, email, dob], (error, results) => {
       if (error) {
         console.log(error)
         response.status(500).send({ error: "user error" });

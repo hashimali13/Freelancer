@@ -45,7 +45,7 @@ const Register =(props)=>{
             render(
               <Dialog
                 header="Registration error"
-                body="Invalid username or password. Please try again."
+                body="Unable to register user. Please try again"
               />
             )
           })
