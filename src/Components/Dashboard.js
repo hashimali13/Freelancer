@@ -38,12 +38,16 @@ function App(props) {
   
   return (
     <div className={classes.root}>
-      <Paper elevation={3} style={{padding:"50pt",paddingTop:"15px"}}>
-        <div style={{width:"100%", height:"30%", textAlign:"center"}} >
+      <Grid container justify="center">
+      <Paper elevation={3} style={{padding:"50pt",paddingTop:"15px",width:"10%"}}>
+        
+          <Grid container spacing={1} direction="column" alignItems="center">
+            <Grid item>
+              <div style={{width:"100%", height:"0%", textAlign:"center"}} >
           <Typography> Hello {props.location.state.user} </Typography>
-          <img src={props.location.state.photo} style={{width:"10%", }}></img>
+          <img src={props.location.state.photo} style={{width:"40%", }}></img>
         </div>
-          <Grid container spacing={3} direction="column" alignItems="center">
+            </Grid>
             <Grid item>
               <Paper>
                 <Typography onClick={()=>props.history.push({pathname:'/myprojects'})}>Recent Projects</Typography>
@@ -61,6 +65,7 @@ function App(props) {
             </Grid>
           </Grid>
         </Paper>
+        </Grid>
     </div>
   )
 }
