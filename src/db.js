@@ -20,6 +20,18 @@ const getUsers = (request, response) => {
     })
   }
 
+const getProjects = (request, response) => {
+  pool.query("SELECT * FROM project", (error, results) => {
+    console.log("Why did the chicken cross the road?");
+    if (error) {
+      throw error;
+    }
+    console.log("so he didnt get drafted");
+
+    response.status(200).json(results.rows);
+  });
+};
+
   const createUser = (request, response) => {
     console.log(request.body.user)
     let user = request.body.user;
@@ -73,5 +85,6 @@ const getUsers = (request, response) => {
       getUsers,
       searchUser,
       createUser,
-      authUser
+      authUser,
+      getProjects
   }
