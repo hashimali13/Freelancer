@@ -27,7 +27,7 @@ function Projects(props) {
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>{project.title}</TableCell>
-          <TableCell>{project.deadline}</TableCell>
+          <TableCell>{(new Date(project.deadline)).toDateString()}</TableCell>  {/*Makes date format look better */}
         </TableRow>
       );
     });

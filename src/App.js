@@ -147,9 +147,9 @@ function App() {
       <Route exact path="/" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/register" component={Register} />
-      <Route path="/projects" component={AllProjects} />
+      <Route path="/projects" component={Projects} />
       <Route path="/newsfeed" component={Newsfeed} />
-      <Route path="/myprojects" component={Projects} />
+      <Route path="/myprojects" component={AllProjects} />
     </div>
     
   );
