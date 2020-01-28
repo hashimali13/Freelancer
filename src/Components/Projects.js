@@ -34,8 +34,9 @@ function Projects(props) {
   };
 
   return (
-    <Grid container justify="center">
-      <Typography> Projects </Typography>
+    <Grid container justify="center" >
+      <div style={{width:"50%"}}>
+        <Typography variant="h3" style={{textAlign:"center", marginBottom:"20px", color:"#756F6E"}}> Projects </Typography>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -48,7 +49,8 @@ function Projects(props) {
           <TableBody>{createTable()}</TableBody>
         </Table>
       </TableContainer>
-    </Grid>
+      </div>
+    </Grid>  
   );
 }
 
