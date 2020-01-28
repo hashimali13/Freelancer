@@ -21,7 +21,7 @@ const getUsers = (request, response) => {
   }
 
 const getProjects = (request, response) => {
-  pool.query("SELECT * FROM project", (error, results) => {
+  pool.query("SELECT * FROM jobposting", (error, results) => {
     console.log("Why did the chicken cross the road?");
     if (error) {
       throw error;
