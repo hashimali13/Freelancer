@@ -22,7 +22,7 @@ import Projects from './Components/Projects';
 import Newsfeed from './Components/Newsfeed';
 
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 
 const useStyles = makeStyles(theme => ({
@@ -78,10 +78,7 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
+    width: drawerWidth - 200,
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
@@ -121,7 +118,7 @@ function App() {
         <Toolbar className={classes.toolbar}>
           <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen}
           className={clsx(classes.menuButton, open && classes.menuButtonHidden)}>
-            <MenuIcon />
+          <MenuIcon/>
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
