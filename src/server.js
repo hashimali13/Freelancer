@@ -25,6 +25,7 @@ app.get('/userid/id', db.searchUser)
 app.get('/users', db.getUsers)
 app.get("/getproject", db.getProjects);
 app.post('/create', db.createUser)
+app.get('/searchproject', db.searchProjects)
 
 
 app.listen(port, () => {
