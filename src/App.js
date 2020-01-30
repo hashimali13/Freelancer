@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24,
   },
   toolbarIcon: {
     display: 'flex',
@@ -99,6 +99,12 @@ const useStyles = makeStyles(theme => ({
   fixedHeight: {
     height: 240,
   },
+  footer: {
+    padding: theme.spacing(3, 2),
+    marginTop: 'auto',
+    backgroundColor:
+      theme.palette.type === 'dark' ? theme.palette.grey[800] : theme.palette.grey[200],
+  },
 }));
 
 function App() {
@@ -117,8 +123,8 @@ function App() {
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
           <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen}
-          className={clsx(classes.menuButton, open && classes.menuButtonHidden)}>
-          <MenuIcon/>
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}>
+            <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
@@ -128,7 +134,7 @@ function App() {
       <Drawer variant="permanent" classes={{
         paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
       }}
-      open={open}>
+        open={open}>
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
@@ -139,7 +145,6 @@ function App() {
         <Divider />
         <List>placeholder</List>
       </Drawer>
-
       <br></br>
       <Route exact path="/" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
@@ -147,8 +152,12 @@ function App() {
       <Route path="/projects" component={Projects} />
       <Route path="/newsfeed" component={Newsfeed} />
       <Route path="/myprojects" component={AllProjects} />
+      <footer className={classes.footer}>
+        <Container maxWidth="sm">
+          <Typography variant="body1">Footer placeholder</Typography>
+        </Container>
+      </footer>
     </div>
-    
   );
 }
 
