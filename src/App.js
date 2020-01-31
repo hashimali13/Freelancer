@@ -1,114 +1,114 @@
-import React from 'react';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import Login from './Components/Login'
-import Dashboard from './Components/Dashboard'
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Drawer from '@material-ui/core/Drawer';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
-import Badge from '@material-ui/core/Badge';
-import List from '@material-ui/core/List';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { Container } from '@material-ui/core';
-import Register from './Components/Register';
-import AllProjects from './Components/AllProjects';
-import Projects from './Components/Projects';
-import Newsfeed from './Components/Newsfeed';
-
+import React from "react";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import Login from "./Components/Login";
+import Dashboard from "./Components/Dashboard";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Drawer from "@material-ui/core/Drawer";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Divider from "@material-ui/core/Divider";
+import Typography from "@material-ui/core/Typography";
+import clsx from "clsx";
+import Badge from "@material-ui/core/Badge";
+import List from "@material-ui/core/List";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Container } from "@material-ui/core";
+import Register from "./Components/Register";
+import AllProjects from "./Components/AllProjects";
+import Projects from "./Components/Projects";
+import Newsfeed from "./Components/Newsfeed";
+import JobPostingProject from "./Components/JobPostingProject";
 
 const drawerWidth = 200;
 
-
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: "flex"
   },
   toolbar: {
-    paddingRight: 24,
+    paddingRight: 24
   },
   toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: "0 8px",
+    ...theme.mixins.toolbar
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   menuButton: {
-    marginRight: 36,
+    marginRight: 36
   },
   menuButtonHidden: {
-    display: 'none',
+    display: "none"
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
+    position: "relative",
+    whiteSpace: "nowrap",
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
+    overflowX: "hidden",
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
-    width: drawerWidth - 200,
+    width: drawerWidth - 200
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
+    height: "100vh",
+    overflow: "auto"
   },
   container: {
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingBottom: theme.spacing(4)
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column"
   },
   fixedHeight: {
-    height: 240,
+    height: 240
   },
   footer: {
     padding: theme.spacing(3, 2),
-    marginTop: 'auto',
+    marginTop: "auto",
     backgroundColor:
-      theme.palette.type === 'dark' ? theme.palette.grey[800] : theme.palette.grey[200],
-  },
+      theme.palette.type === "dark"
+        ? theme.palette.grey[800]
+        : theme.palette.grey[200]
+  }
 }));
 
 function App() {
-
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -122,19 +122,36 @@ function App() {
     <div>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            className={clsx(
+              classes.menuButton,
+              open && classes.menuButtonHidden
+            )}
+          >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
             Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" classes={{
-        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-      }}
-        open={open}>
+      <Drawer
+        variant="permanent"
+        classes={{
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
+        }}
+        open={open}
+      >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
@@ -152,6 +169,7 @@ function App() {
       <Route path="/projects" component={Projects} />
       <Route path="/newsfeed" component={Newsfeed} />
       <Route path="/myprojects" component={AllProjects} />
+      <Route path="/projects/:JPId" component={JobPostingProject} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">Footer placeholder</Typography>

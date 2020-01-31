@@ -27,14 +27,14 @@ function Projects(props) {
 
   const createTable = () => {
     return data.map(project => {
+      console.log(project);
+      let id = project.jobid;
       return (
         <Router>
           <TableRow key={project.projectid}>
             <TableCell>{project.jobtype}</TableCell>
             <TableCell>
-              <Link to={`/projects/jobpostingproject/${project.title}`}>
-                {project.title}
-              </Link>
+              <Link to={`/projects/${id}`}>{project.title}</Link>
             </TableCell>
             <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
           </TableRow>
