@@ -10,47 +10,75 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router";
+import JobPostingProject from "./JobPostingProject";
 
 function Projects(props) {
   const [data, setData] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     axios
       .get("http://localhost:3001/getproject")
       .then(res => setData(res.data))
-      .catch(err => console.log("Gottem good"));
+      .catch(err => console.log("projectconsole"));
   }, []);
 
   const createTable = () => {
     return data.map(project => {
       return (
-        <TableRow key={project.projectid}>
-          <TableCell>{project.jobtype}</TableCell>
-          <TableCell>{project.title}</TableCell>
-          <TableCell>{(new Date(project.deadline)).toDateString()}</TableCell>  {/*Makes date format look better */}
-        </TableRow>
+        <Router>
+          <TableRow key={project.projectid}>
+            <TableCell>{project.jobtype}</TableCell>
+            <TableCell>
+              <Link to={`/projects/jobpostingproject/${project.title}`}>
+                {project.title}
+              </Link>
+            </TableCell>
+            <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
+          </TableRow>
+          <div>
+            <Switch>
+              <Route
+                path="/project/jobpostingproject/:JPPtitle"
+                component={JobPostingProject}
+              />
+            </Switch>
+          </div>
+        </Router>
       );
     });
   };
 
   return (
-    <Grid container justify="center" >
-      <div style={{width:"50%"}}>
-        <Typography variant="h3" style={{textAlign:"center", marginBottom:"20px", color:"#756F6E"}}> Projects </Typography>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Job type</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Deadline</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>{createTable()}</TableBody>
-        </Table>
-      </TableContainer>
+    <Grid container justify="center">
+      <div style={{ width: "50%" }}>
+        <Typography
+          variant="h3"
+          style={{
+            textAlign: "center",
+            marginBottom: "20px",
+            color: "#756F6E"
+          }}
+        >
+          {" "}
+          Projects{" "}
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Job type</TableCell>
+                <TableCell>Title</TableCell>
+                <TableCell>Deadline</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>{createTable()}</TableBody>
+          </Table>
+        </TableContainer>
       </div>
-    </Grid>  
+    </Grid>
   );
 }
 
