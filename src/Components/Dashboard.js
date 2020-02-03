@@ -50,7 +50,11 @@ function App(props) {
             </Grid>
             <Grid item>
               <Paper>
-                <Typography onClick={()=>props.history.push({pathname:'/myprojects'})}>Recent Projects</Typography>
+                <Typography onClick={()=>props.history.push
+                ({pathname:'/myprojects',
+                  state:{user:props.location.state.user,
+                  photo:props.location.state.photo }             
+              })}>My Projects</Typography>
               </Paper>
             </Grid>
             <Grid item>
