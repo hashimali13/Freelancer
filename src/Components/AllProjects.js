@@ -33,7 +33,7 @@ function AllProjects(props) {
   const createTable = () => {
     return data.map(project => {
       console.log(project);
-      let id = project.jobid;
+      let id = project.projectid;
       return (
         <Router>
           <TableRow key={project.projectid}>
@@ -44,12 +44,7 @@ function AllProjects(props) {
             <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
           </TableRow>
           <div>
-            <Switch>
-              <Route
-                path="/project/jobpostingproject/:JPPtitle"
-                component={JobPostingProject}
-              />
-            </Switch>
+            
           </div>
         </Router>
       );
