@@ -25,28 +25,45 @@ function Projects(props) {
       .catch(err => console.log("projectconsole"));
   }, []);
 
-  const createTable = () => {
+  const createTable = props => {
     return data.map(project => {
       console.log(project);
       let id = project.jobid;
+        let title = project.title;
       return (
         <Router>
           <TableRow key={project.projectid}>
             <TableCell>{project.jobtype}</TableCell>
             <TableCell>
-              <Link to={`/projects/${id}`}>{project.title}</Link>
+             <Typography
+                onClick={() =>
+                  props.history.push({
+                    pathname: `/jobpostingproject/${id}`,
+                    state: {
+                      title: props.location.state.title,
+                      id: props.location.state.id
+                    }
+                  })
+                }
+              >
+                {project.title}
+              </Typography>
+              {/*  <Link to={`/jobpostingproject/${id}`}>{project.title}</Link> */}
             </TableCell>
             <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
           </TableRow>
           <div>
-            <Switch>
+          {/* <Switch>
               <Route
-                path="/project/jobpostingproject/:JPPtitle"
-                component={JobPostingProject}
+                path={`/jobpostingproject/:JPId`}
+                render={({ match }) => (
+                  <JobPostingProject
+                    title={project.title}
+                    id={match.params.id}
+                  />
+                )}
               />
-            </Switch>
-          </div>
-        </Router>
+            </Switch> */}
       );
     });
   };
