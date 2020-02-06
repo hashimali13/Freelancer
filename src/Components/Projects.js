@@ -16,7 +16,7 @@ import JobPostingProject from "./JobPostingProject";
 
 function Projects(props) {
   const [data, setData] = useState([]);
-  const history = useHistory();
+  
 
   useEffect(() => {
     axios
@@ -35,35 +35,12 @@ function Projects(props) {
           <TableRow key={project.projectid}>
             <TableCell>{project.jobtype}</TableCell>
             <TableCell>
-             <Typography
-                onClick={() =>
-                  props.history.push({
-                    pathname: `/jobpostingproject/${id}`,
-                    state: {
-                      title: props.location.state.title,
-                      id: props.location.state.id
-                    }
-                  })
-                }
-              >
-                {project.title}
-              </Typography>
-              {/*  <Link to={`/jobpostingproject/${id}`}>{project.title}</Link> */}
+             <Link></Link>
+              <Link to={`/projects/${id}`}>{project.title}</Link> 
             </TableCell>
             <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
           </TableRow>
-          <div>
-          {/* <Switch>
-              <Route
-                path={`/jobpostingproject/:JPId`}
-                render={({ match }) => (
-                  <JobPostingProject
-                    title={project.title}
-                    id={match.params.id}
-                  />
-                )}
-              />
-            </Switch> */}
+          </Router>
       );
     });
   };
