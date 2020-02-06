@@ -54,7 +54,7 @@ function App() {
       <Route path="/projects" component={Projects} />
       <Route path="/newsfeed" component={Newsfeed} />
       <Route path="/myprojects" component={AllProjects} />
-      <Route path="/projects/:JPId" component={JobPostingProject} />
+      <Route path="/jobpostingproject/:JPId" component={JobPostingProject} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">Footer placeholder</Typography>
