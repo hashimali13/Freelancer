@@ -31,7 +31,7 @@ function Projects(props) {
       let id = project.jobid;
         let title = project.title;
       return (
-        <Router>
+        
           <TableRow key={project.projectid}>
             <TableCell>{project.jobtype}</TableCell>
             <TableCell>
@@ -40,7 +40,7 @@ function Projects(props) {
             </TableCell>
             <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
           </TableRow>
-          </Router>
+          
       );
     });
   };
