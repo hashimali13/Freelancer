@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 
 function JobPostingProject(props) {
-  let JPPtitle = useParams();
+  let { JPId } = useParams();
   const history = useHistory();
 
   function goBackHandle() {
@@ -11,7 +11,10 @@ function JobPostingProject(props) {
 
   return (
     <div>
-      <h1>{JPPtitle}</h1>
+      <h1>
+          Hello
+          {JPId}
+        </h1>
       <p>This is where the content will go</p>
       <button onClick={goBackHandle}>Go Back</button>
     </div>
