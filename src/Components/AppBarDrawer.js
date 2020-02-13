@@ -10,6 +10,7 @@ import clsx from "clsx";
 import List from "@material-ui/core/List";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 
 const drawerWidth = 200;
 
@@ -73,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function AppBarDrawer() {
+function AppBarDrawer(props) {  
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -123,9 +124,11 @@ function AppBarDrawer() {
             </IconButton>
         </div>
         <Divider />
-        <List>placeholder</List>
+        <List><Link to='/dashboard'><Typography>Dashboard</Typography></Link></List>
         <Divider />
-        <List>placeholder</List>
+        <List><Link to='/myprojects' activeClassName="active"><Typography>My Projects</Typography></Link></List>
+        <Divider />
+        <List><Link to='/projects'><Typography>Browse All Projects</Typography></Link></List>
         </Drawer>
         </div>
     );
