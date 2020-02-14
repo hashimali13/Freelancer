@@ -35,7 +35,7 @@ function AllProjects(props) {
       console.log(project);
       let id = project.projectid;
       return (
-        <Router>
+       
           <TableRow key={project.projectid}>
             <TableCell>{project.jobtype}</TableCell>
             <TableCell>
@@ -43,10 +43,8 @@ function AllProjects(props) {
             </TableCell>
             <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
           </TableRow>
-          <div>
-            
-          </div>
-        </Router>
+          
+       
       );
     });
   };
