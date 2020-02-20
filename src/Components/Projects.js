@@ -16,7 +16,6 @@ import JobPostingProject from "./JobPostingProject";
 
 function Projects(props) {
   const [data, setData] = useState([]);
-  
 
   useEffect(() => {
     axios
@@ -29,18 +28,15 @@ function Projects(props) {
     return data.map(project => {
       console.log(project);
       let id = project.jobid;
-        let title = project.title;
+      let title = project.title;
       return (
-        
-          <TableRow key={project.projectid}>
-            <TableCell>{project.jobtype}</TableCell>
-            <TableCell>
-             <Link></Link>
-              <Link to={`/projects/${id}`}>{project.title}</Link> 
-            </TableCell>
-            <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
-          </TableRow>
-          
+        <TableRow key={project.projectid}>
+          <TableCell>{project.jobtype}</TableCell>
+          <TableCell>
+            <Link to={`/projects/${id}`}>{project.title}</Link>
+          </TableCell>
+          <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
+        </TableRow>
       );
     });
   };
