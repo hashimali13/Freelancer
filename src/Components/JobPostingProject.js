@@ -35,7 +35,7 @@ function JobPostingProject(props) {
           <Grid container justify="center">
             <Paper
               elevation={3}
-              style={{ padding: "50pt", paddingTop: "15px", width: "10%" }}
+              style={{ padding: "50pt", paddingTop: "15px", width: "50%" }}
             >
               <h1>{jobposting.title}</h1>
               <h3>Posted on {new Date(jobposting.postdate).toDateString()}</h3>

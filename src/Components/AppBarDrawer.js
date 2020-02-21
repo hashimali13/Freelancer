@@ -50,7 +50,6 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1
     },
     drawerPaper: {
-        position: "relative",
         whiteSpace: "nowrap",
         width: drawerWidth,
         transition: theme.transitions.create("width", {
@@ -69,14 +68,14 @@ const useStyles = makeStyles(theme => ({
     appBarSpacer: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
-        height: "100vh",
+        height: "0",
         overflow: "auto"
     },
 }));
 
 function AppBarDrawer(props) {  
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
