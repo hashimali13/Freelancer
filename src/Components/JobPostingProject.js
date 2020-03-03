@@ -39,8 +39,12 @@ function JobPostingProject(props) {
               elevation={3}
               style={{ padding: "50pt", paddingTop: "15px", width: "50%" }}
             >
-              <Typography> <h1>{jobposting.title}</h1>
-              <h3>Posted on {new Date(jobposting.postdate).toDateString()}</h3>
+             <Typography>
+                {" "}
+                <h1>{jobposting.title}</h1>
+                <h3>
+                  Posted on {new Date(jobposting.postdate).toDateString()}
+                </h3>
               <p>{jobposting.content}</p>
               <p>
                 To reference this job, use this code:
