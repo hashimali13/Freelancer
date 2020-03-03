@@ -14,9 +14,9 @@ function Profile(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getprofile", {
+      .get("http://localhost:3001/userid/:id", {
         params: {
-          uid: props.match.params.id
+          id: props.match.params.id
         }
       })
       .then(res => setData(res.data), console.log("you here bruv"))

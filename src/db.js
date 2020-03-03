@@ -88,7 +88,8 @@ const createUser = (request, response) => {
 };
 
 const searchUser = (request, response) => {
-  let user = request.body.user;
+  let user = request.query.id;
+  console.log(user)
   pool.query("SELECT * FROM users where uid=$1", [user], (error, results) => {
     console.log("sdasdaa");
     if (error) {
