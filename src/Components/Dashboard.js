@@ -11,7 +11,7 @@ import { typography } from '@material-ui/system';
 import Clock from './Clock';
 
 function App(props) {
-
+let uid = props.location.state.uid;
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
@@ -48,6 +48,17 @@ function App(props) {
                 <Clock></Clock>
                 <img src={props.location.state.photo} style={{ width: "40%", }}></img>
               </div>
+            </Grid>
+    <Grid item>
+              <Paper>
+                <Typography
+                  onClick={() =>
+                    props.history.push({ pathname: `/profile/${uid}` })
+                  }
+                >
+                  Profile
+                </Typography>
+              </Paper>
             </Grid>
             <Grid item>
               <Paper>
