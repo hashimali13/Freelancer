@@ -52,7 +52,7 @@ const seePost = (request, response) => {
 const getProfile = (request, response) => {
   let uid = request.query.uid;
   pool.query(
-    "SELECT skill FROM users INNER JOIN usertoskill u ON users.uid = u.uid INNER JOIN skill s ON u.skillid = s.skillid WHERE users.uid='1'",
+    "SELECT skill FROM users INNER JOIN usertoskill u ON users.uid = u.uid INNER JOIN skill s ON u.skillid = s.skillid WHERE users.uid=$1",
     [uid],
     (error, results) => {
       console.log("getprofile work check");
