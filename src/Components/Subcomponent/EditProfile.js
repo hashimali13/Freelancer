@@ -27,7 +27,8 @@ const EditProfile = (props) => {
         props.history.push({
             pathname: "/dashboard",
             state: {
-              user: username
+              user: username,
+              photo:props.location.state.photo
             }
           });
       };

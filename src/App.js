@@ -60,7 +60,6 @@ function App() {
       <Route path="/projects/:id" component={JobPostingProject} />
      <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
->>>>>>> 3e67ee563e9555e02e226f24d2df3ba7764bdfe3
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography>Footer placeholder</Typography>
