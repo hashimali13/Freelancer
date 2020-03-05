@@ -23,7 +23,6 @@ function AllProjects(props) {
       .get("http://localhost:3001/searchproject", {
         params: {
             user:props.location.state.user
-            
           }
       })
       .then(res => setData(res.data))
