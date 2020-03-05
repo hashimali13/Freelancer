@@ -103,6 +103,13 @@ let uid = props.location.state.uid;
                 </Typography>
               </Paper>
             </Grid>
+             
+             <Grid item>
+              <Paper>
+                <Typography onClick={() => props.history.push({ pathname: '/editprofile', state:{user:props.location.state.user} } )}>Edit Profile</Typography>
+              </Paper>
+            </Grid>
+
           </Grid>
         </Paper>
       </Grid>

@@ -103,7 +103,9 @@ const searchUser = (request, response) => {
 
 const searchProjects = (request, response) => {
   let user = request.query.user;
+  let user2 = request.body.user;
   console.log(user);
+  console.log(user2);
   pool.query(
     "SELECT uid FROM users WHERE username=$1",
     [user],
