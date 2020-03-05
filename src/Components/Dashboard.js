@@ -41,7 +41,7 @@ function App(props) {
   return (
     <div className={classes.container}>
       <Paper className={classes.rightColumn}>
-        <RecentProjects user={uid}></RecentProjects>
+        <RecentProjects user={props.location.state.user}></RecentProjects>
       </Paper>
       <div className={classes.leftColumn}>
         <Grid container justify="center">
