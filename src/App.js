@@ -31,14 +31,15 @@ const useStyles = makeStyles(theme => ({
     height: 240
   },
   footer: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(2, 2),
     marginTop: "auto",
-    backgroundColor: "grey",
     position: "fixed",
     bottom: "0",
     left: "0",
     width: "100%",
-    textAlign: "center"
+    textAlign: "center",
+    backgroundColor: "#3f50b5",
+    color: "white",
   }
 }));
 
@@ -56,10 +57,10 @@ function App() {
       <Route path="/newsfeed" component={Newsfeed} />
       <Route path="/myprojects" component={AllProjects} />
       <Route path="/projects/:id" component={JobPostingProject} />
-     <Route path="/profile/:id" component={Profile} />
+      <Route path="/profile/:id" component={Profile} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">Footer placeholder</Typography>
+          <Typography>Footer placeholder</Typography>
         </Container>
       </footer>
     </div>

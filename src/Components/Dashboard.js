@@ -9,20 +9,23 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import { typography } from '@material-ui/system';
 import Clock from './Clock';
+import RecentProjects from './RecentProjects';
+import { TextareaAutosize } from '@material-ui/core';
 
 function App(props) {
-let uid = props.location.state.uid;
+  let uid = props.location.state.uid;
   const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
+    container: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
     },
-    paper: {
-      padding: theme.spacing(2),
-      margin: 'auto',
-      maxWidth: 500,
+    leftColumn: {
+      order: 0,
     },
-    toolBar: {
-      paddingRight: 24,
+    rightColumn: {
+      order: 1,
+      flexGrow: 2,
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -33,79 +36,61 @@ let uid = props.location.state.uid;
     },
   }));
 
-  const drawerWidth = 240;
-
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Grid container justify="center">
-        <Paper elevation={3} style={{ padding: "50pt", paddingTop: "15px", width: "25%" }}>
-          <Grid container spacing={1} direction="column" alignItems="center">
-            <Grid item>
-              <div style={{ width: "100%", height: "0%", textAlign: "center" }} >
-                <Typography> Hello {props.location.state.user} </Typography>
-                <Clock></Clock>
-                <img src={props.location.state.photo} style={{ width: "40%", }}></img>
-              </div>
-            </Grid>
-    <Grid item>
-              <Paper>
-                <Typography
-                  onClick={() =>
-                    props.history.push({ pathname: `/profile/${uid}` })
-                  }
-                >
-                  Profile
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item>
-              <Paper>
-                <Typography onClick={() => props.history.push
-                  ({
-                    pathname: '/myprojects',
-                    state: {
-                      user: props.location.state.user,
-                      photo: props.location.state.photo
+    <div className={classes.container}>
+      <Paper className={classes.rightColumn}>
+        <RecentProjects user={uid}></RecentProjects>
+      </Paper>
+      <div className={classes.leftColumn}>
+        <Grid container justify="center">
+          <Paper elevation={3} style={{ padding: "50pt", paddingTop: "15px", width: "25%" }}>
+            <Grid container spacing={1} direction="column" alignItems="center">
+              <Grid item>
+                <div style={{ width: "100%", height: "0%", textAlign: "center" }} >
+                  <Typography> Hello {props.location.state.user} </Typography>
+                  <Clock></Clock>
+                  <img src={props.location.state.photo} style={{ width: "40%", }}></img>
+                </div>
+              </Grid>
+              <Grid item>
+                <Paper>
+                  <Typography
+                    onClick={() =>
+                      props.history.push({ pathname: `/profile/${uid}` })
                     }
-                  })}>My Projects</Typography>
-              </Paper>
-            </Grid>
-            <Grid item>
-              <Paper>
-                  <Typography>
-                    Click on "My Projects" to view your currently accepted projects.
+                  >
+                    Profile
                   </Typography>
-              </Paper>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper>
+                  <Typography onClick={() => props.history.push
+                    ({
+                      pathname: '/myprojects',
+                      state: {
+                        user: props.location.state.user,
+                        photo: props.location.state.photo
+                      }
+                    })}>My Projects</Typography>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper>
+                  <Typography onClick={() => props.history.push({ pathname: '/newsfeed' })}>News Feed</Typography>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper>
+                  <Typography onClick={() => props.history.push({ pathname: '/projects' })}>Browse Projects</Typography>
+                </Paper>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Paper>
-                <Typography onClick={() => props.history.push({ pathname: '/newsfeed' })}>News Feed</Typography>
-              </Paper>
-            </Grid>
-            <Grid item>
-              <Paper>
-                <Typography>
-                  Click on "News Feed" to the latest news.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item>
-              <Paper>
-                <Typography onClick={() => props.history.push({ pathname: '/projects' })}>Browse Projects</Typography>
-              </Paper>
-            </Grid>
-            <Grid item>
-              <Paper>
-                <Typography>
-                  Click on "Browse Projects" to view all available projects.
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Paper>
-      </Grid>
+          </Paper>
+        </Grid>
+      </div>
     </div>
   )
 }
