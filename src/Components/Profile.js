@@ -23,6 +23,17 @@ function Profile(props) {
       .catch(err =>
         console.log("you just activated my trap card, go errorsaur")
       );
+
+      axios
+      .get("http://localhost:3001/getProfile/:id", {
+        params: {
+          uid: props.match.params.id
+        }
+      })
+      .then(res => setData(res.data), console.log("adsfsaf"))
+      .catch(err =>
+        console.log("you just activated my trap card, go errorsaur")
+      );
   }, []);
 
   const showData = props => {

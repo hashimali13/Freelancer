@@ -14,6 +14,7 @@ import { TextareaAutosize } from '@material-ui/core';
 
 function App(props) {
   let uid = props.location.state.uid;
+  console.log(uid)
   const useStyles = makeStyles(theme => ({
     container: {
       display: 'flex',
