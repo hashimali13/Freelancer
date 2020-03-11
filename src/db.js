@@ -69,10 +69,10 @@ const getProfile = (request, response) => {
 };
 
 const getMessages = (request, response) => {
-  let uid = request.query.uid;
+  let uid = request.query.id;
   console.log(uid);
   pool.query(
-    "SELECT header, content FROM users u INNER JOIN message m ON m.receiverid = u.uid where u.uid=$1",
+    "SELECT * FROM message where  receiverid=$1",
     [uid],
     (error, results) => {
       console.log("getMessages check");
@@ -81,7 +81,6 @@ const getMessages = (request, response) => {
         throw error;
       }
       console.log("You blummin well did it");
-
       response.status(200).json(results.rows);
     }
   );

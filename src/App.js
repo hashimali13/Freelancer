@@ -61,7 +61,7 @@ function App() {
       <Route path="/projects/:id" component={JobPostingProject} />
       <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
-      <Route path="/messages/:id" component={Messages} />
+      <Route path="/messages" component={Messages} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography>Footer placeholder</Typography>

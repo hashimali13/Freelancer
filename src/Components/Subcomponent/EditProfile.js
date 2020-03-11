@@ -24,6 +24,7 @@ const EditProfile = (props) => {
       };
 
       const HandleSubmit = event => {
+        console.log("adas")
         props.history.push({
             pathname: "/dashboard",
             state: {
