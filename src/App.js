@@ -13,6 +13,7 @@ import JobPostingProject from "./Components/JobPostingProject";
 import AppBarDrawer from "./Components/AppBarDrawer";
 import Profile from "./Components/Profile";
 import EditProfile from "./Components/Subcomponent/EditProfile";
+import Messages from "./Components/Messages";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,8 +59,9 @@ function App() {
       <Route path="/newsfeed" component={Newsfeed} />
       <Route path="/myprojects" component={AllProjects} />
       <Route path="/projects/:id" component={JobPostingProject} />
-     <Route path="/editprofile" component={EditProfile} />
+      <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
+      <Route path="/messages/:id" component={Messages} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography>Footer placeholder</Typography>

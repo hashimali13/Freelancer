@@ -95,6 +95,12 @@ function App(props) {
                 </Paper>
               </Grid>
 
+              <Grid item>
+                <Paper>
+                  <Typography onCLick={() => props.history.push({ pathname: `/messages/${uid}`}, console.log("Fuck you Nathan"))}>View Messages</Typography>
+                </Paper>
+              </Grid>
+
             </Grid>
           </Paper>
         </Grid>

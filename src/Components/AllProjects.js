@@ -13,10 +13,15 @@ import Typography from "@material-ui/core/Typography";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { useParams, useHistory } from "react-router";
 import JobPostingProject from "./JobPostingProject";
+import Button from "@material-ui/core/Button";
 
 function AllProjects(props) {
   const [data, setData] = useState([]);
   const history = useHistory();
+
+  function goBackHandle() {
+    history.goBack();
+  }
 
   useEffect(() => {
     axios
@@ -49,33 +54,38 @@ function AllProjects(props) {
   };
 
   return (
-    <Grid container justify="center">
-      <div style={{ width: "50%" , marginBottom:"20px"}}>
-        <Typography
-          variant="h3"
-          style={{
-            textAlign: "center",
-            marginBottom: "20px",
-            color: "#756F6E"
-          }}
-        >
-          {" "}
-          My Projects{" "}
-        </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Job type</TableCell>
-                <TableCell>Title</TableCell>
-                <TableCell>Deadline</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>{createTable()}</TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </Grid>
+    <div>
+      <Grid container justify="center">
+        <div style={{ width: "50%" , marginBottom:"20px"}}>
+          <Typography
+            variant="h3"
+            style={{
+              textAlign: "center",
+              marginBottom: "20px",
+              color: "#756F6E"
+            }}
+          >
+            {" "}
+            My Projects{" "}
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Job type</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Deadline</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{createTable()}</TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      </Grid>
+      <Button variant="contained" color="primary" justifyContent="center" onClick={goBackHandle}>
+        Go Back
+      </Button>
+    </div>
   );
 }
 

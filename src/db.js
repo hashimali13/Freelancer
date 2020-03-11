@@ -68,6 +68,25 @@ const getProfile = (request, response) => {
   );
 };
 
+const getMessages = (request, response) => {
+  let uid = request.query.uid;
+  console.log(uid);
+  pool.query(
+    "SELECT header, content FROM users u INNER JOIN message m ON m.receiverid = u.uid where u.uid=$1",
+    [uid],
+    (error, results) => {
+      console.log("getMessages check");
+      if (error) {
+        console.log("unlucky bro, maybe next time");
+        throw error;
+      }
+      console.log("You blummin well did it");
+
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const createUser = (request, response) => {
   console.log(request.body.user);
   let user = request.body.user;
@@ -172,5 +191,6 @@ module.exports = {
   getProjects,
   seePost,
   searchProjects,
-  getProfile
+  getProfile,
+  getMessages
 };
