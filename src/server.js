@@ -27,6 +27,7 @@ app.get("/searchproject", db.searchProjects);
 app.get("/seepost", db.seePost);
 app.get("/getprofile/:id", db.getProfile);
 app.get("/getmessages/:id", db.getMessages);
+app.post("/makepost/:id", db.makePost);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
