@@ -66,6 +66,22 @@ function App(props) {
                   </Typography>
                 </Paper>
               </Grid>
+<Grid item>
+                <Paper>
+                  <Typography
+                    onClick={() =>
+                      props.history.push({
+                        pathname: `/makepost/${uid}`,
+                        state: {
+                          user: props.location.state.user
+                        }
+                      })
+                    }
+                  >
+                    Create Post
+                  </Typography>
+                </Paper>
+              </Grid>
               <Grid item>
                 <Paper>
                   <Typography onClick={() => props.history.push
