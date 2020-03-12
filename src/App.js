@@ -14,6 +14,7 @@ import AppBarDrawer from "./Components/AppBarDrawer";
 import Profile from "./Components/Profile";
 import EditProfile from "./Components/Subcomponent/EditProfile";
 import Messages from "./Components/Messages";
+import MakePost from "./Components/MakePost";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -62,6 +63,7 @@ function App() {
       <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
       <Route path="/messages" component={Messages} />
+    <Route path="/makepost/:id" component={MakePost} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography>Footer placeholder</Typography>
