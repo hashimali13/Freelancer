@@ -13,7 +13,6 @@ import Paper from "@material-ui/core/Paper";
 import { useParams, useHistory } from "react-router";
 
 function MakePost(props) {
-  console.log(props);
   const [title, setTitle] = useState([]);
   const [content, setContent] = useState([]);
   const [jobtype, setJobtype] = useState([]);
@@ -41,7 +40,7 @@ function MakePost(props) {
         console.log("hello");
         if (res.status === 201) {
           props.history.push({
-            pathname: "/myprojects"
+            pathname: "/projects"
           });
         }
       })
