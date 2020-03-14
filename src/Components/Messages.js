@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
+import Table from "@material-ui/core/Table";
 
 
 function Messages(props) {
@@ -14,6 +15,10 @@ function Messages(props) {
 
     function goBackHandle() {
         history.goBack();
+    }
+
+    function sndMsgRoute() {
+      
     }
 
     useEffect(() => {
@@ -49,6 +54,8 @@ function Messages(props) {
               <TableCell>{messages.header}</TableCell>
               <TableCell>{messages.content}</TableCell>
               <TableCell>{messages.username}</TableCell>
+              <TableCell>{messages.datecol}</TableCell>
+              <TableCell><Button variant="contained" color="primary" onClick={sndMsgRoute}>Reply</Button></TableCell>
               </TableRow>
             );
         });
@@ -56,6 +63,13 @@ function Messages(props) {
 
     return (
         <div>
+          <TableRow>
+            <TableCell>Header</TableCell>
+            <TableCell>Message</TableCell>
+            <TableCell>Sent by</TableCell>
+            <TableCell>Received</TableCell>
+            <TableCell></TableCell>
+          </TableRow>
           {showData(props)}
             <Button variant="contained" color="primary" onClick={goBackHandle}>
                 Go Back

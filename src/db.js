@@ -72,7 +72,7 @@ const getMessages = (request, response) => {
   let uid = request.query.id;
   console.log(uid);
   pool.query(
-    "SELECT * FROM message m FULL JOIN users u ON m.senderid = u.uid WHERE m.receiverid = $1",
+    "SELECT *, TO_CHAR(date, 'Dy DDth Mon HH12:MI:SS') AS datecol FROM message m FULL JOIN users u ON m.senderid = u.uid WHERE m.receiverid = $1 ORDER BY datecol",
     [uid],
     (error, results) => {
       console.log("getMessages check");
@@ -91,6 +91,18 @@ const sendMessage = (request, response) => {
   let content = request.body.content;
   let senderid = request.body.uid;
   let receiverid = request.body.receiverid;
+  pool.query(
+    "INSERT INTO messages (header, content, senderid, receiverid) VALUES ($1, $2, $3, $4)",
+    [header, content, senderid, receiverid],
+    (error, results) => {
+      if (error) {
+        console.log(error);
+        response.status(500).send({ error: "posting error" });
+      } else {
+        response.status(201).json(results.row);
+      }
+    }
+  );
 };
 
 const makePost = (request, response) => {
@@ -221,5 +233,6 @@ module.exports = {
   searchProjects,
   getProfile,
   getMessages,
-  makePost
+  makePost,
+  sendMessage
 };
