@@ -8,7 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 
 
 function Messages(props) {
-  const [user, setUser] = useState([]);
+    const [user, setUser] = useState([]);
     const [data, setData] = useState([]);
     const history = useHistory();
 
@@ -43,21 +43,23 @@ function Messages(props) {
 
     const showData = props => {
         return data.map(messages => {
-          return (
-          <TableRow key={messages.senderid}>
-          <TableCell>{messages.header}</TableCell>
-          <TableCell>{messages.content}</TableCell>
-        </TableRow>
-          );
+          console.log(messages);
+            return (
+              <TableRow key={messages.mid}>
+              <TableCell>{messages.header}</TableCell>
+              <TableCell>{messages.content}</TableCell>
+              <TableCell>{messages.username}</TableCell>
+              </TableRow>
+            );
         });
     };
+
     return (
         <div>
           {showData(props)}
             <Button variant="contained" color="primary" onClick={goBackHandle}>
                 Go Back
             </Button>
-            
         </div>
     );
 }

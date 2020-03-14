@@ -72,7 +72,7 @@ const getMessages = (request, response) => {
   let uid = request.query.id;
   console.log(uid);
   pool.query(
-    "SELECT * FROM message where  receiverid=$1",
+    "SELECT * FROM message m FULL JOIN users u ON m.senderid = u.uid WHERE m.receiverid = $1",
     [uid],
     (error, results) => {
       console.log("getMessages check");
@@ -84,6 +84,13 @@ const getMessages = (request, response) => {
       response.status(200).json(results.rows);
     }
   );
+};
+
+const sendMessage = (request, response) => {
+  let header = request.body.header;
+  let content = request.body.content;
+  let senderid = request.body.uid;
+  let receiverid = request.body.receiverid;
 };
 
 const makePost = (request, response) => {
