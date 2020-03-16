@@ -28,6 +28,8 @@ app.get("/seepost", db.seePost);
 app.get("/getprofile/:id", db.getProfile);
 app.get("/getmessages/:id", db.getMessages);
 app.post("/makepost/:id", db.makePost);
+app.post("/sendmessage/:id", db.sendMessage);
+app.get("/getreceiverid/:id", db.getReceiverId);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);

@@ -6,9 +6,12 @@ import Button from "@material-ui/core/Button";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Table from "@material-ui/core/Table";
-
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 function Messages(props) {
+    let uid = props.location.state.user;
     const [user, setUser] = useState([]);
     const [data, setData] = useState([]);
     const history = useHistory();
@@ -17,9 +20,10 @@ function Messages(props) {
         history.goBack();
     }
 
-    function sndMsgRoute() {
-      
-    }
+    useEffect(() => {
+      setUser(props.match.params.id);
+      console.log(user);
+    }, []);
 
     useEffect(() => {
       
@@ -55,7 +59,11 @@ function Messages(props) {
               <TableCell>{messages.content}</TableCell>
               <TableCell>{messages.username}</TableCell>
               <TableCell>{messages.datecol}</TableCell>
-              <TableCell><Button variant="contained" color="primary" onClick={sndMsgRoute}>Reply</Button></TableCell>
+              <TableCell>
+                <Paper>
+                  <Typography onClick={() => props.history.push({ pathname: `/sendmessage/${uid}`,state:{user:props.location.state.user,photo: props.location.state.photo} })}>Reply</Typography>
+                </Paper>
+              </TableCell>
               </TableRow>
             );
         });

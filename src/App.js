@@ -15,6 +15,7 @@ import Profile from "./Components/Profile";
 import EditProfile from "./Components/Subcomponent/EditProfile";
 import Messages from "./Components/Messages";
 import MakePost from "./Components/MakePost";
+import ComposeMessage from "./Components/Subcomponent/ComposeMessage";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,7 +64,8 @@ function App() {
       <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
       <Route path="/messages" component={Messages} />
-    <Route path="/makepost/:id" component={MakePost} />
+      <Route path="/makepost/:id" component={MakePost} />
+      <Route path="/sendmessage/:id" component={ComposeMessage} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography>Footer placeholder</Typography>

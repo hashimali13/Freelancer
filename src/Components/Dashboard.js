@@ -113,7 +113,7 @@ function App(props) {
 
               <Grid item>
                 <Paper>
-                  <Typography onClick={() => props.history.push({ pathname: '/messages/${uid}', state:{user:props.location.state.uid}}, console.log("Fuck you Nathan"))}>Messages</Typography>
+                  <Typography onClick={() => props.history.push({ pathname: `/messages/${uid}`, state:{user:props.location.state.uid}}, console.log("Fuck you Nathan"))}>Messages</Typography>
                 </Paper>
               </Grid>
 

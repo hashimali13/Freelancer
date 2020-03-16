@@ -89,15 +89,17 @@ const getMessages = (request, response) => {
 const sendMessage = (request, response) => {
   let header = request.body.header;
   let content = request.body.content;
-  let senderid = request.body.uid;
+  let senderid = request.body.senderid;
   let receiverid = request.body.receiverid;
+  console.log(header, content, senderid, receiverid);
   pool.query(
-    "INSERT INTO messages (header, content, senderid, receiverid) VALUES ($1, $2, $3, $4)",
+    "INSERT INTO message (date, header, content, senderid, receiverid) VALUES (current_timestamp, $1, $2, $3, $4)",
+    //"INSERT INTO message (date, header, content, senderid, receiverid) VALUES (current_timestamp, 't1', 't2', 41, 7)", [],
     [header, content, senderid, receiverid],
     (error, results) => {
       if (error) {
         console.log(error);
-        response.status(500).send({ error: "posting error" });
+        response.status(500).send({ error: "posting error" + request.body.rows });
       } else {
         response.status(201).json(results.row);
       }
@@ -159,6 +161,23 @@ const searchUser = (request, response) => {
 
     response.status(200).json(results.rows);
   });
+};
+
+const getReceiverId = (request, response) => {
+  let uid = request.query.id;
+  pool.query(
+    "SELECT senderid FROM message WHERE receiverid = $1",
+    [uid],
+    (error, results) => {
+      console.log("receiverid check");
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
 };
 
 const searchProjects = (request, response) => {
@@ -234,5 +253,6 @@ module.exports = {
   getProfile,
   getMessages,
   makePost,
-  sendMessage
+  sendMessage,
+  getReceiverId,
 };
