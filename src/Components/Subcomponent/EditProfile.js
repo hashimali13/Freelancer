@@ -8,12 +8,19 @@ import Dialog from "./../Dialog";
 import Paper from "@material-ui/core/Paper";
 
 const EditProfile = (props) => {
-    const [username, setUser] = useState();
+    const [username, setUserName] = useState();
     const [password, setPass] = useState();
     const[newPass, setNewPass] =useState();
+    const[email, setEmail] =useState();
+    const[desc, setDesc] =useState();
+    const[location, setLocation] =useState();
+    const[industry, setIndustry] =useState();
+    const[first, setFirst] =useState();
+    const[last, setLast] =useState();
 
     useEffect(() => {
-        setUser(props.location.state.user);
+        setUserName(props.location.state.user);
+
       }, []);
     
     const HandlePass = event => {
@@ -23,8 +30,33 @@ const EditProfile = (props) => {
         setNewPass(event.target.value);
       };
 
+      const HandleNewEmail = event => {
+        setEmail(event.target.value);
+      };
+
+      const HandleNewDesc = event => {
+        setDesc(event.target.value);
+      };
+
+      const HandleNewLocation = event => {
+        setLocation(event.target.value);
+      };
+
+      const HandlenewIndustry = event => {
+        setIndustry(event.target.value);
+      };
+
+      const HandleFirst = event => {
+        setFirst(event.target.value);
+      };
+
+      const HandleLast = event => {
+        setLast(event.target.value);
+      };
+
       const HandleSubmit = event => {
-        console.log("adas")
+        if(password===newPass){console.log("adas")}
+        
         props.history.push({
             pathname: "/dashboard",
             state: {
@@ -53,6 +85,22 @@ const EditProfile = (props) => {
         
           <TextField label="New Password" type="password" onChange={HandlePass} style={{marginRight:"5px"}}/>
           <TextField label="Confirm password" type="password" onChange={HandleNewPass} />
+          <br></br>
+          <br></br>
+          <TextField label="Edit Email" type="text" onChange={HandleNewEmail} />
+          <br></br>
+          <br></br>
+          <TextField style={{width:"50%"}} multiline rowsMax="4" label="Edit Description" type="text" onChange={HandleNewDesc} />
+          <br></br>
+          <br></br>
+          <TextField label="Edit Location" type="text" style={{marginRight:"5px"}} onChange={HandleNewLocation} />
+          
+          <TextField label="Edit Industry" type="text" onChange={HandlenewIndustry} />
+          <br></br>
+          <br></br>
+          <TextField label="First name" style={{marginRight:"5px"}} type="text" onChange={HandleFirst} />
+          
+          <TextField label="Last name" type="text" onChange={HandleLast} />
           <br></br>
           <br></br>
           <Button variant="contained" type="submit" color="primary">
