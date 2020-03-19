@@ -59,7 +59,9 @@ function App(props) {
                 <Paper>
                   <Typography
                     onClick={() =>
-                      props.history.push({ pathname: `/profile/${uid}` })
+                      props.history.push({ pathname: `/profile/${uid}`
+                      , state:{user: props.location.state.user}
+                    })
                     }
                   >
                     Profile
@@ -107,7 +109,7 @@ function App(props) {
                     
               <Grid item>
                 <Paper>
-                  <Typography onClick={() => props.history.push({ pathname: '/editprofile',state:{user:props.location.state.user,photo: props.location.state.photo} })}>Edit Profile</Typography>
+                  <Typography onClick={() => props.history.push({ pathname: '/editprofile',state:{user:props.location.state.user,uid:uid} })}>Edit Profile</Typography>
                 </Paper>
               </Grid>
 

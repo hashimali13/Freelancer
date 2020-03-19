@@ -149,16 +149,53 @@ const createUser = (request, response) => {
   );
 };
 
+
+const editUser = (request, response) => {
+  console.log("check1")
+  let uid = request.body.id;
+  let password = request.body.pass;
+  let email = request.body.email;
+  let description = request.body.description;
+  let location = request.body.location;
+  let industry = request.body.industry;
+  let first = request.body.first;
+  let last = request.body.last;
+  console.log("ID check: " + email)
+  if (password === undefined) {
+    pool.query("UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6 WHERE uid=$7",
+      [email, description, location, industry, first, last, uid], (error, results) => {
+        console.log("check2");
+        if (error) {
+          throw error;
+        }
+        console.log("sdasdasdasdaxa");
+
+        response.status(200).json(results.rows);
+      });
+  }
+  else {
+    pool.query("UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6, password=$7 WHERE uid=$8",
+    [email, description, location, industry, first, last,password, uid], (error, results) => {
+      console.log("check3");
+      if (error) {
+        throw error;
+      }
+      console.log("sdasdasdasdaxa");
+
+      response.status(200).json(results.rows);
+    });
+  }
+
+
+};
+
 const searchUser = (request, response) => {
   let user = request.query.id;
   console.log(user)
   pool.query("SELECT * FROM users where uid=$1", [user], (error, results) => {
-    console.log("sdasdaa");
     if (error) {
       throw error;
     }
-    console.log("sdasdasdasdaxa");
-
     response.status(200).json(results.rows);
   });
 };
@@ -255,4 +292,5 @@ module.exports = {
   makePost,
   sendMessage,
   getReceiverId,
+  editUser
 };
