@@ -7,12 +7,13 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import DateFnsUtils from "@date-io/date-fns";
 import axios from "axios";
-import Dialog from "./Dialog";
+import Dialog from "../Dialog";
 import { render } from "@testing-library/react";
 import Paper from "@material-ui/core/Paper";
 import { useParams, useHistory } from "react-router";
 
-function MakePost(props) {
+function EditPost(props) {
+  console.log(props);
   const [title, setTitle] = useState([]);
   const [content, setContent] = useState([]);
   const [jobtype, setJobtype] = useState([]);
@@ -20,6 +21,7 @@ function MakePost(props) {
   const [postDate, setPostDate] = React.useState("2020-03-12");
   const [deadlineDate, setDeadlineDate] = React.useState("2020-03-12");
   const history = useHistory();
+  const [jobid, setJobid] = useState([]);
 
   function goBackHandle() {
     history.goBack();
@@ -28,13 +30,13 @@ function MakePost(props) {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/makepost/:id", {
+      .post("http://localhost:3001/editpost/:id", {
         title: title,
         content: content,
-        pd: postDate,
         dd: deadlineDate,
         jobtype: jobtype,
-        uid: props.match.params.id
+        // uid: props.match.params.id,
+        jobid: props.location.state.jobid
       })
       .then(res => {
         console.log("hello");
@@ -48,7 +50,7 @@ function MakePost(props) {
         console.log(error);
         render(
           <Dialog
-            header="Error making post"
+            header="Error making post!"
             body="Unable to create a post. Check the information given and please try again."
           />
         );
@@ -70,7 +72,7 @@ function MakePost(props) {
     //might not even be needed
   };
   const HandlePDate = event => {
-    setPostDate(event.target.value);
+    setPostDate();
   };
   const HandleDDate = event => {
     setDeadlineDate(event.target.value);
@@ -82,7 +84,7 @@ function MakePost(props) {
         <Paper elevation={3} style={{ padding: "50pt", paddingTop: "15px" }}>
           <form onSubmit={handleSubmit}>
             <Typography style={{ color: "#black" }} variant="h5" gutterBottom>
-              Posting!
+              Edit a post
             </Typography>
             <TextField label="Title" onChange={HandleTitle} />
             <br></br>
@@ -91,19 +93,6 @@ function MakePost(props) {
             <br></br>
             <br></br>
             <TextField label="Content" onChange={HandleContent} />
-            <br></br>
-            <br></br>
-            <TextField
-              id="pdate"
-              style={{ width: "100%" }}
-              onChange={HandlePDate}
-              label="Post Date"
-              type="date"
-              defaultValue="2020-03-12"
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
             <br></br>
             <br></br>
             <TextField
@@ -140,4 +129,4 @@ function MakePost(props) {
   );
 }
 
-export default MakePost;
+export default EditPost;

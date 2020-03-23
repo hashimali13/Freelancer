@@ -6,17 +6,18 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Container } from "@material-ui/core";
 import Register from "./Components/Register";
-import AllProjects from "./Components/AllProjects";
-import Projects from "./Components/Projects";
+import AllProjects from "./Components/Subcomponent/AllProjects";
+import Projects from "./Components/Subcomponent/Projects";
 import Newsfeed from "./Components/Newsfeed";
-import JobPostingProject from "./Components/JobPostingProject";
+import JobPostingProject from "./Components/Subcomponent/JobPostingProject";
 import AppBarDrawer from "./Components/AppBarDrawer";
 import Profile from "./Components/Profile";
 import EditProfile from "./Components/Subcomponent/EditProfile";
 import Messages from "./Components/Messages";
-import MakePost from "./Components/MakePost";
+import MakePost from "./Components/Subcomponent/MakePost";
 import ComposeMessage from "./Components/Subcomponent/ComposeMessage";
-
+import Posts from "./Components/Posts";
+import EditPost from "./Components/Subcomponent/EditPost";
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
@@ -43,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     textAlign: "center",
     backgroundColor: "#3f50b5",
-    color: "white",
+    color: "white"
   }
 }));
 
@@ -64,8 +65,10 @@ function App() {
       <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
       <Route path="/messages" component={Messages} />
-      <Route path="/makepost/:id" component={MakePost} />
+      <Route path="/makepost/:id/" component={MakePost} />
       <Route path="/sendmessage/:id" component={ComposeMessage} />
+      <Route path="/posts/:id" component={Posts} />
+      <Route path="/editpost/:id" component={EditPost} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography>Footer placeholder</Typography>

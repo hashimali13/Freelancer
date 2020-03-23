@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { typography } from "@material-ui/system";
 import Clock from "./Clock";
-import RecentProjects from "./RecentProjects";
+import RecentProjects from "./Subcomponent/RecentProjects";
 import { TextareaAutosize } from "@material-ui/core";
 
 function Posts(props) {

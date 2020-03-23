@@ -99,7 +99,9 @@ const sendMessage = (request, response) => {
     (error, results) => {
       if (error) {
         console.log(error);
-        response.status(500).send({ error: "posting error" + request.body.rows });
+        response
+          .status(500)
+          .send({ error: "posting error" + request.body.rows });
       } else {
         response.status(201).json(results.row);
       }
@@ -111,17 +113,38 @@ const makePost = (request, response) => {
   console.log(request.body.title);
   let title = request.body.title;
   let content = request.body.content;
-  let pd = request.body.pd;
   let dd = request.body.dd;
   let jobtype = request.body.jobtype;
   let uid = request.body.uid;
   pool.query(
-    "INSERT INTO jobposting (title, content, postdate, deadline, jobtype, uid) VALUES ($1, $2, $3, $4, $5, $6)",
-    [title, content, pd, dd, jobtype, uid],
+    "INSERT INTO jobposting (title, content,  deadline, jobtype, uid) VALUES ($1, $2, $3, $4, $5)",
+    [title, content, dd, jobtype, uid],
     (error, results) => {
       if (error) {
         console.log(error);
         response.status(500).send({ error: "posting error" });
+      } else {
+        response.status(201).json(results.row);
+      }
+    }
+  );
+};
+
+const editPost = (request, response) => {
+  console.log(request.body.title);
+  let title = request.body;
+  let content = request.body.content;
+  let dd = request.body.dd;
+  let jobtype = request.body.jobtype;
+  //let uid = request.body.id;
+  let jobid = request.body.jobid;
+  pool.query(
+    "UPDATE jobposting (title, content, deadline, jobtype, jobid) VALUES ($1, $2, $3, $4, $5)",
+    [title, content, dd, jobtype, uid],
+    (error, results) => {
+      if (error) {
+        console.log(error);
+        response.status(500).send({ error: "editing error" });
       } else {
         response.status(201).json(results.row);
       }
@@ -149,53 +172,16 @@ const createUser = (request, response) => {
   );
 };
 
-
-const editUser = (request, response) => {
-  console.log("check1")
-  let uid = request.body.id;
-  let password = request.body.pass;
-  let email = request.body.email;
-  let description = request.body.description;
-  let location = request.body.location;
-  let industry = request.body.industry;
-  let first = request.body.first;
-  let last = request.body.last;
-  console.log("ID check: " + email)
-  if (password === undefined) {
-    pool.query("UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6 WHERE uid=$7",
-      [email, description, location, industry, first, last, uid], (error, results) => {
-        console.log("check2");
-        if (error) {
-          throw error;
-        }
-        console.log("sdasdasdasdaxa");
-
-        response.status(200).json(results.rows);
-      });
-  }
-  else {
-    pool.query("UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6, password=$7 WHERE uid=$8",
-    [email, description, location, industry, first, last,password, uid], (error, results) => {
-      console.log("check3");
-      if (error) {
-        throw error;
-      }
-      console.log("sdasdasdasdaxa");
-
-      response.status(200).json(results.rows);
-    });
-  }
-
-
-};
-
 const searchUser = (request, response) => {
   let user = request.query.id;
-  console.log(user)
+  console.log(user);
   pool.query("SELECT * FROM users where uid=$1", [user], (error, results) => {
+    console.log("sdasdaa");
     if (error) {
       throw error;
     }
+    console.log("sdasdasdasdaxa");
+
     response.status(200).json(results.rows);
   });
 };
@@ -292,5 +278,5 @@ module.exports = {
   makePost,
   sendMessage,
   getReceiverId,
-  editUser
+  editPost
 };

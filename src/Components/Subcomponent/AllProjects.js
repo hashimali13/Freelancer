@@ -27,8 +27,8 @@ function AllProjects(props) {
     axios
       .get("http://localhost:3001/searchproject", {
         params: {
-            user:props.location.state.user
-          }
+          user: props.location.state.user
+        }
       })
       .then(res => setData(res.data))
       .catch(err => console.log("projectconsole"));
@@ -39,16 +39,13 @@ function AllProjects(props) {
       console.log(project);
       let id = project.projectid;
       return (
-       
-          <TableRow key={project.projectid}>
-            <TableCell>{project.jobtype}</TableCell>
-            <TableCell>
-              <Link to={`/projects/${id}`}>{project.title}</Link>
-            </TableCell>
-            <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
-          </TableRow>
-          
-       
+        <TableRow key={project.projectid}>
+          <TableCell>{project.jobtype}</TableCell>
+          <TableCell>
+            <Link to={`/projects/${id}`}>{project.title}</Link>
+          </TableCell>
+          <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
+        </TableRow>
       );
     });
   };
@@ -56,7 +53,7 @@ function AllProjects(props) {
   return (
     <div>
       <Grid container justify="center">
-        <div style={{ width: "50%" , marginBottom:"20px"}}>
+        <div style={{ width: "50%", marginBottom: "20px" }}>
           <Typography
             variant="h3"
             style={{
@@ -82,7 +79,12 @@ function AllProjects(props) {
           </TableContainer>
         </div>
       </Grid>
-      <Button variant="contained" color="primary" justifyContent="center" onClick={goBackHandle}>
+      <Button
+        variant="contained"
+        color="primary"
+        justifyContent="center"
+        onClick={goBackHandle}
+      >
         Go Back
       </Button>
     </div>

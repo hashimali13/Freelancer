@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import RecentProjects from "./RecentProjects";
+import RecentProjects from "./Subcomponent/RecentProjects";
 import Typography from "@material-ui/core/Typography";
 
 function Profile(props) {
