@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Container } from "@material-ui/core";
 import Register from "./Components/Register";
-import AllProjects from "./Components/Subcomponent/AllProjects";
+import AllProjects from "./Components/Subcomponent/MyProjects";
 import Projects from "./Components/Subcomponent/Projects";
 import Newsfeed from "./Components/Newsfeed";
 import JobPostingProject from "./Components/Subcomponent/JobPostingProject";

@@ -1,3 +1,5 @@
+//THIS IS TO SHOW POSTS FROM EVERYONE
+
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
@@ -53,7 +55,7 @@ function Projects(props) {
           }}
         >
           {" "}
-          Projects{" "}
+          All Projects{" "}
         </Typography>
         <TableContainer component={Paper}>
           <Table>
