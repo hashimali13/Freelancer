@@ -9,10 +9,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { typography } from "@material-ui/system";
 import Clock from "./Clock";
-import RecentProjects from "./Subcomponent/MyPosts";
+import MyPosts from "./Subcomponent/MyPosts";
 import { TextareaAutosize } from "@material-ui/core";
 
-function App(props) {
+function Dashboard(props) {
   let uid = props.location.state.uid;
   console.log(uid);
   console.log(props);
@@ -43,7 +43,7 @@ function App(props) {
   return (
     <div className={classes.container}>
       <Paper className={classes.rightColumn}>
-        <RecentProjects user={props.location.state.user}></RecentProjects>
+        <MyPosts user={props.location.state.user}></MyPosts>
       </Paper>
       <div className={classes.leftColumn}>
         <Grid container justify="center">
@@ -192,4 +192,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default Dashboard;

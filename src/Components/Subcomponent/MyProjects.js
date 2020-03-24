@@ -64,8 +64,17 @@ function MyProjects(props) {
               color: "#756F6E"
             }}
           >
-            {" "}
-            My Projects!{" "}
+            My Jobs!
+          </Typography>
+          <Typography
+            variant="h5"
+            style={{
+              textAlign: "center",
+              marginBottom: "20px",
+              color: "#756F6E"
+            }}
+          >
+            This is where you can find the projects you are working on
           </Typography>
           <TableContainer component={Paper}>
             <Table>

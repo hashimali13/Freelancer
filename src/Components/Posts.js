@@ -103,7 +103,7 @@ function Posts(props) {
                   <Typography
                     onClick={() =>
                       props.history.push({
-                        pathname: "/myprojects",
+                        pathname: `/myprojects/${uid}`,
                         state: {
                           user: props.location.state.user
                         }
@@ -119,10 +119,17 @@ function Posts(props) {
                 <Paper>
                   <Typography
                     onClick={() =>
-                      props.history.push({ pathname: "/projects" })
+                      props.history.push({
+                        pathname: `/myposts/${uid}`,
+                        state: {
+                          user: props.location.state.user,
+                          jobid: props.location.state.jobid,
+                          uid: props.location.state.uid
+                        }
+                      })
                     }
                   >
-                    My Projects: All the projects you have posted!
+                    My Posts: <br /> All the projects you have posted!
                   </Typography>
                 </Paper>
               </Grid>

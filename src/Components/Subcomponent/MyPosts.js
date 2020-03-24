@@ -24,14 +24,14 @@ function MyPosts(props) {
     axios
       .get("http://localhost:3001/searchproject", {
         params: {
-          user: props.user
+          user: props.location.state.user
         }
       })
       .then(res => setData(res.data))
       .catch(err => console.log("projectconsole"));
   }, []);
 
-  const createTable = () => {
+  const createTable = props => {
     return data.map(project => {
       console.log(project);
       let id = project.projectid;
