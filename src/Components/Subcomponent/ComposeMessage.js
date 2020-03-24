@@ -91,8 +91,6 @@ function ComposeMessage (props) {
                     Send Message
                 </Button>
             </form>
-            <br></br>
-            <br></br>
             <Button
             variant="contained"
             color="primary"

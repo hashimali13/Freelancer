@@ -19,6 +19,25 @@ const getUsers = (request, response) => {
   });
 };
 
+const getUsername = (request, response) => {
+  let username = request.body.username;
+  pool.query("SELECT * FROM users WHERE username = $1",
+  [username], (error, results) => 
+  {
+    if (error) {
+      throw error;
+    }
+    if (results.rowCount === 0) {
+      console.log("empty array");
+      return response.status(401).json({ error: "User does not exist" });
+    }
+
+    console.log("second point");
+
+    response.status(200).json(results.rows);
+  });
+};
+
 const getProjects = (request, response) => {
   pool.query("SELECT * FROM jobposting", (error, results) => {
     console.log("Why did the chicken cross the road?");
@@ -72,7 +91,7 @@ const getMessages = (request, response) => {
   let uid = request.query.id;
   console.log(uid);
   pool.query(
-    "SELECT *, TO_CHAR(date, 'Dy DDth Mon HH12:MI:SS') AS datecol FROM message m FULL JOIN users u ON m.senderid = u.uid WHERE m.receiverid = $1 ORDER BY datecol",
+    "SELECT *, TO_CHAR(date, 'Dy DDth Mon HH12:MI:SS') AS datecol FROM message m FULL JOIN users u ON m.senderid = u.uid WHERE m.receiverid = $1 ORDER BY date DESC",
     [uid],
     (error, results) => {
       console.log("getMessages check");
@@ -94,7 +113,6 @@ const sendMessage = (request, response) => {
   console.log(header, content, senderid, receiverid);
   pool.query(
     "INSERT INTO message (date, header, content, senderid, receiverid) VALUES (current_timestamp, $1, $2, $3, $4)",
-    //"INSERT INTO message (date, header, content, senderid, receiverid) VALUES (current_timestamp, 't1', 't2', 41, 7)", [],
     [header, content, senderid, receiverid],
     (error, results) => {
       if (error) {
@@ -278,5 +296,6 @@ module.exports = {
   makePost,
   sendMessage,
   getReceiverId,
-  editPost
+  editPost,
+  getUsername,
 };

@@ -176,7 +176,6 @@ function App(props) {
                           pathname: `/messages/${uid}`,
                           state: { user: props.location.state.uid }
                         },
-                        console.log("Fuck you Nathan")
                       )
                     }
                   >
@@ -184,6 +183,22 @@ function App(props) {
                   </Typography>
                 </Paper>
               </Grid>
+
+              <Grid item>
+                <Paper>
+                  <Typography onClick={() =>
+                    props.history.push(
+                      {
+                        pathname: `/friends/${uid}`,
+                        state: { user: props.location.state.uid }
+                      }
+                    )
+                  }>
+                    Friends
+                  </Typography>
+                </Paper>
+              </Grid>
+              
             </Grid>
           </Paper>
         </Grid>

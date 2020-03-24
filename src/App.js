@@ -18,6 +18,8 @@ import MakePost from "./Components/Subcomponent/MakePost";
 import ComposeMessage from "./Components/Subcomponent/ComposeMessage";
 import Posts from "./Components/Posts";
 import EditPost from "./Components/Subcomponent/EditPost";
+import Friends from "./Components/Friends";
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
@@ -69,6 +71,7 @@ function App() {
       <Route path="/sendmessage/:id" component={ComposeMessage} />
       <Route path="/posts/:id" component={Posts} />
       <Route path="/editpost/:id" component={EditPost} />
+      <Route path="/friends" component={Friends} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography>Footer placeholder</Typography>
