@@ -1,4 +1,4 @@
-//THIS IS TO SHOW POSTS FROM EVERYONE
+//THIS IS FOR WHAT THE USER POSTS
 
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
@@ -16,12 +16,17 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { useParams, useHistory } from "react-router";
 import JobPostingProject from "./JobPostingProject";
 
-function Projects(props) {
+function MyPosts(props) {
   const [data, setData] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getproject")
+      .get("http://localhost:3001/searchproject", {
+        params: {
+          user: props.location.state.user
+        }
+      })
       .then(res => setData(res.data))
       .catch(err => console.log("projectconsole"));
   }, []);
@@ -29,8 +34,7 @@ function Projects(props) {
   const createTable = props => {
     return data.map(project => {
       console.log(project);
-      let id = project.jobid;
-      let title = project.title;
+      let id = project.projectid;
       return (
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
@@ -45,7 +49,7 @@ function Projects(props) {
 
   return (
     <Grid container justify="center">
-      <div style={{ width: "50%" }}>
+      <div style={{ width: "50%", marginBottom: "20px" }}>
         <Typography
           variant="h3"
           style={{
@@ -55,7 +59,7 @@ function Projects(props) {
           }}
         >
           {" "}
-          All Projects{" "}
+          My Projects{" "}
         </Typography>
         <TableContainer component={Paper}>
           <Table>
@@ -74,4 +78,4 @@ function Projects(props) {
   );
 }
 
-export default Projects;
+export default MyPosts;

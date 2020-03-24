@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { typography } from "@material-ui/system";
 import Clock from "./Clock";
-import RecentProjects from "./Subcomponent/RecentProjects";
+import RecentProjects from "./Subcomponent/MyPosts";
 import { TextareaAutosize } from "@material-ui/core";
 
 function Posts(props) {
@@ -46,7 +46,7 @@ function Posts(props) {
         <Grid container justify="center">
           <Paper
             elevation={3}
-            style={{ padding: "50pt", paddingTop: "15px", width: "25%" }}
+            style={{ padding: "50pt", paddingTop: "15px", width: "50%" }}
           >
             <Grid container spacing={1} direction="column" alignItems="center">
               <Grid item>
@@ -79,8 +79,8 @@ function Posts(props) {
                   </Typography>
                 </Paper>
               </Grid>
-              <Grid item>
-                {/* This grid item is for making posts */}
+              {/* <Grid item>
+                // This grid item is for making posts -------------------------------------------------------------------------------------------
                 <Paper>
                   <Typography
                     onClick={() =>
@@ -95,7 +95,7 @@ function Posts(props) {
                     Edit a post
                   </Typography>
                 </Paper>
-              </Grid>
+              </Grid> */}
               <hr />
               <Grid item>
                 {/* This is for Projects the user is working on */}
@@ -103,14 +103,33 @@ function Posts(props) {
                   <Typography
                     onClick={() =>
                       props.history.push({
-                        pathname: "/myprojects",
+                        pathname: `/myprojects/${uid}`,
                         state: {
                           user: props.location.state.user
                         }
                       })
                     }
                   >
-                    My Projects: <br /> Projects that you are working on!
+                    My Jobs: <br /> Projects that you are working on!
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item>
+                {/* This is for the user to view projects that they have posted */}
+                <Paper>
+                  <Typography
+                    onClick={() =>
+                      props.history.push({
+                        pathname: `/myposts/${uid}`,
+                        state: {
+                          user: props.location.state.user,
+                          jobid: props.location.state.jobid,
+                          uid: props.location.state.uid
+                        }
+                      })
+                    }
+                  >
+                    My Posts: <br /> All the projects you have posted!
                   </Typography>
                 </Paper>
               </Grid>
@@ -122,7 +141,7 @@ function Posts(props) {
                       props.history.push({ pathname: "/projects" })
                     }
                   >
-                    Browse Projects: View all projects posted by other users!
+                    Browse All Jobs: <br /> View all projects!
                   </Typography>
                 </Paper>
               </Grid>

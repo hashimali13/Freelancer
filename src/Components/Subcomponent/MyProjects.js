@@ -1,3 +1,5 @@
+//THIS IS FOR PROJECTS THAT THE USER IS WORKING ON/COMPLETING
+
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
@@ -15,7 +17,7 @@ import { useParams, useHistory } from "react-router";
 import JobPostingProject from "./JobPostingProject";
 import Button from "@material-ui/core/Button";
 
-function AllProjects(props) {
+function MyProjects(props) {
   const [data, setData] = useState([]);
   const history = useHistory();
 
@@ -62,8 +64,17 @@ function AllProjects(props) {
               color: "#756F6E"
             }}
           >
-            {" "}
-            My Projects{" "}
+            My Jobs!
+          </Typography>
+          <Typography
+            variant="h5"
+            style={{
+              textAlign: "center",
+              marginBottom: "20px",
+              color: "#756F6E"
+            }}
+          >
+            This is where you can find the projects you are working on
           </Typography>
           <TableContainer component={Paper}>
             <Table>
@@ -91,4 +102,4 @@ function AllProjects(props) {
   );
 }
 
-export default AllProjects;
+export default MyProjects;

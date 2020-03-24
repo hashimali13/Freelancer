@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Container } from "@material-ui/core";
 import Register from "./Components/Register";
-import AllProjects from "./Components/Subcomponent/AllProjects";
+import AllProjects from "./Components/Subcomponent/MyProjects";
 import Projects from "./Components/Subcomponent/Projects";
 import Newsfeed from "./Components/Newsfeed";
 import JobPostingProject from "./Components/Subcomponent/JobPostingProject";
@@ -19,6 +19,8 @@ import ComposeMessage from "./Components/Subcomponent/ComposeMessage";
 import Posts from "./Components/Posts";
 import EditPost from "./Components/Subcomponent/EditPost";
 import Friends from "./Components/Friends";
+import MyProjects from "./Components/Subcomponent/MyProjects";
+import MyPosts from "./Components/Subcomponent/MyPosts";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -62,7 +64,7 @@ function App() {
       <Route path="/register" component={Register} />
       <Route exact path="/projects" component={Projects} />
       <Route path="/newsfeed" component={Newsfeed} />
-      <Route path="/myprojects" component={AllProjects} />
+      <Route path="/myprojects/:id" component={MyProjects} />
       <Route path="/projects/:id" component={JobPostingProject} />
       <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
@@ -72,6 +74,7 @@ function App() {
       <Route path="/posts/:id" component={Posts} />
       <Route path="/editpost/:id" component={EditPost} />
       <Route path="/friends" component={Friends} />
+      <Route path="/myposts/:id" component={MyPosts} />
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography>Footer placeholder</Typography>
