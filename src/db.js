@@ -260,6 +260,24 @@ const searchProjects = (request, response) => {
   );
 };
 
+const getFriend = (request, response) => {
+  let uid = request.query.id;
+  console.log(uid)
+  pool.query(
+    "SELECT uid, username FROM friendconnection join users u on friendconnection.friend = u.uid where userid=$1",
+    [uid],
+    (error, results) => {
+      console.log("receiverid check");
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const authUser = (request, response) => {
   console.log(request.query);
   let username = request.query.user;
@@ -298,4 +316,5 @@ module.exports = {
   getReceiverId,
   editPost,
   getUsername,
+  getFriend
 };
