@@ -24,7 +24,7 @@ function MyPosts(props) {
     axios
       .get("http://localhost:3001/searchproject", {
         params: {
-          user: props.location.state.user
+          user: history.location.state.user
         }
       })
       .then(res => setData(res.data))

@@ -21,21 +21,23 @@ const getUsers = (request, response) => {
 
 const getUsername = (request, response) => {
   let username = request.body.username;
-  pool.query("SELECT * FROM users WHERE username = $1",
-  [username], (error, results) => 
-  {
-    if (error) {
-      throw error;
-    }
-    if (results.rowCount === 0) {
-      console.log("empty array");
-      return response.status(401).json({ error: "User does not exist" });
-    }
+  pool.query(
+    "SELECT * FROM users WHERE username = $1",
+    [username],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      if (results.rowCount === 0) {
+        console.log("empty array");
+        return response.status(401).json({ error: "User does not exist" });
+      }
 
-    console.log("second point");
+      console.log("second point");
 
-    response.status(200).json(results.rows);
-  });
+      response.status(200).json(results.rows);
+    }
+  );
 };
 
 const getProjects = (request, response) => {
@@ -128,7 +130,7 @@ const sendMessage = (request, response) => {
 };
 
 const makePost = (request, response) => {
-  console.log(request.body.title);
+  console.log(request);
   let title = request.body.title;
   let content = request.body.content;
   let dd = request.body.dd;
@@ -149,16 +151,17 @@ const makePost = (request, response) => {
 };
 
 const editPost = (request, response) => {
-  console.log(request.body.title);
+  console.log(request, response);
   let title = request.body;
   let content = request.body.content;
   let dd = request.body.dd;
   let jobtype = request.body.jobtype;
-  //let uid = request.body.id;
+  let uid = request.body.id;
   let jobid = request.body.jobid;
   pool.query(
-    "UPDATE jobposting (title, content, deadline, jobtype, jobid) VALUES ($1, $2, $3, $4, $5)",
-    [title, content, dd, jobtype, uid],
+    // "UPDATE jobposting (title, content, deadline, jobtype) VALUES ($1, $2, $3, $4) WHERE jobid=$5",
+    "UPDATE jobposting SET title = $1, content = $2, deadline = $3, jobtype = $4 WHERE jobid=$5",
+    [title, content, dd, jobtype, jobid],
     (error, results) => {
       if (error) {
         console.log(error);
@@ -193,7 +196,7 @@ const createUser = (request, response) => {
 const searchUser = (request, response) => {
   let user = request.query.id;
   console.log(user);
-  pool.query("SELECT * FROM users where uid=$1", [user], (error, results) => {
+  pool.query("SELECT * FROM users WHERE uid=$1", [user], (error, results) => {
     console.log("sdasdaa");
     if (error) {
       throw error;
@@ -297,5 +300,5 @@ module.exports = {
   sendMessage,
   getReceiverId,
   editPost,
-  getUsername,
+  getUsername
 };

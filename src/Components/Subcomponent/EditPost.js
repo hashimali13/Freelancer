@@ -13,7 +13,6 @@ import Paper from "@material-ui/core/Paper";
 import { useParams, useHistory } from "react-router";
 
 function EditPost(props) {
-  console.log(props);
   const [title, setTitle] = useState([]);
   const [content, setContent] = useState([]);
   const [jobtype, setJobtype] = useState([]);
@@ -29,6 +28,7 @@ function EditPost(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    console.log(props);
     axios
       .post("http://localhost:3001/editpost/:id", {
         title: title,
@@ -36,7 +36,7 @@ function EditPost(props) {
         dd: deadlineDate,
         jobtype: jobtype,
         // uid: props.match.params.id,
-        jobid: props.location.state.jobid
+        jobid: props.match.params.id
       })
       .then(res => {
         console.log("hello");
@@ -109,7 +109,7 @@ function EditPost(props) {
             <br></br>
             <br></br>
             <Button variant="contained" type="submit" color="primary">
-              Create Post
+              Edit
             </Button>
           </form>
         </Paper>

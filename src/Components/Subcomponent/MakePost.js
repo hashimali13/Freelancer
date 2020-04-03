@@ -36,7 +36,7 @@ function MakePost(props) {
         uid: props.match.params.id
       })
       .then(res => {
-        console.log("hello");
+        console.log(title, content, deadlineDate, jobtype);
         if (res.status === 201) {
           props.history.push({
             pathname: "/projects"
