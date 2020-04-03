@@ -12,13 +12,14 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { useParams, useHistory } from "react-router";
 import JobPostingProject from "./JobPostingProject";
 
 function Projects(props) {
   const [data, setData] = useState([]);
-
+  const history = useHistory();
+  let uid = props.location.state.uid
   useEffect(() => {
     axios
       .get("http://localhost:3001/getproject")
@@ -35,7 +36,7 @@ function Projects(props) {
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>
-            <Link to={`/projects/${id}`}>{project.title}</Link>
+            <Link to={{pathname:`/projects/${id}`, state: {uid:uid}}}>{project.title}</Link>
           </TableCell>
           <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
         </TableRow>

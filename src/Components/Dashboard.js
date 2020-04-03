@@ -43,7 +43,7 @@ function Dashboard(props) {
   return (
     <div className={classes.container}>
       <Paper className={classes.rightColumn}>
-        <MyPosts user={props.location.state.user}></MyPosts>
+        <MyPosts user={props.location.state.user} uid={uid}></MyPosts>
       </Paper>
       <div className={classes.leftColumn}>
         <Grid container justify="center">
@@ -117,7 +117,8 @@ function Dashboard(props) {
                         pathname: "/myprojects",
                         state: {
                           user: props.location.state.user,
-                          photo: props.location.state.photo
+                          photo: props.location.state.photo,
+                          uid: uid
                         }
                       })
                     }
@@ -141,7 +142,7 @@ function Dashboard(props) {
                 <Paper>
                   <Typography
                     onClick={() =>
-                      props.history.push({ pathname: "/projects" })
+                      props.history.push({ pathname: "/projects", state:{uid:uid}})
                     }
                   >
                     Browse Projects

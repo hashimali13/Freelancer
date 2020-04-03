@@ -8,6 +8,9 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 
 function JobPostingProject(props) {
+  console.log(props.location.state.uid)
+  let user = props.location.state.uid
+  const [poster, setPoster] = useState();
   let { id } = useParams();
   let jid = { id };
   const [data, setData] = useState([]);
@@ -25,8 +28,9 @@ function JobPostingProject(props) {
           jobid: props.match.params.id
         }
       })
-      .then(res => setData(res.data), console.log("up to here"))
+      .then(res => setData(res.data), console.log("aa"))
       .catch(err => console.log("projectconsole"));
+      
   }, []);
 
   const showData = props => {
@@ -51,21 +55,24 @@ function JobPostingProject(props) {
                   <b>{jobposting.jobid}</b>
                 </p>
               </Typography>
-
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() =>
-                  props.history.push({
-                    pathname: `/editpost/${jobposting.uid}`,
-                    state: {
-                      jobid: jobposting.jobid
-                    }
-                  })
-                }
-              >
-                Edit Post
-              </Button>
+              {user ===jobposting.uid ?
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() =>
+                    props.history.push({
+                      pathname: `/editpost/${jobposting.uid}`,
+                      state: {
+                        jobid: jobposting.jobid
+                      }
+                    })
+                  }
+                >
+                  Edit Post
+                </Button>
+              :
+                <br/>
+              } 
               <Button
                 variant="contained"
                 color="primary"
