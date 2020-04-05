@@ -21,6 +21,7 @@ import EditPost from "./Components/Subcomponent/EditPost";
 import Friends from "./Components/Friends";
 import MyProjects from "./Components/Subcomponent/MyProjects";
 import MyPosts from "./Components/Subcomponent/MyPosts";
+import Job from "./Components/Subcomponent/Job";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -64,8 +65,9 @@ function App() {
       <Route path="/register" component={Register} />
       <Route exact path="/projects" component={Projects} />
       <Route path="/newsfeed" component={Newsfeed} />
-      <Route path="/myprojects/:id" component={MyProjects} />
+      <Route path="/myprojects/" component={MyProjects} />
       <Route path="/projects/:id" component={JobPostingProject} />
+      <Route path="/job/:id" component={Job} />
       <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
       <Route path="/messages" component={Messages} />
