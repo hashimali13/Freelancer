@@ -52,6 +52,23 @@ const getProjects = (request, response) => {
   });
 };
 
+const addFriend = (request, response) => {
+  let userid = request.body.friend;
+  let friend = request.body.userid;
+  pool.query(
+    "INSERT INTO friendconnection (userid, friend) VALUES ($1, $2)",
+    [friend, userid],
+    (error, results) => {
+      if (error) {
+        console.log(error);
+        response.status(500).send({ error: "posting error" });
+      } else {
+        response.status(201).json(results.rows);
+      }
+    }
+  )
+};
+
 const seePost = (request, response) => {
   let jobid = request.query.jobid;
   pool.query(
@@ -338,5 +355,6 @@ module.exports = {
   editPost,
   getUsername,
   getFriend,
-  getJob
+  getJob,
+  addFriend
 };
