@@ -44,7 +44,7 @@ function MyProjects(props) {
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>
-            <Link to={`/projects/${id}`}>{project.title}</Link>
+            <Link to={{pathname:`/job/${id}`, state: {uid:props.location.state.uid}}}>{project.title}</Link>
           </TableCell>
           <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
         </TableRow>
@@ -88,16 +88,15 @@ function MyProjects(props) {
               <TableBody>{createTable()}</TableBody>
             </Table>
           </TableContainer>
-        </div>
-      </Grid>
-      <Button
-        variant="contained"
-        color="primary"
-        justifyContent="center"
-        onClick={goBackHandle}
-      >
+
+          <Button variant="contained" color="primary" style={{marginTop:"10px"}} onClick={goBackHandle} >
         Go Back
       </Button>
+        </div>
+        
+        
+      </Grid>
+      
     </div>
   );
 }

@@ -263,6 +263,24 @@ const searchProjects = (request, response) => {
   );
 };
 
+const getJob = (request, response) =>{
+  let pid = request.query.id;
+  console.log(pid)
+  pool.query(
+    "SELECT * FROM project WHERE projectid = $1",
+    [pid],
+    (error, results) => {
+      console.log("receiverid check");
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const getFriend = (request, response) => {
   let uid = request.query.id;
   console.log(uid)
@@ -318,10 +336,7 @@ module.exports = {
   sendMessage,
   getReceiverId,
   editPost,
-<<<<<<< HEAD
-  getUsername
-=======
   getUsername,
-  getFriend
->>>>>>> 0b5372d783712920eae3c9a601314b21e6f61e8c
+  getFriend,
+  getJob
 };

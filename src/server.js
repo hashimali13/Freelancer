@@ -26,6 +26,7 @@ app.post("/create", db.createUser);
 app.get("/searchproject", db.searchProjects);
 app.get("/seepost", db.seePost);
 app.get("/getprofile/:id", db.getProfile);
+app.get("/getjob/:id", db.getJob);
 app.get("/getmessages/:id", db.getMessages);
 app.post("/makepost/:id", db.makePost);
 app.post("/sendmessage/:id", db.sendMessage);
