@@ -18,6 +18,7 @@ import TableCell from "@material-ui/core/TableCell";
 
 function Friends(props) {
     let uid = props.location.state.user;
+    let friend = null;
     const [username, setUsername] = useState([]);
     const [data, setData] = useState([]);
     const history = useHistory();
@@ -30,11 +31,36 @@ function Friends(props) {
         setUsername(event.target.value);
     }
 
-    useEffect(() => {
-
+    const HandleSecondSubmit = event => {
+        event.preventDefault();
+        data.map(user => {
+            friend = user.uid;
+        });
         axios
-        .get("http://localhost:3001/")
-    }, []);
+        .post("http://localhost:3001/addfriend/:id", {
+            friend: friend,
+            userid: uid
+        })
+        .then(res => {
+            console.log("first point");
+            if (res.status === 201) {
+                render(
+                    <Dialog
+                        header="Friend has been added"
+                    />
+                );
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            render(
+                <Dialog 
+                    header="Error sending friend request"
+                    body="Unable to send friend request, please try again"
+                />
+            );
+        });
+    };
 
     const HandleSubmit = event => {
         event.preventDefault();
@@ -60,6 +86,11 @@ function Friends(props) {
             return (
                 <TableRow key={user.uid}>
                     <TableCell>{user.username}</TableCell>
+                    <TableCell>
+                        <Button variant="contained" color="primary" onClick={HandleSecondSubmit}>
+                            Add Friend
+                        </Button>
+                    </TableCell>
                 </TableRow>
             );
         });
