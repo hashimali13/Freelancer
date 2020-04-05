@@ -53,10 +53,10 @@ const getProjects = (request, response) => {
 };
 
 const seePost = (request, response) => {
-  let jobid = request.query.jobid;
+  let uid = request.query.uid;
   pool.query(
-    "SELECT * FROM jobposting WHERE jobid=$1",
-    [jobid],
+    "SELECT * FROM jobposting WHERE uid=$1",
+    [uid],
     (error, results) => {
       console.log("please work");
       if (error) {
@@ -265,7 +265,7 @@ const searchProjects = (request, response) => {
 
 const getFriend = (request, response) => {
   let uid = request.query.id;
-  console.log(uid)
+  console.log(uid);
   pool.query(
     "SELECT uid, username FROM friendconnection join users u on friendconnection.friend = u.uid where userid=$1",
     [uid],
@@ -318,10 +318,6 @@ module.exports = {
   sendMessage,
   getReceiverId,
   editPost,
-<<<<<<< HEAD
-  getUsername
-=======
   getUsername,
   getFriend
->>>>>>> 0b5372d783712920eae3c9a601314b21e6f61e8c
 };

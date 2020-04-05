@@ -10,6 +10,7 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { typography } from "@material-ui/system";
 import Clock from "./Clock";
 import MyPosts from "./Subcomponent/MyPosts";
+import MyProjects from "./Subcomponent/MyProjects";
 import { TextareaAutosize } from "@material-ui/core";
 
 function Dashboard(props) {
@@ -43,7 +44,8 @@ function Dashboard(props) {
   return (
     <div className={classes.container}>
       <Paper className={classes.rightColumn}>
-        <MyPosts user={props.location.state.user} uid={uid}></MyPosts>
+        {/* <MyPosts user={props.location.state.user} uid={uid}></MyPosts> */}
+        <MyProjects user={props.location.state.user} uid={uid}></MyProjects>
       </Paper>
       <div className={classes.leftColumn}>
         <Grid container justify="center">
@@ -142,7 +144,10 @@ function Dashboard(props) {
                 <Paper>
                   <Typography
                     onClick={() =>
-                      props.history.push({ pathname: "/projects", state:{uid:uid}})
+                      props.history.push({
+                        pathname: "/projects",
+                        state: { uid: uid }
+                      })
                     }
                   >
                     Browse Projects
@@ -172,12 +177,10 @@ function Dashboard(props) {
                 <Paper>
                   <Typography
                     onClick={() =>
-                      props.history.push(
-                        {
-                          pathname: `/messages/${uid}`,
-                          state: { user: props.location.state.uid }
-                        },
-                      )
+                      props.history.push({
+                        pathname: `/messages/${uid}`,
+                        state: { user: props.location.state.uid }
+                      })
                     }
                   >
                     Messages
@@ -187,19 +190,18 @@ function Dashboard(props) {
 
               <Grid item>
                 <Paper>
-                  <Typography onClick={() =>
-                    props.history.push(
-                      {
+                  <Typography
+                    onClick={() =>
+                      props.history.push({
                         pathname: `/friends/${uid}`,
                         state: { user: props.location.state.uid }
-                      }
-                    )
-                  }>
+                      })
+                    }
+                  >
                     Friends
                   </Typography>
                 </Paper>
               </Grid>
-              
             </Grid>
           </Paper>
         </Grid>

@@ -17,14 +17,16 @@ import { useParams, useHistory } from "react-router";
 import JobPostingProject from "./JobPostingProject";
 
 function MyPosts(props) {
+  console.log(props);
   const [data, setData] = useState([]);
   const history = useHistory();
   let uid = props.uid;
   useEffect(() => {
     axios
-      .get("http://localhost:3001/searchproject", {
+      .get("http://localhost:3001/seepost", {
         params: {
-          user: props.user
+          uid: uid
+          //change this to id
         }
       })
       .then(res => setData(res.data))
