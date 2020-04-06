@@ -70,9 +70,9 @@ const addFriend = (request, response) => {
 };
 
 const seePost = (request, response) => {
-  let uid = request.query.uid;
+  let uid = request.query.id;
   pool.query(
-    "SELECT * FROM jobposting WHERE uid=$1",
+    "SELECT * FROM jobposting WHERE jobid=$1",
     [uid],
     (error, results) => {
       console.log("please work");
@@ -316,6 +316,22 @@ const getFriend = (request, response) => {
   );
 };
 
+const getApplication = (request, response) => {
+  let appid = request.query.id;
+  pool.query(
+    "SELECT * FROM application where appid=$1",
+    [appid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const authUser = (request, response) => {
   console.log(request.query);
   let username = request.query.user;
@@ -356,5 +372,6 @@ module.exports = {
   getUsername,
   getFriend,
   getJob,
-  addFriend
+  addFriend,
+  getApplication
 };

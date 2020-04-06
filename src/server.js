@@ -21,10 +21,11 @@ app.get("/", (request, response) => {
 app.get("/authuser", db.authUser);
 app.get("/userid/:id", db.searchUser);
 app.get("/users", db.getUsers);
+app.get("/getapplication/:id", db.getApplication);
 app.get("/getproject", db.getProjects);
 app.post("/create", db.createUser);
 app.get("/searchproject", db.searchProjects);
-app.get("/seepost", db.seePost);
+app.get("/seepost/:id", db.seePost);
 app.get("/getprofile/:id", db.getProfile);
 app.get("/getjob/:id", db.getJob);
 app.get("/getmessages/:id", db.getMessages);

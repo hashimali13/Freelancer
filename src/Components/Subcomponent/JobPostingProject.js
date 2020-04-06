@@ -23,9 +23,9 @@ function JobPostingProject(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/seepost", {
+      .get("http://localhost:3001/seepost/id", {
         params: {
-          jobid: props.match.params.id
+          id: props.match.params.id
         }
       })
       .then(res => setData(res.data), console.log("aa"))
@@ -59,6 +59,7 @@ function JobPostingProject(props) {
                 <Button
                   variant="contained"
                   color="primary"
+                  style={{marginRight:"5px"}}
                   onClick={() =>
                     props.history.push({
                       pathname: `/editpost/${jobposting.uid}`,
