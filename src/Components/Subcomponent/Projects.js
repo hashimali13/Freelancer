@@ -19,16 +19,17 @@ import JobPostingProject from "./JobPostingProject";
 function Projects(props) {
   const [data, setData] = useState([]);
   const history = useHistory();
-  let uid = props.location.state.uid
+  let uid = props.location.state.uid;
+  console.log(props.location.state.uid)
   useEffect(() => {
     axios
       .get("http://localhost:3001/getproject")
-      .then(res => setData(res.data))
-      .catch(err => console.log("projectconsole"));
+      .then((res) => setData(res.data))
+      .catch((err) => console.log("projectconsole"));
   }, []);
 
-  const createTable = props => {
-    return data.map(project => {
+  const createTable = (props) => {
+    return data.map((project) => {
       console.log(project);
       let id = project.jobid;
       let title = project.title;
@@ -36,7 +37,9 @@ function Projects(props) {
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>
-            <Link to={{pathname:`/projects/${id}`, state: {uid:uid}}}>{project.title}</Link>
+            <Link to={{ pathname: `/projects/${id}`, state: { uid: uid } }}>
+              {project.title}
+            </Link>
           </TableCell>
           <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
         </TableRow>
@@ -52,7 +55,7 @@ function Projects(props) {
           style={{
             textAlign: "center",
             marginBottom: "20px",
-            color: "#756F6E"
+            color: "#756F6E",
           }}
         >
           {" "}

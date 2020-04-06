@@ -6,9 +6,11 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
 import Paper from "@material-ui/core/Paper";
+import Application from "./Application";
 
 function JobPostingProject(props) {
   console.log(props.location.state.uid)
+  console.log(props.match.params.id)
   let user = props.location.state.uid
   const [poster, setPoster] = useState();
   let { id } = useParams();
@@ -23,9 +25,9 @@ function JobPostingProject(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/seepost", {
+      .get("http://localhost:3001/getpost", {
         params: {
-          jobid: props.match.params.id
+          id: props.match.params.id
         }
       })
       .then(res => setData(res.data), console.log("aa"))
@@ -38,10 +40,11 @@ function JobPostingProject(props) {
       console.log(jobposting);
       return (
         <div>
-          <Grid container justify="center">
-            <Paper
+          <Grid style={{width:"60%"}} container spacing={3} justify="center">
+            <Grid item > 
+            <Paper 
               elevation={3}
-              style={{ padding: "50pt", paddingTop: "15px", width: "50%" }}
+              style={{ padding: "50pt", paddingTop: "15px"}}
             >
               <Typography>
                 {" "}
@@ -59,6 +62,7 @@ function JobPostingProject(props) {
                 <Button
                   variant="contained"
                   color="primary"
+                  style={{marginRight:"5px"}}
                   onClick={() =>
                     props.history.push({
                       pathname: `/editpost/${jobposting.uid}`,
@@ -81,6 +85,20 @@ function JobPostingProject(props) {
                 Go Back
               </Button>
             </Paper>
+            </Grid>
+             <Grid item>
+              <h1>Comments</h1>
+            </Grid>
+            <Grid item style={{width:"58%"}}>
+            <Paper elevation={3} style={{ padding: "50pt", paddingTop: "15px", marginLeft:"-25%",}}>
+                <Typography ><h2 > Applications </h2></Typography>  
+                <Application appid={props.match.params.id}></Application>
+            </Paper>
+              
+            </Grid>
+
+           
+            
           </Grid>
         </div>
       );

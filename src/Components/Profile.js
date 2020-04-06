@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import RecentProjects from "./Subcomponent/MyPosts";
+import DashPosts from "./Subcomponent/Dashprojects";
 import Typography from "@material-ui/core/Typography";
 
 function Profile(props) {
@@ -22,45 +22,45 @@ function Profile(props) {
     axios
       .get("http://localhost:3001/userid/:id", {
         params: {
-          id: props.match.params.id
-        }
+          id: props.match.params.id,
+        },
       })
-      .then(res => setData(res.data), console.log("you here bruv"))
-      .catch(err =>
+      .then((res) => setData(res.data), console.log("you here bruv"))
+      .catch((err) =>
         console.log("you just activated my trap card, go errorsaur")
       );
 
     axios
       .get("http://localhost:3001/getProfile/:id", {
         params: {
-          uid: props.match.params.id
-        }
+          uid: props.match.params.id,
+        },
       })
-      .then(res => setData2(res.data), console.log("adsfsaf"))
-      .catch(err =>
+      .then((res) => setData2(res.data), console.log("adsfsaf"))
+      .catch((err) =>
         console.log("you just activated my trap card, go errorsxaur")
       );
   }, []);
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     container: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "center"
+      justifyContent: "center",
     },
     leftColumn: {
-      order: 0
+      order: 0,
     },
     rightColumn: {
       order: 1,
-      flexGrow: 2
-    }
+      flexGrow: 2,
+    },
   }));
 
   const style = useStyles();
 
-  const showData = props => {
-    return data.map(profile => {
+  const showData = (props) => {
+    return data.map((profile) => {
       console.log(profile);
       return (
         <div className={style.container}>
@@ -92,15 +92,15 @@ function Profile(props) {
             </Paper>
           </div>
           <Paper className={style.rightColumn}>
-            <RecentProjects user={profile.username}></RecentProjects>
+            <DashPosts user={profile.username}></DashPosts>
           </Paper>
         </div>
       );
     });
   };
 
-  const showSkills = props => {
-    return data2.map(skills => {
+  const showSkills = (props) => {
+    return data2.map((skills) => {
       console.log(skills);
       return <li>{skills.skill}</li>;
     });

@@ -4,7 +4,7 @@ const pool = new Pool({
   host: "freelancerproject.csglr5v9qttk.eu-west-2.rds.amazonaws.com",
   database: "postgres",
   password: "hashnathbail",
-  port: 5432
+  port: 5432,
 });
 
 const getUsers = (request, response) => {
@@ -66,14 +66,16 @@ const addFriend = (request, response) => {
         response.status(201).json(results.rows);
       }
     }
-  )
+  );
 };
 
-const seePost = (request, response) => {
-  let uid = request.query.uid;
+const getPost = (request, response) => {
+  let id = request.query.id;
+  console.log(request.body.id)
+  console.log(request.query.id)
   pool.query(
-    "SELECT * FROM jobposting WHERE uid=$1",
-    [uid],
+    "SELECT * FROM jobposting WHERE jobid=$1",
+    [id],
     (error, results) => {
       console.log("please work");
       if (error) {
@@ -83,6 +85,47 @@ const seePost = (request, response) => {
       console.log("yh idk");
 
       response.status(200).json(results.rows);
+    }
+  );
+
+};
+
+const seePost = (request, response) => {
+ 
+  let user = request.query.user;
+  let user2 = request.body.user;
+  console.log(user);
+  console.log(user2);
+  pool.query(
+    "SELECT uid FROM users WHERE username=$1",
+    [user],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      if (results.rowCount === 0) {
+        console.log("unauthorized");
+        return response.status(401).json({ error: "User does not exist" });
+      }
+      let uid = results.rows[0].uid;
+      pool.query(
+        "SELECT * FROM jobposting WHERE uid=$1",
+        [uid],
+        (error, results) => {
+          if (error) {
+            throw error;
+          }
+          if (results.rowCount === 0) {
+            console.log("no projects");
+            return response
+              .status(402)
+              .json({ error: "User does not have any projects." });
+          }
+
+          console.log(results.rows[0]);
+          response.status(200).json(results.rows);
+        }
+      );
     }
   );
 };
@@ -336,6 +379,23 @@ const getFriend = (request, response) => {
   );
 };
 
+const getApplication = (request, response) => {
+  let appid = request.query.id;
+  console.log(appid)
+  pool.query(
+    "SELECT * FROM application where jobid=$1",
+    [appid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const authUser = (request, response) => {
   console.log(request.query);
   let username = request.query.user;
@@ -359,6 +419,47 @@ const authUser = (request, response) => {
   );
 };
 
+
+const editUser = (request, response) => {
+  console.log("check1")
+  let uid = request.body.id;
+  let password = request.body.pass;
+  let email = request.body.email;
+  let description = request.body.description;
+  let location = request.body.location;
+  let industry = request.body.industry;
+  let first = request.body.first;
+  let last = request.body.last;
+  console.log(uid + password + email + description + location + industry + first + last)
+  console.log("ID check: " + email)
+  if (password === undefined) {
+    pool.query("UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6 WHERE uid=$7",
+      [email, description, location, industry, first, last, uid], (error, results) => {
+        console.log("check2");
+        if (error) {
+          throw error;
+        }
+        console.log("sdasdasdasdaxa");
+
+        response.status(200).json(results.rows);
+      });
+  }
+  else {
+    pool.query("UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6, password=$7 WHERE uid=$8",
+    [email, description, location, industry, first, last,password, uid], (error, results) => {
+      console.log("check3");
+      if (error) {
+        throw error;
+      }
+      console.log("sdasdasdasdaxa");
+
+      response.status(200).json(results.rows);
+    });
+  }
+
+
+};
+
 module.exports = {
   getUsers,
   searchUser,
@@ -371,11 +472,14 @@ module.exports = {
   getMessages,
   makePost,
   sendMessage,
+  editUser,
   getReceiverId,
   editPost,
+  getPost,
   getUsername,
   getFriend,
   getJob,
   addFriend,
   getFriends
+  getApplication,
 };

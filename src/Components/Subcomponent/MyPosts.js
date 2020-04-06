@@ -1,4 +1,4 @@
-//THIS IS FOR PROJECTS THAT THE USER IS WORKING ON/COMPLETING
+//THIS IS FOR WHAT THE USER POSTS
 
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
@@ -12,39 +12,37 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { useParams, useHistory } from "react-router";
 import JobPostingProject from "./JobPostingProject";
-import Button from "@material-ui/core/Button";
 
-function MyProjects(props) {
+function MyPosts(props) {
+  console.log(props);
   const [data, setData] = useState([]);
   const history = useHistory();
-
-  function goBackHandle() {
-    history.goBack();
-  }
-
+  let uid = props.uid;
   useEffect(() => {
     axios
-      .get("http://localhost:3001/searchproject", {
+      .get("http://localhost:3001/seepost", {
         params: {
-          user: props.user
-        }
+          user: props.location.state.user,
+        },
       })
-      .then(res => setData(res.data))
-      .catch(err => console.log("projectconsole"));
+      .then((res) => setData(res.data))
+      .catch((err) => console.log("projectconsole"));
   }, []);
 
-  const createTable = () => {
-    return data.map(project => {
+  const createTable = (props) => {
+    return data.map((project) => {
       console.log(project);
       let id = project.projectid;
       return (
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>
-            <Link to={{pathname:`/job/${id}`, state: {uid:props.uid}}}>{project.title}</Link>
+            <Link to={{ pathname: `/projects/${id}`, state: { uid: uid } }}>
+              {project.title}
+            </Link>
           </TableCell>
           <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
         </TableRow>
@@ -53,50 +51,34 @@ function MyProjects(props) {
   };
 
   return (
-    <div>
-      <Grid container justify="center">
-        <div style={{ width: "50%", marginBottom: "20px" }}>
-          <Typography
-            variant="h3"
-            style={{
-              textAlign: "center",
-              marginBottom: "20px",
-              color: "#756F6E"
-            }}
-          >
-            My Jobs!
-          </Typography>
-          <Typography
-            variant="h5"
-            style={{
-              textAlign: "center",
-              marginBottom: "20px",
-              color: "#756F6E"
-            }}
-          >
-            This is where you can find the projects you are working on
-          </Typography>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Job type</TableCell>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Deadline</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>{createTable()}</TableBody>
-            </Table>
-          </TableContainer>
-
-        
-        </div>
-        
-        
-      </Grid>
-      
-    </div>
+    <Grid container justify="center">
+      <div style={{ width: "50%", marginBottom: "20px" }}>
+        <Typography
+          variant="h3"
+          style={{
+            textAlign: "center",
+            marginBottom: "20px",
+            color: "#756F6E",
+          }}
+        >
+          {" "}
+          My Posts{" "}
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Job type</TableCell>
+                <TableCell>Title</TableCell>
+                <TableCell>Deadline</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>{createTable()}</TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </Grid>
   );
 }
 
-export default MyProjects;
+export default MyPosts;

@@ -17,7 +17,7 @@ import { useParams, useHistory } from "react-router";
 import JobPostingProject from "./JobPostingProject";
 import Button from "@material-ui/core/Button";
 
-function MyProjects(props) {
+function MyJobs(props) {
   const [data, setData] = useState([]);
   const history = useHistory();
 
@@ -26,25 +26,33 @@ function MyProjects(props) {
   }
 
   useEffect(() => {
+    
     axios
       .get("http://localhost:3001/searchproject", {
         params: {
-          user: props.location.state.user
-        }
+          user: props.user,
+        },
       })
-      .then(res => setData(res.data))
-      .catch(err => console.log("projectconsole"));
+      .then((res) => setData(res.data))
+      .catch((err) => console.log("projectconsole"));
   }, []);
 
   const createTable = () => {
-    return data.map(project => {
+    return data.map((project) => {
       console.log(project);
       let id = project.projectid;
       return (
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>
-            <Link to={{pathname:`/job/${id}`, state: {uid:props.location.state.uid}}}>{project.title}</Link>
+            <Link
+              to={{
+                pathname: `/job/${id}`,
+                state: { uid: props.uid },
+              }}
+            >
+              {project.title}
+            </Link>
           </TableCell>
           <TableCell>{new Date(project.deadline).toDateString()}</TableCell>
         </TableRow>
@@ -61,20 +69,19 @@ function MyProjects(props) {
             style={{
               textAlign: "center",
               marginBottom: "20px",
-              color: "#756F6E"
+              color: "#756F6E",
             }}
           >
-            My Jobs!
+            Recent Jobs
           </Typography>
           <Typography
             variant="h5"
             style={{
               textAlign: "center",
               marginBottom: "20px",
-              color: "#756F6E"
+              color: "#756F6E",
             }}
           >
-            This is where you can find the projects you are working on
           </Typography>
           <TableContainer component={Paper}>
             <Table>
@@ -89,16 +96,11 @@ function MyProjects(props) {
             </Table>
           </TableContainer>
 
-          <Button variant="contained" color="primary" style={{marginTop:"10px"}} onClick={goBackHandle} >
-        Go Back
-      </Button>
+        
         </div>
-        
-        
       </Grid>
-      
     </div>
   );
 }
 
-export default MyProjects;
+export default MyJobs;

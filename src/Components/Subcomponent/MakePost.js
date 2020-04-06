@@ -25,7 +25,7 @@ function MakePost(props) {
     history.goBack();
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post("http://localhost:3001/makepost/:id", {
@@ -33,17 +33,17 @@ function MakePost(props) {
         content: content,
         dd: deadlineDate,
         jobtype: jobtype,
-        uid: props.match.params.id
+        uid: props.match.params.id,
       })
-      .then(res => {
+      .then((res) => {
         console.log(title, content, deadlineDate, jobtype);
         if (res.status === 201) {
           props.history.push({
-            pathname: "/projects"
+            pathname: "/projects",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         render(
           <Dialog
@@ -54,24 +54,24 @@ function MakePost(props) {
       });
   };
 
-  const HandleTitle = event => {
+  const HandleTitle = (event) => {
     setTitle(event.target.value);
   };
-  const HandleContent = event => {
+  const HandleContent = (event) => {
     setContent(event.target.value);
   };
-  const HandleJT = event => {
+  const HandleJT = (event) => {
     setJobtype(event.target.value);
   };
-  const HandleUid = event => {
+  const HandleUid = (event) => {
     setUid();
     //need to pass the id into here somehow
     //might not even be needed
   };
-  const HandlePDate = event => {
+  const HandlePDate = (event) => {
     setPostDate();
   };
-  const HandleDDate = event => {
+  const HandleDDate = (event) => {
     setDeadlineDate(event.target.value);
   };
 
@@ -100,7 +100,7 @@ function MakePost(props) {
               type="date"
               defaultValue="2020-03-12"
               InputLabelProps={{
-                shirnk: true
+                shirnk: true,
               }}
             />
             <br></br>

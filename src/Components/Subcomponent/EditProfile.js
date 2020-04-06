@@ -88,7 +88,7 @@ const EditProfile = (props) => {
     }
     console.log(email)
     axios.post('http://localhost:3001/edituser', {
-      id: id,
+      id: props.location.state.uid,
       pass: password,
       email: email,
       description: desc,
@@ -112,6 +112,16 @@ const EditProfile = (props) => {
       })
   };
 
+  const handleBack = () =>{
+    props.history.push({
+      pathname: "/dashboard",
+      state: {
+        user: username,
+        photo: props.location.state.photo,
+        uid: id
+      }
+    });
+  }
 
   return (
     <Grid container justify="center">
@@ -148,6 +158,9 @@ const EditProfile = (props) => {
           <TextField label="Last name" type="text" onChange={HandleLast} />
           <br></br>
           <br></br>
+          <Button style={{marginRight:"5px"}} variant="contained" onClick={handleBack} color="primary">
+            Go back
+          </Button>
           <Button variant="contained" type="submit" color="primary">
             Edit Profile
           </Button>
