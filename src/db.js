@@ -4,7 +4,7 @@ const pool = new Pool({
   host: "freelancerproject.csglr5v9qttk.eu-west-2.rds.amazonaws.com",
   database: "postgres",
   password: "hashnathbail",
-  port: 5432
+  port: 5432,
 });
 
 const getUsers = (request, response) => {
@@ -66,11 +66,11 @@ const addFriend = (request, response) => {
         response.status(201).json(results.rows);
       }
     }
-  )
+  );
 };
 
 const seePost = (request, response) => {
-  let uid = request.query.id;
+  /*  let uid = request.query.id;
   pool.query(
     "SELECT * FROM jobposting WHERE jobid=$1",
     [uid],
@@ -83,6 +83,42 @@ const seePost = (request, response) => {
       console.log("yh idk");
 
       response.status(200).json(results.rows);
+    }
+  ); */
+  let user = request.query.user;
+  let user2 = request.body.user;
+  console.log(user);
+  console.log(user2);
+  pool.query(
+    "SELECT uid FROM users WHERE username=$1",
+    [user],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      if (results.rowCount === 0) {
+        console.log("unauthorized");
+        return response.status(401).json({ error: "User does not exist" });
+      }
+      let uid = results.rows[0].uid;
+      pool.query(
+        "SELECT * FROM jobposting WHERE uid=$1",
+        [uid],
+        (error, results) => {
+          if (error) {
+            throw error;
+          }
+          if (results.rowCount === 0) {
+            console.log("no projects");
+            return response
+              .status(402)
+              .json({ error: "User does not have any projects." });
+          }
+
+          console.log(results.rows[0]);
+          response.status(200).json(results.rows);
+        }
+      );
     }
   );
 };
@@ -373,5 +409,5 @@ module.exports = {
   getFriend,
   getJob,
   addFriend,
-  getApplication
+  getApplication,
 };

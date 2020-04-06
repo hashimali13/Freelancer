@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Container } from "@material-ui/core";
 import Register from "./Components/Register";
-import AllProjects from "./Components/Subcomponent/MyProjects";
+import AllProjects from "./Components/Subcomponent/MyJobs";
 import Projects from "./Components/Subcomponent/Projects";
 import Newsfeed from "./Components/Newsfeed";
 import JobPostingProject from "./Components/Subcomponent/JobPostingProject";
@@ -19,26 +19,26 @@ import ComposeMessage from "./Components/Subcomponent/ComposeMessage";
 import Posts from "./Components/Posts";
 import EditPost from "./Components/Subcomponent/EditPost";
 import Friends from "./Components/Friends";
-import MyProjects from "./Components/Subcomponent/MyProjects";
+import MyJobs from "./Components/Subcomponent/MyJobs";
 import MyPosts from "./Components/Subcomponent/MyPosts";
 import Job from "./Components/Subcomponent/Job";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   container: {
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
+    paddingBottom: theme.spacing(4),
   },
   paper: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   fixedHeight: {
-    height: 240
+    height: 240,
   },
   footer: {
     padding: theme.spacing(2, 2),
@@ -49,8 +49,8 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     textAlign: "center",
     backgroundColor: "#3f50b5",
-    color: "white"
-  }
+    color: "white",
+  },
 }));
 
 function App() {
@@ -65,7 +65,7 @@ function App() {
       <Route path="/register" component={Register} />
       <Route exact path="/projects" component={Projects} />
       <Route path="/newsfeed" component={Newsfeed} />
-      <Route path="/myprojects/" component={MyProjects} />
+      <Route path="/myprojects/" component={MyJobs} />
       <Route path="/projects/:id" component={JobPostingProject} />
       <Route path="/job/:id" component={Job} />
       <Route path="/editprofile" component={EditProfile} />

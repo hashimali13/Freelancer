@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: true
+    extended: true,
   })
 );
 
@@ -25,7 +25,7 @@ app.get("/getapplication/:id", db.getApplication);
 app.get("/getproject", db.getProjects);
 app.post("/create", db.createUser);
 app.get("/searchproject", db.searchProjects);
-app.get("/seepost/:id", db.seePost);
+app.get("/seepost", db.seePost);
 app.get("/getprofile/:id", db.getProfile);
 app.get("/getjob/:id", db.getJob);
 app.get("/getmessages/:id", db.getMessages);

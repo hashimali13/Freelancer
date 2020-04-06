@@ -10,33 +10,33 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { typography } from "@material-ui/system";
 import Clock from "./Clock";
 import MyPosts from "./Subcomponent/MyPosts";
-import MyProjects from "./Subcomponent/MyProjects";
+import MyProjects from "./Subcomponent/MyJobs";
 import { TextareaAutosize } from "@material-ui/core";
 
 function Dashboard(props) {
   let uid = props.location.state.uid;
   console.log(uid);
   console.log(props);
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     container: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "center"
+      justifyContent: "center",
     },
     leftColumn: {
-      order: 0
+      order: 0,
     },
     rightColumn: {
       order: 1,
-      flexGrow: 2
+      flexGrow: 2,
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      })
-    }
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
   }));
 
   const classes = useStyles();
@@ -45,7 +45,7 @@ function Dashboard(props) {
     <div className={classes.container}>
       <Paper className={classes.rightColumn}>
         {/* <MyPosts user={props.location.state.user} uid={uid}></MyPosts> */}
-        <MyPosts user={props.location.state.user} uid={uid}></MyPosts>
+        <MyProjects user={props.location.state.user} uid={uid}></MyProjects>
       </Paper>
       <div className={classes.leftColumn}>
         <Grid container justify="center">
@@ -85,8 +85,8 @@ function Dashboard(props) {
                         pathname: `/posts/${uid}`,
                         state: {
                           user: props.location.state.user,
-                          uid: props.location.state.uid
-                        }
+                          uid: props.location.state.uid,
+                        },
                       })
                     }
                   >
@@ -102,8 +102,8 @@ function Dashboard(props) {
                       props.history.push({
                         pathname: `/makepost/${uid}`,
                         state: {
-                          user: props.location.state.user
-                        }
+                          user: props.location.state.user,
+                        },
                       })
                     }
                   >
@@ -120,8 +120,8 @@ function Dashboard(props) {
                         state: {
                           user: props.location.state.user,
                           photo: props.location.state.photo,
-                          uid: uid
-                        }
+                          uid: uid,
+                        },
                       })
                     }
                   >
@@ -146,7 +146,7 @@ function Dashboard(props) {
                     onClick={() =>
                       props.history.push({
                         pathname: "/projects",
-                        state: { uid: uid }
+                        state: { uid: uid },
                       })
                     }
                   >
@@ -163,8 +163,8 @@ function Dashboard(props) {
                         pathname: "/editprofile",
                         state: {
                           user: props.location.state.user,
-                          photo: props.location.state.photo
-                        }
+                          photo: props.location.state.photo,
+                        },
                       })
                     }
                   >
@@ -179,7 +179,7 @@ function Dashboard(props) {
                     onClick={() =>
                       props.history.push({
                         pathname: `/messages/${uid}`,
-                        state: { user: props.location.state.uid }
+                        state: { user: props.location.state.uid },
                       })
                     }
                   >
@@ -194,7 +194,7 @@ function Dashboard(props) {
                     onClick={() =>
                       props.history.push({
                         pathname: `/friends/${uid}`,
-                        state: { user: props.location.state.uid }
+                        state: { user: props.location.state.uid },
                       })
                     }
                   >
