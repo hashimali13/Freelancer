@@ -88,7 +88,7 @@ const EditProfile = (props) => {
     }
     console.log(email)
     axios.post('http://localhost:3001/edituser', {
-      id: id,
+      id: props.location.state.uid,
       pass: password,
       email: email,
       description: desc,

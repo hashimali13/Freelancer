@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import MyPosts from "./Subcomponent/MyPosts";
+import DashPosts from "./Subcomponent/Dashprojects";
 import Typography from "@material-ui/core/Typography";
 
 function Profile(props) {
@@ -92,7 +92,7 @@ function Profile(props) {
             </Paper>
           </div>
           <Paper className={style.rightColumn}>
-            <MyPosts user={profile.username}></MyPosts>
+            <DashPosts user={profile.username}></DashPosts>
           </Paper>
         </div>
       );

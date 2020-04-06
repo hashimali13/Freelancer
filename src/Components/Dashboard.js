@@ -164,6 +164,7 @@ function Dashboard(props) {
                         state: {
                           user: props.location.state.user,
                           photo: props.location.state.photo,
+                          uid : uid
                         },
                       })
                     }
