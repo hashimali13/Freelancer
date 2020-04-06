@@ -241,6 +241,26 @@ const getReceiverId = (request, response) => {
   );
 };
 
+const getFriends = (request, response) => {
+  let userid = request.query.user;
+  console.log(userid);
+  pool.query(
+    "SELECT * FROM friendconnection f FULL JOIN users u ON f.friend = u.uid WHERE f.userid = $1",
+    [userid],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      if (results.rowCount === 0) {
+        console.log("no friends");
+        return response.status(401).json({ error: "No friends on list" });
+      }
+      response.status(200).json(results.rows);
+      console.log(results.rows);
+    }
+  );
+};
+
 const searchProjects = (request, response) => {
   let user = request.query.user;
   let user2 = request.body.user;
@@ -356,5 +376,6 @@ module.exports = {
   getUsername,
   getFriend,
   getJob,
-  addFriend
+  addFriend,
+  getFriends
 };

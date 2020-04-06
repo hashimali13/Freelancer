@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import AppBar from "@material-ui/core/AppBar";
-import ToolBar from "@material-ui/core/ToolBar";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import { useParams, useHistory } from "react-router";
 import { render } from "@testing-library/react";
 import Dialog from "./Dialog";
-import Messages from "./Messages";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableBody from "@material-ui/core/TableBody";
+import TableHead from "@material-ui/core/TableHead";
+import Table from "@material-ui/core/Table";
 
 function Friends(props) {
     let uid = props.location.state.user;
@@ -22,6 +20,7 @@ function Friends(props) {
     const [username, setUsername] = useState([]);
     const [data, setData] = useState([]);
     const history = useHistory();
+    const [data2, setFriend] = useState([]);
 
     function goBackHandle() {
         history.goBack();
@@ -96,6 +95,30 @@ function Friends(props) {
         });
     };
 
+    useEffect(() => {
+        axios
+        .get("http://localhost:3001/getfriends", {
+            params: {
+                user: uid
+            }
+        })
+        .then(res => setFriend(res.data))
+        .catch(err => console.log("friend console"));
+    }, []);
+
+    console.log(data2.rows);
+
+    const createTable = () => {
+        return data2.map(friend => {
+            console.log(friend);
+            return (
+                <TableRow key={friend.userid}>
+                    <TableCell>{friend.username}</TableCell>
+                </TableRow>
+            );
+        });
+    };
+
     return (
         <div>
             <Typography variant="h5">Add Friends</Typography>
@@ -104,6 +127,18 @@ function Friends(props) {
                 <Button variant="contained" type="submit" color="primary">Search</Button>
             </form>
             {showData(props)}
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Friend</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {createTable()}
+                    </TableBody>
+                </Table>
+            </TableContainer>
             <Button variant="contained" color="primary" justifyContent="center" onCLick={goBackHandle}>
                 Go back
             </Button>
