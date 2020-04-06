@@ -10,7 +10,7 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { typography } from "@material-ui/system";
 import Clock from "./Clock";
 import MyPosts from "./Subcomponent/MyPosts";
-import MyProjects from "./Subcomponent/MyJobs";
+import MyProjects from "./Subcomponent/Dashprojects";
 import { TextareaAutosize } from "@material-ui/core";
 
 function Dashboard(props) {
@@ -45,7 +45,7 @@ function Dashboard(props) {
     <div className={classes.container}>
       <Paper className={classes.rightColumn}>
         {/* <MyPosts user={props.location.state.user} uid={uid}></MyPosts> */}
-        <MyProjects user={props.location.state.user} uid={uid}></MyProjects>
+       <MyProjects user={props.location.state.user} uid={uid}></MyProjects>
       </Paper>
       <div className={classes.leftColumn}>
         <Grid container justify="center">
