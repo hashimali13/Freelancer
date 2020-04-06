@@ -318,8 +318,9 @@ const getFriend = (request, response) => {
 
 const getApplication = (request, response) => {
   let appid = request.query.id;
+  console.log(appid)
   pool.query(
-    "SELECT * FROM application where appid=$1",
+    "SELECT * FROM application where jobid=$1",
     [appid],
     (error, results) => {
       if (error) {
