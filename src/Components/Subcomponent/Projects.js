@@ -19,7 +19,8 @@ import JobPostingProject from "./JobPostingProject";
 function Projects(props) {
   const [data, setData] = useState([]);
   const history = useHistory();
-  let uid = props.uid;
+  let uid = props.location.state.uid;
+  console.log(props.location.state.uid)
   useEffect(() => {
     axios
       .get("http://localhost:3001/getproject")

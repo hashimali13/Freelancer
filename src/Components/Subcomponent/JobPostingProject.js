@@ -10,6 +10,7 @@ import Application from "./Application";
 
 function JobPostingProject(props) {
   console.log(props.location.state.uid)
+  console.log(props.match.params.id)
   let user = props.location.state.uid
   const [poster, setPoster] = useState();
   let { id } = useParams();
@@ -24,7 +25,7 @@ function JobPostingProject(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/seepost/id", {
+      .get("http://localhost:3001/getpost", {
         params: {
           id: props.match.params.id
         }

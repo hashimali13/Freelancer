@@ -26,12 +26,12 @@ app.get("/getproject", db.getProjects);
 app.post("/create", db.createUser);
 app.get("/searchproject", db.searchProjects);
 app.get("/seepost", db.seePost);
+app.get("/getpost", db.getPost);
 app.get("/getprofile/:id", db.getProfile);
 app.get("/getjob/:id", db.getJob);
 app.get("/getmessages/:id", db.getMessages);
 app.post("/makepost/:id", db.makePost);
 app.post("/edituser/", db.editUser);
-
 app.post("/sendmessage/:id", db.sendMessage);
 app.get("/getreceiverid/:id", db.getReceiverId);
 app.post("/editpost/:id", db.editPost);

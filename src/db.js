@@ -69,11 +69,13 @@ const addFriend = (request, response) => {
   );
 };
 
-const seePost = (request, response) => {
-  /*  let uid = request.query.id;
+const getPost = (request, response) => {
+  let id = request.query.id;
+  console.log(request.body.id)
+  console.log(request.query.id)
   pool.query(
     "SELECT * FROM jobposting WHERE jobid=$1",
-    [uid],
+    [id],
     (error, results) => {
       console.log("please work");
       if (error) {
@@ -84,7 +86,12 @@ const seePost = (request, response) => {
 
       response.status(200).json(results.rows);
     }
-  ); */
+  );
+
+};
+
+const seePost = (request, response) => {
+ 
   let user = request.query.user;
   let user2 = request.body.user;
   console.log(user);
@@ -448,6 +455,7 @@ module.exports = {
   editUser,
   getReceiverId,
   editPost,
+  getPost,
   getUsername,
   getFriend,
   getJob,
