@@ -45,7 +45,7 @@ function Dashboard(props) {
     <div className={classes.container}>
       <Paper className={classes.rightColumn}>
         {/* <MyPosts user={props.location.state.user} uid={uid}></MyPosts> */}
-        <MyProjects user={props.location.state.user} uid={uid}></MyProjects>
+        <MyPosts user={props.location.state.user} uid={uid}></MyPosts>
       </Paper>
       <div className={classes.leftColumn}>
         <Grid container justify="center">
