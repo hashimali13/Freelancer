@@ -13,29 +13,29 @@ import RecentProjects from "./Subcomponent/MyPosts";
 import { TextareaAutosize } from "@material-ui/core";
 
 function Posts(props) {
-  let uid = props.match.params.id;
+  let uid = props.location.state.id;
   console.log(uid);
   console.log(props);
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     container: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "center"
+      justifyContent: "center",
     },
     leftColumn: {
-      order: 0
+      order: 0,
     },
     rightColumn: {
       order: 1,
-      flexGrow: 2
+      flexGrow: 2,
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      })
-    }
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
   }));
 
   const classes = useStyles();
@@ -70,8 +70,8 @@ function Posts(props) {
                       props.history.push({
                         pathname: `/makepost/${uid}`,
                         state: {
-                          user: props.location.state.user
-                        }
+                          user: props.location.state.user,
+                        },
                       })
                     }
                   >
@@ -105,8 +105,8 @@ function Posts(props) {
                       props.history.push({
                         pathname: `/myprojects/${uid}`,
                         state: {
-                          user: props.location.state.user
-                        }
+                          user: props.location.state.user,
+                        },
                       })
                     }
                   >
@@ -120,12 +120,12 @@ function Posts(props) {
                   <Typography
                     onClick={() =>
                       props.history.push({
-                        pathname: `/myposts/${uid}`,
+                        pathname: "/myposts",
                         state: {
                           user: props.location.state.user,
                           jobid: props.location.state.jobid,
-                          uid: props.location.state.uid
-                        }
+                          uid: props.location.state.uid,
+                        },
                       })
                     }
                   >
@@ -143,8 +143,8 @@ function Posts(props) {
                         state: {
                           user: props.location.state.user,
                           jobid: props.location.state.jobid,
-                          uid: props.location.state.uid
-                        }
+                          uid: props.location.state.uid,
+                        },
                       })
                     }
                   >

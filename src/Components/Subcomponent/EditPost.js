@@ -16,11 +16,13 @@ function EditPost(props) {
   const [title, setTitle] = useState([]);
   const [content, setContent] = useState([]);
   const [jobtype, setJobtype] = useState([]);
-  const [uid, setUid] = useState([]);
+  //  const [uid, setUid] = useState([]);
   const [postDate, setPostDate] = React.useState("2020-03-12");
   const [deadlineDate, setDeadlineDate] = React.useState("2020-03-12");
   const history = useHistory();
-  const [jobid, setJobid] = useState([]);
+  //const [jobid, setJobid] = useState([]);
+  let uid = props.location.state.uid;
+  console.log(props);
 
   function goBackHandle() {
     history.goBack();
@@ -40,9 +42,14 @@ function EditPost(props) {
       })
       .then((res) => {
         console.log("hello");
+        console.log(props);
         if (res.status === 201) {
           props.history.push({
-            pathname: "/projects",
+            pathname: "/myposts",
+            state: {
+              user: props.location.state.user,
+              uid: props.location.state.uid,
+            },
           });
         }
       })
@@ -66,11 +73,11 @@ function EditPost(props) {
   const HandleJT = (event) => {
     setJobtype(event.target.value);
   };
-  const HandleUid = (event) => {
-    setUid();
-    //need to pass the id into here somehow
-    //might not even be needed
-  };
+  //const HandleUid = (event) => {
+  // setUid();
+  //need to pass the id into here somehow
+  //might not even be needed
+  // };
   const HandlePDate = (event) => {
     setPostDate();
   };
@@ -114,7 +121,6 @@ function EditPost(props) {
           </form>
         </Paper>
       </Grid>
-
       <br></br>
       <br></br>
       <Button

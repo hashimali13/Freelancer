@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 
 function Job(props) {
-  let user = props.location.state.uid
+  let user = props.location.state.uid;
   const [poster, setPoster] = useState();
   let { id } = useParams();
   let jid = { id };
@@ -23,16 +23,15 @@ function Job(props) {
     axios
       .get("http://localhost:3001/getjob/:id", {
         params: {
-          id: props.match.params.id
-        }
+          id: props.match.params.id,
+        },
       })
-      .then(res => setData(res.data), console.log("aa"))
-      .catch(err => console.log("projectconsole"));
-      
+      .then((res) => setData(res.data), console.log("aa"))
+      .catch((err) => console.log("projectconsole"));
   }, []);
 
-  const showData = props => {
-    return data.map(job => {
+  const showData = (props) => {
+    return data.map((job) => {
       console.log(job);
       return (
         <div>
@@ -44,38 +43,34 @@ function Job(props) {
               <Typography>
                 {" "}
                 <h1>{job.title}</h1>
-                <h3>
-                  Posted on {new Date(job.postdate).toDateString()}
-                </h3>
-                <h3>
-                  Deadline: {new Date(job.deadline).toDateString()}
-                </h3>
+                <h3>Posted on {new Date(job.postdate).toDateString()}</h3>
+                <h3>Deadline: {new Date(job.deadline).toDateString()}</h3>
                 <p>{job.deliverables}</p>
                 <p>
                   To reference this job, use this code:
                   <b>{job.projectid}</b>
                 </p>
-                
               </Typography>
-              {user ===job.uid ?
+              {user === job.uid ? (
                 <Button
                   variant="contained"
                   color="primary"
-                  style={{marginRight:"5px"}}
+                  style={{ marginRight: "5px" }}
                   onClick={() =>
                     props.history.push({
                       pathname: `/editpost/${job.uid}`,
                       state: {
-                        jobid: job.jobid
-                      }
+                        jobid: job.jobid,
+                        uid: job.uid,
+                      },
                     })
                   }
                 >
                   Edit Post
                 </Button>
-              :
-                <br/>
-              } 
+              ) : (
+                <br />
+              )}
               <Button
                 variant="contained"
                 color="primary"

@@ -21,11 +21,12 @@ function MyPosts(props) {
   const [data, setData] = useState([]);
   const history = useHistory();
   let uid = props.uid;
+  let user = props.location.state.user;
   useEffect(() => {
     axios
       .get("http://localhost:3001/seepost", {
         params: {
-          user: props.location.state.user,
+          user: user,
         },
       })
       .then((res) => setData(res.data))
@@ -40,7 +41,15 @@ function MyPosts(props) {
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>
-            <Link to={{ pathname: `/jobpost/${id}`, state: { uid: uid } }}>
+            <Link
+              to={{
+                pathname: `/jobpost/${id}`,
+                state: {
+                  uid: uid,
+                  user: user,
+                },
+              }}
+            >
               {project.title}
             </Link>
           </TableCell>

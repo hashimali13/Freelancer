@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-
 }));
 
 function App() {
@@ -66,8 +65,7 @@ function App() {
       <Route path="/posts/:id" component={Posts} />
       <Route path="/editpost/:id" component={EditPost} />
       <Route path="/friends" component={Friends} />
-      <Route path="/myposts/:id" component={MyPosts} />
-      
+      <Route path="/myposts" component={MyPosts} />
     </div>
   );
 }
