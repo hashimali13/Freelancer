@@ -67,6 +67,8 @@ function JobPostingProject(props) {
                 >
                   Go Back
                 </Button>
+
+                
                 {/* {user === jobposting.uid ? */}
                 <Button
                   variant="contained"
@@ -87,13 +89,15 @@ function JobPostingProject(props) {
                 <br/>
               }  */}
                 <Button
-                  variant="containted"
+                  variant="contained"
                   color="primary"
                   style={{ marginRight: "5px" }}
                   onCLick={() => <DeletePost />}
                 >
                   Delete
                 </Button>
+
+                <Button variant="contained" color="primary">Send Application</Button>
               </Paper>
             </Grid>
 

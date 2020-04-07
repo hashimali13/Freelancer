@@ -427,6 +427,23 @@ const getComments = (request, response) => {
   );
 };
 
+const deleteApplication = (request, response) => {
+  let postid = request.body.id;
+  console.log(postid)
+  pool.query(
+    "DELETE from application  where  appid=$1",
+    [postid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const authUser = (request, response) => {
   console.log(request.query);
   let username = request.query.user;
@@ -519,4 +536,5 @@ module.exports = {
   getComments,
   getApplication,
   deletePost,
+  deleteApplication
 };

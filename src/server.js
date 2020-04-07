@@ -40,6 +40,7 @@ app.post("/getusername/:id", db.getUsername);
 app.get("/getfriend/:id", db.getFriend);
 app.post("/addfriend/:id", db.addFriend);
 app.post("/deletepost", db.deletePost);
+app.post("/deleteapplication", db.deleteApplication);
 app.get("/getfriends", db.getFriends);
 
 app.listen(port, () => {

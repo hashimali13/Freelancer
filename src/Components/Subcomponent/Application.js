@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+
 
 import TableRow from "@material-ui/core/TableRow";
 
@@ -31,6 +33,23 @@ function Application (props) {
         );
     }, []);
 
+    const handleAccept = props =>{
+        console.log("accept")
+    }
+
+    const handleReject = appid =>{
+        console.log(appid)
+        axios.post('/deleteapplication', {
+            id: appid        
+          })
+          .then(function (res) {
+            console.log(res);
+            window.location.reload(false);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
 
     const getComments = props =>{
         return data.map(comment => {
@@ -39,7 +58,10 @@ function Application (props) {
                 <TableCell>{comment.appid}</TableCell>
                 <TableCell>{comment.content}</TableCell>
                 <TableCell>{comment.cv}</TableCell>
-                <TableCell>{comment.username}</TableCell>
+                <TableCell><Link to={{ pathname: `/profile/${comment.uid}`, state: { uid: comment.uid } }}> {comment.username}</Link></TableCell>
+                <TableCell><Button onClick={handleAccept} variant="contained"style={{backgroundColor:"green", color:"white"}}>Accept</Button></TableCell>
+                <TableCell><Button onClick={()=>handleReject(comment.appid)} variant="contained" color="secondary">Reject</Button></TableCell>
+
               </TableRow>
             );
           });
