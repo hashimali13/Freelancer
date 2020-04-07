@@ -71,8 +71,8 @@ const addFriend = (request, response) => {
 
 const getPost = (request, response) => {
   let id = request.query.id;
-  console.log(request.body.id)
-  console.log(request.query.id)
+  console.log(request.body.id);
+  console.log(request.query.id);
   pool.query(
     "SELECT * FROM jobposting WHERE jobid=$1",
     [id],
@@ -87,11 +87,9 @@ const getPost = (request, response) => {
       response.status(200).json(results.rows);
     }
   );
-
 };
 
 const seePost = (request, response) => {
- 
   let user = request.query.user;
   let user2 = request.body.user;
   console.log(user);
@@ -216,10 +214,9 @@ const editPost = (request, response) => {
   let content = request.body.content;
   let dd = request.body.dd;
   let jobtype = request.body.jobtype;
-  let uid = request.body.id;
+  //let uid = request.body.id;
   let jobid = request.body.jobid;
   pool.query(
-    // "UPDATE jobposting (title, content, deadline, jobtype) VALUES ($1, $2, $3, $4) WHERE jobid=$5",
     "UPDATE jobposting SET title = $1, content = $2, deadline = $3, jobtype = $4 WHERE jobid=$5",
     [title, content, dd, jobtype, jobid],
     (error, results) => {
@@ -229,6 +226,23 @@ const editPost = (request, response) => {
       } else {
         response.status(201).json(results.row);
       }
+    }
+  );
+};
+
+const deletePost = (request, response) => {
+  console.log("delete post called in db.js");
+  let jobid = request.body.jobid;
+  pool.query(
+    "DELETE FROM jobposting WHERE jobid= $1",
+    [jobid],
+    (error, results) => {
+      if (error) {
+        console.log("error in deletepost call");
+        throw error;
+      }
+      console.log("have you tried setting it to wumbo, i.e. success brotha");
+      response.status(200).json(results.row);
     }
   );
 };
@@ -361,7 +375,7 @@ const getFriend = (request, response) => {
 
 const getApplication = (request, response) => {
   let appid = request.query.id;
-  console.log(appid)
+  console.log(appid);
   pool.query(
     "SELECT * FROM application where jobid=$1",
     [appid],
@@ -399,9 +413,8 @@ const authUser = (request, response) => {
   );
 };
 
-
 const editUser = (request, response) => {
-  console.log("check1")
+  console.log("check1");
   let uid = request.body.id;
   let password = request.body.pass;
   let email = request.body.email;
@@ -410,11 +423,15 @@ const editUser = (request, response) => {
   let industry = request.body.industry;
   let first = request.body.first;
   let last = request.body.last;
-  console.log(uid + password + email + description + location + industry + first + last)
-  console.log("ID check: " + email)
+  console.log(
+    uid + password + email + description + location + industry + first + last
+  );
+  console.log("ID check: " + email);
   if (password === undefined) {
-    pool.query("UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6 WHERE uid=$7",
-      [email, description, location, industry, first, last, uid], (error, results) => {
+    pool.query(
+      "UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6 WHERE uid=$7",
+      [email, description, location, industry, first, last, uid],
+      (error, results) => {
         console.log("check2");
         if (error) {
           throw error;
@@ -422,22 +439,23 @@ const editUser = (request, response) => {
         console.log("sdasdasdasdaxa");
 
         response.status(200).json(results.rows);
-      });
-  }
-  else {
-    pool.query("UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6, password=$7 WHERE uid=$8",
-    [email, description, location, industry, first, last,password, uid], (error, results) => {
-      console.log("check3");
-      if (error) {
-        throw error;
       }
-      console.log("sdasdasdasdaxa");
+    );
+  } else {
+    pool.query(
+      "UPDATE Users SET email= $1, description=$2, location=$3, industry=$4, firstname=$5, lastname=$6, password=$7 WHERE uid=$8",
+      [email, description, location, industry, first, last, password, uid],
+      (error, results) => {
+        console.log("check3");
+        if (error) {
+          throw error;
+        }
+        console.log("sdasdasdasdaxa");
 
-      response.status(200).json(results.rows);
-    });
+        response.status(200).json(results.rows);
+      }
+    );
   }
-
-
 };
 
 module.exports = {
@@ -461,4 +479,5 @@ module.exports = {
   getJob,
   addFriend,
   getApplication,
+  deletePost,
 };

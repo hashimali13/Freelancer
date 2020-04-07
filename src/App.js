@@ -66,7 +66,7 @@ function App() {
       <Route exact path="/projects" component={Projects} />
       <Route path="/newsfeed" component={Newsfeed} />
       <Route path="/myprojects/" component={MyJobs} />
-      <Route path="/projects/:id" component={JobPostingProject} />
+      <Route path="/jobpost/:id" component={JobPostingProject} />
       <Route path="/job/:id" component={Job} />
       <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />

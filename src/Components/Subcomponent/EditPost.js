@@ -26,27 +26,27 @@ function EditPost(props) {
     history.goBack();
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     console.log(props);
     axios
-      .post("http://localhost:3001/editpost/:id", {
+      .post("http://localhost:3001/editpost/", {
         title: title,
         content: content,
         dd: deadlineDate,
         jobtype: jobtype,
         // uid: props.match.params.id,
-        jobid: props.match.params.id
+        jobid: props.location.state.jobid,
       })
-      .then(res => {
+      .then((res) => {
         console.log("hello");
         if (res.status === 201) {
           props.history.push({
-            pathname: "/projects"
+            pathname: "/projects",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         render(
           <Dialog
@@ -57,24 +57,24 @@ function EditPost(props) {
       });
   };
 
-  const HandleTitle = event => {
+  const HandleTitle = (event) => {
     setTitle(event.target.value);
   };
-  const HandleContent = event => {
+  const HandleContent = (event) => {
     setContent(event.target.value);
   };
-  const HandleJT = event => {
+  const HandleJT = (event) => {
     setJobtype(event.target.value);
   };
-  const HandleUid = event => {
+  const HandleUid = (event) => {
     setUid();
     //need to pass the id into here somehow
     //might not even be needed
   };
-  const HandlePDate = event => {
+  const HandlePDate = (event) => {
     setPostDate();
   };
-  const HandleDDate = event => {
+  const HandleDDate = (event) => {
     setDeadlineDate(event.target.value);
   };
 
@@ -103,7 +103,7 @@ function EditPost(props) {
               type="date"
               defaultValue="2020-03-12"
               InputLabelProps={{
-                shirnk: true
+                shirnk: true,
               }}
             />
             <br></br>

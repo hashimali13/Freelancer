@@ -35,12 +35,12 @@ function MyPosts(props) {
   const createTable = (props) => {
     return data.map((project) => {
       console.log(project);
-      let id = project.projectid;
+      let id = project.jobid;
       return (
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>
-            <Link to={{ pathname: `/projects/${id}`, state: { uid: uid } }}>
+            <Link to={{ pathname: `/jobpost/${id}`, state: { uid: uid } }}>
               {project.title}
             </Link>
           </TableCell>
