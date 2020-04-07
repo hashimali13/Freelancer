@@ -42,6 +42,8 @@ app.get("/getfriend/:id", db.getFriend);
 app.post("/addfriend/:id", db.addFriend);
 app.post("/deletepost", db.deletePost);
 app.post("/deleteapplication", db.deleteApplication);
+app.post("/deleteallcomments", db.deleteAllComments);
+app.post("/deleteallapplications", db.deleteAllApplications);
 app.get("/getfriends", db.getFriends);
 
 app.listen(port, () => {

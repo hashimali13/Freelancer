@@ -15,9 +15,24 @@ import TableRow from "@material-ui/core/TableRow";
 
 function Application (props) {
     let appid = props.appid
+    const [username, setUser] = useState([]);
+    let postingData = props.postingId
     const [data, setData] = useState([]);
     const history = useHistory();
     useEffect(() => {
+
+        axios.get('/userid/:id', {
+            params: {
+              id: props.uid
+            }
+          })
+          .then(function (res) {
+            setUser(res.data[0].username)
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
         axios
         .get("http://localhost:3001/getapplication/:id", {
             params: {
@@ -35,7 +50,63 @@ function Application (props) {
     }, []);
 
     const handleAccept = props =>{
-        console.log("accept")
+        console.log(props)
+        axios
+        .get("http://localhost:3001/getpost", {
+          params: {
+            id: postingData,
+          },
+        })
+        .then((res) =>{
+                let postData = res.data[0]
+                axios.post('/createjob', {
+                    uid: props.uid,
+                    deadline: postData.deadline,
+                    deliverables: postData.content,
+                    jobtype: postData.jobtype,
+                    title: postData.title,
+                    postdate: postData.postdate,
+                    pid: postData.uid      
+                  })
+                  .then(function (res) {
+                      console.log(postData)
+                    axios.post('/deleteallapplications', {
+                        id: postData.jobid    
+                      })
+                      .then(function (res) {
+                        axios.post('/deleteallcomments', {
+                            id: postData.jobid
+                          })
+                          .then(function (response) {
+                            axios.post('/deletepost', {
+                                jobid: postData.jobid
+                              })
+                              .then(function (response) {
+                                history.push({
+                                    pathname: `/myprojects/${props.uid}`,
+                                    state: {
+                                    user: username,
+                                    },
+                                  });
+                              })
+                              .catch(function (error) {
+                                console.log(error);
+                              });
+                          })
+                          .catch(function (error) {
+                            console.log(error);
+                          });
+                      })
+                      .catch(function (error) {
+                        console.log(error);
+                      });
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+            }
+        )
+        .catch((err) => console.log("THAT SUCKS"));
     }
 
     const handleReject = appid =>{
@@ -65,7 +136,7 @@ function Application (props) {
                 <TableCell>{comment.cv}</TableCell>
                 <TableCell><Link to={{ pathname: `/profile/${comment.uid}`, state: { uid: comment.uid } }}> {comment.username}</Link></TableCell>
                 <TableCell>£{comment.price}/hr</TableCell>
-                <TableCell><Button onClick={handleAccept} variant="contained"style={{backgroundColor:"green", color:"white"}}>Accept</Button></TableCell>
+                <TableCell><Button onClick={()=>handleAccept(comment)} variant="contained"style={{backgroundColor:"green", color:"white"}}>Accept</Button></TableCell>
                 <TableCell><Button onClick={()=>handleReject(comment.appid)} variant="contained" color="secondary">Reject</Button></TableCell>
 
               </TableRow>
@@ -77,6 +148,15 @@ function Application (props) {
     return(
 
         <div>
+            <Button onClick={()=>{
+                history.push({
+                    pathname: `/myprojects/${props.uid}`,
+                    state: {
+                    
+                    user: username,
+                    },
+                  });
+            }}> heey</Button>
             {getComments()}
         </div>
         
@@ -84,5 +164,4 @@ function Application (props) {
     )
 
 }
-
 export default Application;
