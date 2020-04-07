@@ -9,6 +9,8 @@ import Paper from "@material-ui/core/Paper";
 import Application from "./Application";
 import Comment from "./Comment";
 import Container from "@material-ui/core/Container";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
 
 function JobPostingProject(props) {
   console.log(props.location.state.uid);
@@ -38,6 +40,7 @@ function JobPostingProject(props) {
 
   const handleDelete = (jobid) => {
     let uid = props.location.state.uid;
+    console.log(props);
     console.log(jobid);
     axios
       .post("http://localhost:3001/deletepost", {
@@ -46,17 +49,42 @@ function JobPostingProject(props) {
       .then((res) => {
         console.log(res.status);
         props.history.push({
-          pathname: `/myposts/${uid}`,
+          pathname: "/myposts",
           state: {
             user: props.location.state.user,
             jobid: props.location.state.jobid,
-            uid: props.location.state.uid,
+            uid: uid,
           },
         });
       })
       .catch((error) => {
         console.log("error 12345678");
       });
+  };
+
+  const deleteCheck = () => {
+    console.log("deletecheck has been called");
+    return (
+      <div>
+        <Dialog
+          header="Delete Post?"
+          body="Deleting this post is permanent and cannot be reversed"
+        >
+          <DialogActions>
+            <Button
+            //  onClick={handleNo} color="primary"
+            >
+              Cancel
+            </Button>
+            <Button
+            //  onClick={handleYes} color="primary"
+            >
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
   };
 
   const showData = (props) => {
@@ -110,18 +138,26 @@ function JobPostingProject(props) {
                 >
                   Edit Post
                 </Button>
-                {/* :
-                <br/>
-              }  */}
                 <Button
                   variant="contained"
                   color="primary"
                   style={{ marginRight: "5px" }}
-                  onCLick={() => <DeletePost />}
+                  onClick={() =>
+                    props.history.push({
+                      pathname: "/deletepost",
+                      state: {
+                        jobid: jobposting.jobid,
+                        uid: jobposting.uid,
+                        user: props.location.state.user,
+                      },
+                    })
+                  }
                 >
                   Delete
                 </Button>
-
+                {/* :
+                <br/>
+              }  */}
                 <Button variant="contained" color="primary">
                   Send Application
                 </Button>

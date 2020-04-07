@@ -22,6 +22,7 @@ import Friends from "./Components/Friends";
 import MyJobs from "./Components/Subcomponent/MyJobs";
 import MyPosts from "./Components/Subcomponent/MyPosts";
 import Job from "./Components/Subcomponent/Job";
+import DeletePost from "./Components/Subcomponent/DeletePost";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +67,7 @@ function App() {
       <Route path="/editpost/:id" component={EditPost} />
       <Route path="/friends" component={Friends} />
       <Route path="/myposts" component={MyPosts} />
+      <Route path="/deletepost" component={DeletePost} />
     </div>
   );
 }
