@@ -52,6 +52,8 @@ const getProjects = (request, response) => {
   });
 };
 
+
+
 const addFriend = (request, response) => {
   let userid = request.body.friend;
   let friend = request.body.userid;
@@ -444,6 +446,40 @@ const deleteApplication = (request, response) => {
   );
 };
 
+const deleteAllApplications = (request, response) => {
+  let postid = request.body.id;
+  console.log(postid);
+  pool.query(
+    "DELETE from application  where  jobid=$1",
+    [postid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
+const deleteAllComments = (request, response) => {
+  let postid = request.body.id;
+  console.log(postid);
+  pool.query(
+    "DELETE from comments  where  pid=$1",
+    [postid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const authUser = (request, response) => {
   console.log(request.query);
   let username = request.query.user;
@@ -466,6 +502,7 @@ const authUser = (request, response) => {
     }
   );
 };
+
 
 const createJob = (request, response) => {
   let uid = request.body.uid;
@@ -558,4 +595,6 @@ module.exports = {
   deletePost,
   createJob,
   deleteApplication,
+  deleteAllApplications,
+  deleteAllComments
 };

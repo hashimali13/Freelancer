@@ -27,7 +27,6 @@ function Application (props) {
         .then(res => {
              setData(res.data)
              setCount(res.data.length)
-             console.log(commentCount)
         }
             
         )

@@ -175,7 +175,7 @@ function JobPostingProject(props) {
                 <Typography>
                   <h2> Applications </h2>
                 </Typography>
-                <Application appid={props.match.params.id}></Application>
+                <Application  uid={user} postingId={jobposting.jobid} appid={props.match.params.id}></Application>
               </Paper>
             </Grid>
 

@@ -26,6 +26,7 @@ function MyJobs(props) {
   }
 
   useEffect(() => {
+    console.log(props.location.state.user)
     axios
       .get("http://localhost:3001/searchproject", {
         params: {
