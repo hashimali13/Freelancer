@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
 
 
 import TableRow from "@material-ui/core/TableRow";
@@ -55,7 +56,11 @@ function Application (props) {
         return data.map(comment => {
             return (
               <TableRow key={comment.appid}>
-                <TableCell>{comment.appid}</TableCell>
+                <TableCell>
+                    <Link style={{textDecoration:"none"}} to={{ pathname: `/profile/${comment.uid}`, state: { uid: comment.uid } }}>  
+                        <Avatar src={comment.profilepicture}></Avatar> 
+                    </Link> 
+                </TableCell>
                 <TableCell>{comment.content}</TableCell>
                 <TableCell>{comment.cv}</TableCell>
                 <TableCell><Link to={{ pathname: `/profile/${comment.uid}`, state: { uid: comment.uid } }}> {comment.username}</Link></TableCell>

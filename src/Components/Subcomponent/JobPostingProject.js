@@ -127,11 +127,7 @@ function JobPostingProject(props) {
                  
                 }}
               >
-                <Typography>
-                  <h2> Comments </h2>
-                </Typography>
                 <Comment commentid={props.match.params.id}></Comment>
-
               </Paper>
             </Grid>
             

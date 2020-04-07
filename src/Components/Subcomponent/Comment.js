@@ -16,6 +16,7 @@ function Application (props) {
     let commentid = props.commentid
     const [data, setData] = useState([]);
     const history = useHistory();
+    let [commentCount,setCount] = useState();;
     useEffect(() => {
         axios
         .get("http://localhost:3001/getcomments/:id", {
@@ -25,6 +26,8 @@ function Application (props) {
         })
         .then(res => {
              setData(res.data)
+             setCount(res.data.length)
+             console.log(commentCount)
         }
             
         )
@@ -36,17 +39,18 @@ function Application (props) {
 
     const getComments = props =>{
         return data.map(comment => {
+            
             let first = comment.firstname.charAt(0)
             let last = comment.lastname.charAt(0)
-            let date = new Date(comment.date).toDateString()
             return (
               <TableRow key={comment.cid}>
                 <TableCell>
-                <Link style={{textDecoration:"none"}} to={{ pathname: `/profile/${comment.uid}`, state: { uid: comment.uid } }}>  
-                    <Avatar > {first + last}</Avatar> </Link> </TableCell>
+                    <Link style={{textDecoration:"none"}} to={{ pathname: `/profile/${comment.uid}`, state: { uid: comment.uid } }}>  
+                        <Avatar > {first + last}</Avatar> 
+                    </Link> 
+                </TableCell>
                 <TableCell>{comment.username}</TableCell>
                 <TableCell>{comment.content}</TableCell>
-                <TableCell>{date}</TableCell>
                 <TableCell>{comment.location}</TableCell>
               </TableRow>
             );
@@ -57,6 +61,9 @@ function Application (props) {
     return(
 
         <div>
+            <Typography>
+                  <h2> {commentCount} Comments </h2>
+                </Typography>
             {getComments()}
         </div>
         
