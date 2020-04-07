@@ -148,15 +148,6 @@ function Application (props) {
     return(
 
         <div>
-            <Button onClick={()=>{
-                history.push({
-                    pathname: `/myprojects/${props.uid}`,
-                    state: {
-                    
-                    user: username,
-                    },
-                  });
-            }}> heey</Button>
             {getComments()}
         </div>
         

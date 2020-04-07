@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import DeletePost from "./DeletePost";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+
 import Paper from "@material-ui/core/Paper";
 import Application from "./Application";
 import Comment from "./Comment";
@@ -16,7 +18,7 @@ function JobPostingProject(props) {
   console.log(props.location.state.uid);
   console.log(props.match.params.id);
   let user = props.location.state.uid;
-  const [poster, setPoster] = useState();
+  const [poster, setPoster] =  useState();
   let { id } = useParams();
   let jid = { id };
   const [data, setData] = useState([]);
@@ -34,7 +36,21 @@ function JobPostingProject(props) {
           id: props.match.params.id,
         },
       })
-      .then((res) => setData(res.data), console.log("aa"))
+      .then((res) => {
+        setData(res.data)
+        console.log("uid: " + res.data[0].uid)
+        axios.get('/userid/:id', {
+          params: {
+            id: res.data[0].uid
+          }
+        })
+        .then( (res)=> {
+          setPoster(res.data[0].username )
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      })
       .catch((err) => console.log("projectconsole"));
   }, []);
 
@@ -104,6 +120,9 @@ function JobPostingProject(props) {
                   <h3>
                     Posted on {new Date(jobposting.postdate).toDateString()}
                   </h3>
+                  <h4>
+                    <Link style={{textDecoration:"none"}} to={{ pathname: `/profile/${jobposting.uid}`, state: { uid: jobposting.uid } }}> By {poster}</Link>
+                  </h4>
                   <p>{jobposting.content}</p>
                   <p>
                     To reference this job, use this code:
