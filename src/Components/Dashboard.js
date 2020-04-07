@@ -45,7 +45,7 @@ function Dashboard(props) {
     <div className={classes.container}>
       <Paper className={classes.rightColumn}>
         {/* <MyPosts user={props.location.state.user} uid={uid}></MyPosts> */}
-       <MyProjects user={props.location.state.user} uid={uid}></MyProjects>
+        <MyProjects user={props.location.state.user} uid={uid}></MyProjects>
       </Paper>
       <div className={classes.leftColumn}>
         <Grid container justify="center">
@@ -99,40 +99,6 @@ function Dashboard(props) {
                 <Paper>
                   <Typography
                     onClick={() =>
-                      props.history.push({
-                        pathname: `/makepost/${uid}`,
-                        state: {
-                          user: props.location.state.user,
-                        },
-                      })
-                    }
-                  >
-                    Create Post
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid item>
-                <Paper>
-                  <Typography
-                    onClick={() =>
-                      props.history.push({
-                        pathname: "/myprojects",
-                        state: {
-                          user: props.location.state.user,
-                          photo: props.location.state.photo,
-                          uid: uid,
-                        },
-                      })
-                    }
-                  >
-                    My Projects
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid item>
-                <Paper>
-                  <Typography
-                    onClick={() =>
                       props.history.push({ pathname: "/newsfeed" })
                     }
                   >
@@ -145,26 +111,11 @@ function Dashboard(props) {
                   <Typography
                     onClick={() =>
                       props.history.push({
-                        pathname: "/projects",
-                        state: { uid: uid },
-                      })
-                    }
-                  >
-                    Browse Projects
-                  </Typography>
-                </Paper>
-              </Grid>
-
-              <Grid item>
-                <Paper>
-                  <Typography
-                    onClick={() =>
-                      props.history.push({
                         pathname: "/editprofile",
                         state: {
                           user: props.location.state.user,
                           photo: props.location.state.photo,
-                          uid : uid
+                          uid: uid,
                         },
                       })
                     }
