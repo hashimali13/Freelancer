@@ -25,7 +25,7 @@ function DeletePost(props) {
       })
       .then((res) => {
         console.log(res.status);
-        console.log("just to check");
+        console.log("just to check 2");
         props.history.push({
           pathname: "/myposts",
           state: {
@@ -36,8 +36,9 @@ function DeletePost(props) {
         });
       })
       .catch((error) => {
+        console.log("err");
         console.log(
-          "pings this error despite deleting the post from the jobposting database"
+          "Deleted the job post but catches the error anyway?? im confused"
         );
       });
   };

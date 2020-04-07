@@ -31,7 +31,7 @@ app.get("/getpost", db.getPost);
 app.get("/getprofile/:id", db.getProfile);
 app.get("/getjob/:id", db.getJob);
 app.get("/getmessages/:id", db.getMessages);
-app.post("/makepost/:id", db.makePost);
+app.post("/makepost", db.makePost);
 app.post("/edituser/", db.editUser);
 app.post("/sendmessage/:id", db.sendMessage);
 app.get("/getreceiverid/:id", db.getReceiverId);

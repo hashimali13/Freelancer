@@ -20,6 +20,7 @@ function MakePost(props) {
   const [postDate, setPostDate] = React.useState("2020-03-12");
   const [deadlineDate, setDeadlineDate] = React.useState("2020-03-12");
   const history = useHistory();
+  console.log(props);
 
   function goBackHandle() {
     history.goBack();
@@ -28,18 +29,23 @@ function MakePost(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/makepost/:id", {
+      .post("http://localhost:3001/makepost", {
         title: title,
         content: content,
         dd: deadlineDate,
         jobtype: jobtype,
-        uid: props.match.params.id,
+        uid: props.location.state.uid,
       })
       .then((res) => {
         console.log(title, content, deadlineDate, jobtype);
         if (res.status === 201) {
           props.history.push({
-            pathname: "/projects",
+            pathname: "/myposts",
+            state: {
+              user: props.location.state.user,
+              jobid: props.location.state.jobid,
+              uid: props.location.state.uid,
+            },
           });
         }
       })

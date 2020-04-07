@@ -61,7 +61,7 @@ function App() {
       <Route path="/editprofile" component={EditProfile} />
       <Route path="/profile/:id" component={Profile} />
       <Route path="/messages" component={Messages} />
-      <Route path="/makepost/:id/" component={MakePost} />
+      <Route path="/makepost" component={MakePost} />
       <Route path="/sendmessage/:id" component={ComposeMessage} />
       <Route path="/posts/:id" component={Posts} />
       <Route path="/editpost/:id" component={EditPost} />

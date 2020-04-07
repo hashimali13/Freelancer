@@ -68,8 +68,9 @@ function Posts(props) {
                   <Typography
                     onClick={() =>
                       props.history.push({
-                        pathname: `/makepost/${uid}`,
+                        pathname: "/makepost",
                         state: {
+                          uid: props.location.state.uid,
                           user: props.location.state.user,
                         },
                       })
