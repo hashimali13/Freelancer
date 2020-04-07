@@ -210,7 +210,7 @@ const makePost = (request, response) => {
 
 const editPost = (request, response) => {
   console.log(request, response);
-  let title = request.body;
+  let title = request.body.title;
   let content = request.body.content;
   let dd = request.body.dd;
   let jobtype = request.body.jobtype;
@@ -429,7 +429,7 @@ const getComments = (request, response) => {
 
 const deleteApplication = (request, response) => {
   let postid = request.body.id;
-  console.log(postid)
+  console.log(postid);
   pool.query(
     "DELETE from application  where  appid=$1",
     [postid],
@@ -467,7 +467,7 @@ const authUser = (request, response) => {
   );
 };
 
-const createJob = (request, response) =>{
+const createJob = (request, response) => {
   let uid = request.body.uid;
   let deadline = request.body.deadline;
   let deliverables = request.body.deliverables;
@@ -485,8 +485,7 @@ const createJob = (request, response) =>{
       response.status(200).json(results.rows);
     }
   );
-
-}
+};
 
 const editUser = (request, response) => {
   console.log("check1");
@@ -558,5 +557,5 @@ module.exports = {
   getApplication,
   deletePost,
   createJob,
-  deleteApplication
+  deleteApplication,
 };
