@@ -414,7 +414,7 @@ const getComments = (request, response) => {
   let postid = request.query.id;
   console.log(postid);
   pool.query(
-    "SELECT * FROM comments where pid=$1",
+    "SELECT * from comments join users u on comments.uid = u.uid where  pid=$1",
     [postid],
     (error, results) => {
       if (error) {

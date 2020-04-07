@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import DeletePost from "./DeletePost";
 import Paper from "@material-ui/core/Paper";
 import Application from "./Application";
+import Comment from "./Comment";
 
 function JobPostingProject(props) {
   console.log(props.location.state.uid);
@@ -39,7 +40,7 @@ function JobPostingProject(props) {
       console.log(jobposting);
       return (
         <div>
-          <Grid style={{ width: "60%" }} container spacing={3} justify="center">
+          <Grid style={{ width: "90%" }} container spacing={3} justify="center">
             <Grid item>
               <Paper
                 elevation={3}
@@ -95,16 +96,14 @@ function JobPostingProject(props) {
                 </Button>
               </Paper>
             </Grid>
+
             <Grid item>
-              <h1>Comments</h1>
-            </Grid>
-            <Grid item style={{ width: "58%" }}>
               <Paper
                 elevation={3}
                 style={{
                   padding: "50pt",
                   paddingTop: "15px",
-                  marginLeft: "-25%",
+                 
                 }}
               >
                 <Typography>
@@ -113,6 +112,24 @@ function JobPostingProject(props) {
                 <Application appid={props.match.params.id}></Application>
               </Paper>
             </Grid>
+
+            <Grid item>
+              <Paper
+                elevation={3}
+                style={{
+                  padding: "50pt",
+                  paddingTop: "15px",
+                 
+                }}
+              >
+                <Typography>
+                  <h2> Comments </h2>
+                </Typography>
+                <Comment commentid={props.match.params.id}></Comment>
+
+              </Paper>
+            </Grid>
+            
           </Grid>
         </div>
       );

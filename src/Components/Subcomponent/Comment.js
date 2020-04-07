@@ -11,14 +11,14 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 
 function Application (props) {
-    let appid = props.appid
+    let commentid = props.commentid
     const [data, setData] = useState([]);
     const history = useHistory();
     useEffect(() => {
         axios
-        .get("http://localhost:3001/getapplication/:id", {
+        .get("http://localhost:3001/getcomments/:id", {
             params: {
-                id: appid
+                id: commentid
             }
         })
         .then(res => {
@@ -35,11 +35,11 @@ function Application (props) {
     const getComments = props =>{
         return data.map(comment => {
             return (
-              <TableRow key={comment.appid}>
-                <TableCell>{comment.appid}</TableCell>
-                <TableCell>{comment.content}</TableCell>
-                <TableCell>{comment.cv}</TableCell>
+              <TableRow key={comment.cid}>
                 <TableCell>{comment.username}</TableCell>
+                <TableCell>{comment.content}</TableCell>
+                <TableCell>{comment.date}</TableCell>
+                <TableCell>{comment.location}</TableCell>
               </TableRow>
             );
           });
