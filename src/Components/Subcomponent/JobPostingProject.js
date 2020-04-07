@@ -8,6 +8,7 @@ import DeletePost from "./DeletePost";
 import Paper from "@material-ui/core/Paper";
 import Application from "./Application";
 import Comment from "./Comment";
+import Container from "@material-ui/core/Container"
 
 function JobPostingProject(props) {
   console.log(props.location.state.uid);
@@ -39,9 +40,9 @@ function JobPostingProject(props) {
     return data.map((jobposting) => {
       console.log(jobposting);
       return (
-        <div>
-          <Grid style={{ width: "90%" }} container spacing={3} justify="center">
-            <Grid item>
+        <Container>
+          <Grid container spacing={3} justify="center">
+            <Grid style={{ width: "70%" }} item>
               <Paper
                 elevation={3}
                 style={{ padding: "50pt", paddingTop: "15px" }}
@@ -101,7 +102,7 @@ function JobPostingProject(props) {
               </Paper>
             </Grid>
 
-            <Grid item>
+            <Grid style={{ width: "70%" }} item>
               <Paper
                 elevation={3}
                 style={{
@@ -117,7 +118,7 @@ function JobPostingProject(props) {
               </Paper>
             </Grid>
 
-            <Grid item>
+            <Grid style={{ width: "70%" }} item>
               <Paper
                 elevation={3}
                 style={{
@@ -135,7 +136,7 @@ function JobPostingProject(props) {
             </Grid>
             
           </Grid>
-        </div>
+        </Container>
       );
     });
   };

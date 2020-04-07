@@ -59,6 +59,7 @@ function Application (props) {
                 <TableCell>{comment.content}</TableCell>
                 <TableCell>{comment.cv}</TableCell>
                 <TableCell><Link to={{ pathname: `/profile/${comment.uid}`, state: { uid: comment.uid } }}> {comment.username}</Link></TableCell>
+                <TableCell>£{comment.price}</TableCell>
                 <TableCell><Button onClick={handleAccept} variant="contained"style={{backgroundColor:"green", color:"white"}}>Accept</Button></TableCell>
                 <TableCell><Button onClick={()=>handleReject(comment.appid)} variant="contained" color="secondary">Reject</Button></TableCell>
 

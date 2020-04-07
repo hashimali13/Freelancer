@@ -38,6 +38,7 @@ function Application (props) {
         return data.map(comment => {
             let first = comment.firstname.charAt(0)
             let last = comment.lastname.charAt(0)
+            let date = new Date(comment.date).toDateString()
             return (
               <TableRow key={comment.cid}>
                 <TableCell>
@@ -45,7 +46,7 @@ function Application (props) {
                     <Avatar > {first + last}</Avatar> </Link> </TableCell>
                 <TableCell>{comment.username}</TableCell>
                 <TableCell>{comment.content}</TableCell>
-                <TableCell>{comment.date}</TableCell>
+                <TableCell>{date}</TableCell>
                 <TableCell>{comment.location}</TableCell>
               </TableRow>
             );
