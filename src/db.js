@@ -397,7 +397,7 @@ const getApplication = (request, response) => {
   let appid = request.query.id;
   console.log(appid);
   pool.query(
-    "SELECT * FROM application where jobid=$1",
+    "SELECT * FROM application join users u on application.uid = u.uid where jobid=$1",
     [appid],
     (error, results) => {
       if (error) {
@@ -466,6 +466,27 @@ const authUser = (request, response) => {
     }
   );
 };
+
+const createJob = (request, response) =>{
+  let uid = request.body.uid;
+  let deadline = request.body.deadline;
+  let deliverables = request.body.deliverables;
+  let jobtype = request.body.jobtype;
+  let title = request.body.title;
+  let postdate = request.body.postdate;
+  let pid = request.body.pid;
+  pool.query(
+    "INSERT INTO project (uid, deadline, deliverables, jobtype,title,postdate,pid) VALUES ($1, $2, $3, $4, $5,$6,$7)",
+    [uid, deadline, deliverables, jobtype, title, postdate, pid],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+
+}
 
 const editUser = (request, response) => {
   console.log("check1");
@@ -536,5 +557,6 @@ module.exports = {
   getComments,
   getApplication,
   deletePost,
+  createJob,
   deleteApplication
 };
