@@ -410,6 +410,23 @@ const getApplication = (request, response) => {
   );
 };
 
+const getComments = (request, response) => {
+  let postid = request.query.id;
+  console.log(postid);
+  pool.query(
+    "SELECT * FROM comments where pid=$1",
+    [postid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const authUser = (request, response) => {
   console.log(request.query);
   let username = request.query.user;
@@ -499,6 +516,7 @@ module.exports = {
   getJob,
   addFriend,
   getFriends,
+  getComments,
   getApplication,
   deletePost,
 };

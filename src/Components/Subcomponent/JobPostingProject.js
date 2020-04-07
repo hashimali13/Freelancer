@@ -61,6 +61,7 @@ function JobPostingProject(props) {
                 <Button
                   variant="contained"
                   color="primary"
+                  style={{ marginRight: "5px" }}
                   onClick={goBackHandle}
                 >
                   Go Back

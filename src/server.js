@@ -22,6 +22,7 @@ app.get("/authuser", db.authUser);
 app.get("/userid/:id", db.searchUser);
 app.get("/users", db.getUsers);
 app.get("/getapplication/:id", db.getApplication);
+app.get("/getcomments/:id", db.getComments);
 app.get("/getproject", db.getProjects);
 app.post("/create", db.createUser);
 app.get("/searchproject", db.searchProjects);

@@ -37,7 +37,7 @@ function Projects(props) {
         <TableRow key={project.projectid}>
           <TableCell>{project.jobtype}</TableCell>
           <TableCell>
-            <Link to={{ pathname: `/projects/${id}`, state: { uid: uid } }}>
+            <Link to={{ pathname: `/jobpost/${id}`, state: { uid: uid } }}>
               {project.title}
             </Link>
           </TableCell>
