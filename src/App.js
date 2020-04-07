@@ -40,17 +40,7 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-  footer: {
-    padding: theme.spacing(2, 2),
-    marginTop: "auto",
-    position: "fixed",
-    bottom: "0",
-    left: "0",
-    width: "100%",
-    textAlign: "center",
-    backgroundColor: "#3f50b5",
-    color: "white",
-  },
+
 }));
 
 function App() {
@@ -77,11 +67,7 @@ function App() {
       <Route path="/editpost/:id" component={EditPost} />
       <Route path="/friends" component={Friends} />
       <Route path="/myposts/:id" component={MyPosts} />
-      <footer className={classes.footer}>
-        <Container maxWidth="sm">
-          <Typography>Footer placeholder</Typography>
-        </Container>
-      </footer>
+      
     </div>
   );
 }

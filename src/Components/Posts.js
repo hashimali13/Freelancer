@@ -138,7 +138,14 @@ function Posts(props) {
                 <Paper>
                   <Typography
                     onClick={() =>
-                      props.history.push({ pathname: "/projects" })
+                      props.history.push({
+                        pathname: `/projects`,
+                        state: {
+                          user: props.location.state.user,
+                          jobid: props.location.state.jobid,
+                          uid: props.location.state.uid
+                        }
+                      })
                     }
                   >
                     Browse All Jobs: <br /> View all projects!
