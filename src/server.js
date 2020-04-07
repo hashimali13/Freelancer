@@ -39,6 +39,7 @@ app.post("/getusername/:id", db.getUsername);
 app.get("/getfriend/:id", db.getFriend);
 app.post("/addfriend/:id", db.addFriend);
 app.post("/deletepost", db.deletePost);
+app.get("/getfriends", db.getFriends);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
