@@ -12,6 +12,9 @@ import Container from "@material-ui/core/Container";
 
 function DeletePost(props) {
   let jobid = props.location.state.jobid;
+  let uid = props.location.state.uid;
+  let user = props.location.state.user;
+
   const history = useHistory();
 
   const handleNo = () => {
@@ -26,12 +29,15 @@ function DeletePost(props) {
       .then((res) => {
         console.log(res.status);
         console.log("just to check 2");
-        props.history.push({
+        console.log(user);
+        console.log(jobid);
+        console.log(uid);
+        history.push({
           pathname: "/myposts",
           state: {
-            user: props.location.state.user,
-            jobid: props.location.state.jobid,
-            uid: props.location.state.uid,
+            user: user,
+            jobid: jobid,
+            uid: uid,
           },
         });
       })
