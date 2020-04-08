@@ -4,7 +4,7 @@ const app = express();
 const port = 3001;
 const db = require("./db");
 const cors = require("cors");
-
+const uploader = require("./upload")
 app.use(cors());
 
 app.use(bodyParser.json());
@@ -18,6 +18,12 @@ app.get("/", (request, response) => {
   response.json({ info: "Basic route." });
 });
 
+
+
+app.post('/upload', uploader.upload.array('profile', 1), function(req, res, next) {
+  console.log(req.files[0])
+  res.send(req.files[0])
+})
 app.get("/authuser", db.authUser);
 app.get("/userid/:id", db.searchUser);
 app.get("/users", db.getUsers);
