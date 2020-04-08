@@ -412,6 +412,42 @@ const getApplication = (request, response) => {
   );
 };
 
+const createApplication = (request, response) => {
+  let uid = request.body.uid;
+  let username = request.body.username;
+  let cv = request.body.cv;
+  let content = request.body.content;
+  let jobid = request.body.jobid;
+  console.log(uid,username,cv,content,jobid)
+  pool.query(
+    "INSERT INTO application (uid, username, cv, content, jobid) VALUES ($1, $2, $3, $4, $5)",
+    [uid, username, cv, content, jobid],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
+const createComment = (request, response) => {
+  let uid = request.body.uid;
+  let date = request.body.date;
+  let cid = request.body.cid;
+  let comment = request.body.comment;
+  pool.query(
+    "INSERT INTO comments (uid, date, pid, content) VALUES ($1, $2, $3, $4)",
+    [uid, date, cid, comment],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const getComments = (request, response) => {
   let postid = request.query.id;
   console.log(postid);
@@ -596,5 +632,7 @@ module.exports = {
   createJob,
   deleteApplication,
   deleteAllApplications,
-  deleteAllComments
+  deleteAllComments,
+  createApplication,
+  createComment
 };

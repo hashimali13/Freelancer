@@ -108,6 +108,10 @@ function JobPostingProject(props) {
                       By {poster}
                     </Link>
                   </h4>
+                  <p>
+                    Job type:
+                    {jobposting.jobtype}
+                  </p>
                   <p>{jobposting.content}</p>
                   <p>
                     To reference this job, use this code:
@@ -162,7 +166,18 @@ function JobPostingProject(props) {
                 {/* :
                 <br/>
               }  */}
-                <Button variant="contained" color="primary">
+                <Button
+                  onClick={()=>{
+                    props.history.push({
+                      pathname: `/createapplication`,
+                      state: {
+                        jobid: jobposting.jobid,
+                        uid: props.location.state.uid,
+                        user: props.location.state.user,
+                      },
+                    })
+                  }}
+                variant="contained" color="primary">
                   Send Application
                 </Button>
               </Paper>
@@ -195,7 +210,8 @@ function JobPostingProject(props) {
                   paddingTop: "15px",
                 }}
               >
-                <Comment commentid={props.match.params.id}></Comment>
+                <Comment user={props.location.state.user} uid={props.location.state.uid} commentid={props.match.params.id}></Comment>
+
               </Paper>
             </Grid>
           </Grid>
