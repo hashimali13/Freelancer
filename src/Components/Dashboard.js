@@ -154,6 +154,23 @@ function Dashboard(props) {
                   </Typography>
                 </Paper>
               </Grid>
+              <Grid item>
+                <Paper>
+                  <Typography
+                    onClick={() =>
+                      props.history.push({
+                        pathname: "/search",
+                        state: {
+                          user: props.location.state.user,
+                          uid: props.location.state.uid,
+                        },
+                      })
+                    }
+                  >
+                    Search
+                  </Typography>
+                </Paper>
+              </Grid>
             </Grid>
           </Paper>
         </Grid>

@@ -24,6 +24,7 @@ import MyPosts from "./Components/Subcomponent/MyPosts";
 import Job from "./Components/Subcomponent/Job";
 import DeletePost from "./Components/Subcomponent/DeletePost";
 import CreateApplication from "./Components/Subcomponent/CreateApplication";
+import Search from "./Components/Search";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,7 +71,7 @@ function App() {
       <Route path="/myposts" component={MyPosts} />
       <Route path="/deletepost" component={DeletePost} />
       <Route path="/createapplication" component={CreateApplication} />
-
+      <Route path="/search" component={Search} />
     </div>
   );
 }

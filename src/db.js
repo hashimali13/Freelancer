@@ -19,6 +19,18 @@ const getUsers = (request, response) => {
   });
 };
 
+const searchBarUsername = (request, response) => {
+  pool.query("SELECT username FROM users", (error, results) => {
+    console.log("heyheyhey");
+    if (error) {
+      console.log(error);
+      throw error;
+    }
+    console.log("tigovdjifohfreifvod");
+    response.status(200).json(results.row);
+  });
+};
+
 const getUsername = (request, response) => {
   let username = request.body.username;
   pool.query(
@@ -51,8 +63,6 @@ const getProjects = (request, response) => {
     response.status(200).json(results.rows);
   });
 };
-
-
 
 const addFriend = (request, response) => {
   let userid = request.body.friend;
@@ -418,7 +428,7 @@ const createApplication = (request, response) => {
   let cv = request.body.cv;
   let content = request.body.content;
   let jobid = request.body.jobid;
-  console.log(uid,username,cv,content,jobid)
+  console.log(uid, username, cv, content, jobid);
   pool.query(
     "INSERT INTO application (uid, username, cv, content, jobid) VALUES ($1, $2, $3, $4, $5)",
     [uid, username, cv, content, jobid],
@@ -539,7 +549,6 @@ const authUser = (request, response) => {
   );
 };
 
-
 const createJob = (request, response) => {
   let uid = request.body.uid;
   let deadline = request.body.deadline;
@@ -634,5 +643,6 @@ module.exports = {
   deleteAllApplications,
   deleteAllComments,
   createApplication,
-  createComment
+  createComment,
+  searchBarUsername,
 };
