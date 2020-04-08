@@ -168,7 +168,7 @@ function JobPostingProject(props) {
                       pathname: `/createapplication`,
                       state: {
                         jobid: jobposting.jobid,
-                        uid: jobposting.uid,
+                        uid: props.location.state.uid,
                         user: props.location.state.user,
                       },
                     })
