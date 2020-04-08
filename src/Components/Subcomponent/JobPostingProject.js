@@ -97,6 +97,7 @@ function JobPostingProject(props) {
                     Posted on {new Date(jobposting.postdate).toDateString()}
                   </h3>
                   <h4>
+                  By
                     <Link
                       style={{ textDecoration: "none" }}
                       to={{
@@ -105,7 +106,7 @@ function JobPostingProject(props) {
                       }}
                     >
                       {" "}
-                      By {poster}
+                       {poster}
                     </Link>
                   </h4>
                   <p>
