@@ -431,6 +431,23 @@ const createApplication = (request, response) => {
   );
 };
 
+const createComment = (request, response) => {
+  let uid = request.body.uid;
+  let date = request.body.date;
+  let cid = request.body.cid;
+  let comment = request.body.comment;
+  pool.query(
+    "INSERT INTO comments (uid, date, pid, content) VALUES ($1, $2, $3, $4)",
+    [uid, date, cid, comment],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const getComments = (request, response) => {
   let postid = request.query.id;
   console.log(postid);
@@ -616,5 +633,6 @@ module.exports = {
   deleteApplication,
   deleteAllApplications,
   deleteAllComments,
-  createApplication
+  createApplication,
+  createComment
 };

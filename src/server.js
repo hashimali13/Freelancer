@@ -38,6 +38,7 @@ app.get("/getreceiverid/:id", db.getReceiverId);
 app.post("/editpost/", db.editPost);
 app.post("/createjob/", db.createJob);
 app.post("/createapplication/", db.createApplication);
+app.post("/createcomment/", db.createComment);
 app.post("/getusername/:id", db.getUsername);
 app.get("/getfriend/:id", db.getFriend);
 app.post("/addfriend/:id", db.addFriend);
