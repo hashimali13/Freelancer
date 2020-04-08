@@ -36,7 +36,7 @@ function DeletePost(props) {
         });
       })
       .catch((error) => {
-        console.log("err");
+        console.log(error);
         console.log(
           "Deleted the job post but catches the error anyway?? im confused"
         );

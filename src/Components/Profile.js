@@ -69,7 +69,12 @@ function Profile(props) {
               elevation={3}
               style={{ padding: "50pt", paddingTop: "15px", width: "25%" }}
             >
-              <Typography>
+              <Typography
+                style={{
+                  textAlign: "center",
+                  marginBottom: "20px",
+                }}
+              >
                 <div>
                   <img
                     src={profile.profilepicture}
@@ -78,16 +83,29 @@ function Profile(props) {
                   <h1>
                     {profile.firstname} {""} {profile.lastname}{" "}
                   </h1>
-                  <h2>{profile.industry}</h2>
+                  <h3>{profile.industry}</h3>
                   <h4>{profile.location}</h4>
-                  <br />
-                  <h3>About:</h3>
-                  <h3>{profile.description}</h3>
                   <hr />
-                  <h5>Languages:</h5>
-                  <h5>{profile.languages}</h5>
+                  <Paper>
+                    {" "}
+                    <h3>
+                      <u>About</u>
+                    </h3>
+                    <h5>{profile.description}</h5>
+                  </Paper>
+                  <Paper>
+                    <h3>
+                      <u>Languages</u>
+                    </h3>
+                    <h5>{profile.languages}</h5>
+                  </Paper>
                 </div>
-                <ul>{showSkills(props)}</ul>
+                <Paper>
+                  <h3>
+                    <u>Skills</u>
+                  </h3>
+                  <ul style={{ listStyleType: "none" }}>{showSkills(props)}</ul>
+                </Paper>
               </Typography>
             </Paper>
           </div>
@@ -102,7 +120,11 @@ function Profile(props) {
   const showSkills = (props) => {
     return data2.map((skills) => {
       console.log(skills);
-      return <li>{skills.skill}</li>;
+      return (
+        <li>
+          <h5>{skills.skill}</h5>
+        </li>
+      );
     });
   };
 

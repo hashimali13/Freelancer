@@ -18,7 +18,7 @@ function JobPostingProject(props) {
   console.log(props.location.state.uid);
   console.log(props.match.params.id);
   let user = props.location.state.uid;
-  const [poster, setPoster] =  useState();
+  const [poster, setPoster] = useState();
   let { id } = useParams();
   let jid = { id };
   const [data, setData] = useState([]);
@@ -37,19 +37,20 @@ function JobPostingProject(props) {
         },
       })
       .then((res) => {
-        setData(res.data)
-        console.log("uid: " + res.data[0].uid)
-        axios.get('/userid/:id', {
-          params: {
-            id: res.data[0].uid
-          }
-        })
-        .then( (res)=> {
-          setPoster(res.data[0].username )
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        setData(res.data);
+        console.log("uid: " + res.data[0].uid);
+        axios
+          .get("/userid/:id", {
+            params: {
+              id: res.data[0].uid,
+            },
+          })
+          .then((res) => {
+            setPoster(res.data[0].username);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       })
       .catch((err) => console.log("projectconsole"));
   }, []);
@@ -78,31 +79,6 @@ function JobPostingProject(props) {
       });
   };
 
-  const deleteCheck = () => {
-    console.log("deletecheck has been called");
-    return (
-      <div>
-        <Dialog
-          header="Delete Post?"
-          body="Deleting this post is permanent and cannot be reversed"
-        >
-          <DialogActions>
-            <Button
-            //  onClick={handleNo} color="primary"
-            >
-              Cancel
-            </Button>
-            <Button
-            //  onClick={handleYes} color="primary"
-            >
-              Delete
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    );
-  };
-
   const showData = (props) => {
     return data.map((jobposting) => {
       console.log(jobposting);
@@ -121,7 +97,16 @@ function JobPostingProject(props) {
                     Posted on {new Date(jobposting.postdate).toDateString()}
                   </h3>
                   <h4>
-                    <Link style={{textDecoration:"none"}} to={{ pathname: `/profile/${jobposting.uid}`, state: { uid: jobposting.uid } }}> By {poster}</Link>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={{
+                        pathname: `/profile/${jobposting.uid}`,
+                        state: { uid: jobposting.uid },
+                      }}
+                    >
+                      {" "}
+                      By {poster}
+                    </Link>
                   </h4>
                   <p>{jobposting.content}</p>
                   <p>
@@ -194,7 +179,11 @@ function JobPostingProject(props) {
                 <Typography>
                   <h2> Applications </h2>
                 </Typography>
-                <Application  uid={user} postingId={jobposting.jobid} appid={props.match.params.id}></Application>
+                <Application
+                  uid={user}
+                  postingId={jobposting.jobid}
+                  appid={props.match.params.id}
+                ></Application>
               </Paper>
             </Grid>
 
