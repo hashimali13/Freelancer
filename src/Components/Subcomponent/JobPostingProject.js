@@ -162,7 +162,18 @@ function JobPostingProject(props) {
                 {/* :
                 <br/>
               }  */}
-                <Button variant="contained" color="primary">
+                <Button
+                  onClick={()=>{
+                    props.history.push({
+                      pathname: `/createapplication`,
+                      state: {
+                        jobid: jobposting.jobid,
+                        uid: jobposting.uid,
+                        user: props.location.state.user,
+                      },
+                    })
+                  }}
+                variant="contained" color="primary">
                   Send Application
                 </Button>
               </Paper>
