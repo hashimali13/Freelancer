@@ -18,6 +18,7 @@
     "install": "^0.13.0",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
+    "naive-bayes-classifier": "^0.5.0",
     "npm": "^6.13.7",
     "pg": "^7.14.0",
     "react": "^16.12.0",
