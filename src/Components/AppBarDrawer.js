@@ -124,19 +124,37 @@ function AppBarDrawer(props) {
         </div>
         <Divider />
         <List>
-          <Link to="/dashboard">
+          <Link to={{
+                      pathname: `/dashboard`,
+                      state: { 
+                        uid: props.uid,
+                        user: props.user
+                      },
+                      }}>
             <Typography>Dashboard</Typography>
           </Link>
         </List>
         <Divider />
         <List>
-          <Link to="/myprojects" activeClassName="active">
+        <Link to={{
+                      pathname: `/myprojects`,
+                      state: { 
+                        uid: props.uid,
+                        user: props.user
+                      },
+                      }}>
             <Typography>My Projects</Typography>
           </Link>
         </List>
         <Divider />
         <List>
-          <Link to="/projects">
+        <Link to={{
+                      pathname: `/projects`,
+                      state: { 
+                        uid: props.uid,
+                        user: props.user
+                      },
+                      }}>
             <Typography>Browse All Projects</Typography>
           </Link>
         </List>

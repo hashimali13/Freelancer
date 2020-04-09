@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -7,10 +7,18 @@ import axios from "axios";
 import Dialog from "./Dialog";
 import { render } from "@testing-library/react";
 import Paper from "@material-ui/core/Paper";
+import { useParams, useHistory } from "react-router";
+
 
 const Login = props => {
   const [username, setUser] = useState();
   const [password, setPass] = useState();
+  const history = useHistory();
+
+  useEffect(() => {
+    console.log(props.user)
+     let test = props.user
+  });
 
   const HandleUser = event => {
     setUser(event.target.value);
@@ -34,7 +42,9 @@ const Login = props => {
         if (res.status === 200) {
           console.log(res.data[0].profilepicture);
           console.log(res.data);
-          props.history.push({
+          props.user(res.data[0].username)
+          props.uid(res.data[0].uid)
+          history.push({
             pathname: "/dashboard",
             state: {
               user: res.data[0].username,
