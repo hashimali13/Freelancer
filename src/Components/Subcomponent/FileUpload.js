@@ -13,26 +13,19 @@ function FileUpload (props) {
     const [file, setFile] = useState();
     const [filename, setName] = useState();
     const [uploaded, setUploaded] = useState("None");
-
-
-
     const history = useHistory();
 
-    useEffect(() => {
-        
-        console.log( props.location.state.user,
-            props.match.params.jobid,
-            props.location.state.uid)
-    }, []);
-
+    
     const handleName = event =>{
         setName(event.target.value)
     }
 
     const handleFile = event =>{
-        setFile(event.target.files[0])
-        console.log(event.target.files)
-        setUploaded(event.target.files[0].name)
+        if(event.target.files.length!=0){
+           setFile(event.target.files[0])
+           setUploaded(event.target.files[0].name) 
+        }
+        
     }
 
     const handleSubmit = event =>{
@@ -46,6 +39,20 @@ function FileUpload (props) {
         })
           .then(function (response) {
             console.log(response);
+            console.log(response.data.location);
+            console.log(response.data.key);
+            axios.post('/submitfile', {
+                 projectid: props.location.state.jobid,
+                 location:response.data.location,
+                 key: response.data.key,
+                 title: filename
+              })
+              .then(function (response) {
+                history.goBack();
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
           })
           .catch(function (error) {
             console.log(error);

@@ -475,12 +475,44 @@ const getComments = (request, response) => {
   );
 };
 
+const getFiles = (request, response) => {
+  let projectid = request.query.id;
+  pool.query(
+    "SELECT * from files where  projectid=$1",
+    [projectid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const deleteApplication = (request, response) => {
   let postid = request.body.id;
   console.log(postid);
   pool.query(
     "DELETE from application  where  appid=$1",
     [postid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
+const deleteFromDb = (request, response) => {
+  let key = request.body.key;
+  pool.query(
+    "DELETE from files  where  key=$1",
+    [key],
     (error, results) => {
       if (error) {
         console.log("well that sucks");
@@ -569,6 +601,23 @@ const createJob = (request, response) => {
   );
 };
 
+const postFile = (request, response) => {
+  let projectid = request.body.projectid;
+  let location = request.body.location;
+  let key = request.body.key;
+  let title = request.body.title;
+  pool.query(
+    "INSERT INTO files (projectid, location, key, title) VALUES ($1, $2, $3, $4)",
+    [projectid, location, key, title],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const editUser = (request, response) => {
   console.log("check1");
   let uid = request.body.id;
@@ -645,4 +694,7 @@ module.exports = {
   createApplication,
   createComment,
   searchBarUsername,
+  postFile,
+  getFiles,
+  deleteFromDb
 };
