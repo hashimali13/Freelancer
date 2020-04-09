@@ -7,15 +7,16 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 function Profile(props) {
+  const history = useHistory();
   const [people, setPeople] = useState([]);
-  const [data2, setData2] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const people5467 = ["Bailey", "Hashim", "Nathan", "NotBailey"];
-  console.log(props);
-  const history = useHistory();
+  const fakepeople = ["Bailey", "Hashim", "Nathan", "NotBailey"];
+  console.log(fakepeople);
+  const users = people.map((userlist) => userlist.username);
+  console.log(users);
 
-  //small feature - not important!!
+  //small feature - not issssmportant!!
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -27,21 +28,25 @@ function Profile(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/users")
-      .then((res) => setPeople(res.data), console.log("here we go"))
-      .catch((err) => console.log("projectconsole111111111"));
+      .get("http://localhost:3001/searchbar")
+      .then((res) => setPeople(res.data), console.log("here we go22"))
+      .catch((err) => console.log("projectconsole1111111122221"));
   }, []);
 
   React.useEffect(() => {
-    const userresults = people.filter((idk) =>
+    //This is where i am having the issue.
+    //If userresults = fakepeople.filter..., the program works
+    //If userresults = users.filter..., the program doesnt work
+    //Both of the
+    const userresults = fakepeople.filter((idk) =>
       idk.toLowerCase().includes(searchTerm)
     );
     setSearchResults(userresults);
   }, [searchTerm]);
 
-  const showTrial = (props) => {
+  const showTrial = () => {
     return people.map((profile) => {
-      console.log(profile);
+      console.log(profile.username);
       return <div>{profile.username}</div>;
     });
   };
@@ -54,30 +59,12 @@ function Profile(props) {
           <input type="text" value={searchTerm} onChange={handleChange} />
           <ul>
             {searchResults.map((item) => (
-              <li>{item.username}</li>
+              <li>{item}</li>
             ))}
           </ul>
         </div>
-        {/* This will be changed out for searching jobposting.title or something
-        <Paper>
-          <h3>
-            <u>Skills</u>
-          </h3>
-          <ul style={{ listStyleType: "none" }}>{showSkills(props)}</ul>
-        </Paper> */}
       </div>
     );
-  };
-
-  const showSkills = (props) => {
-    return data2.map((skills) => {
-      // console.log(skills);
-      return (
-        <li>
-          <h5>{skills.skill}</h5>
-        </li>
-      );
-    });
   };
 
   return (
@@ -86,6 +73,8 @@ function Profile(props) {
       <Button variant="contained" color="primary" onClick={goBackHandle}>
         Go Back
       </Button>
+      <ul>{users}</ul>
+      <ul>{fakepeople}</ul>
     </div>
   );
 }

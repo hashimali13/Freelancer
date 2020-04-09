@@ -19,26 +19,29 @@ const getUsers = (request, response) => {
   });
 };
 
-const searchBarUsername = (request, response) => {
+const searchBar = (request, response) => {
   pool.query("SELECT username FROM users", (error, results) => {
-    console.log("heyheyhey");
+    console.log("sdasdaa12345678");
     if (error) {
-      console.log(error);
       throw error;
     }
-    console.log("tigovdjifohfreifvod");
-    response.status(200).json(results.row);
+    console.log("sdasdasdasdaxa123456789");
+
+    response.status(200).json(results.rows);
   });
 };
 
 const getUsername = (request, response) => {
   let username = request.body.username;
+  let username1 = '%' + username + '%'
+  console.log(username1);
   pool.query(
-    "SELECT * FROM users WHERE username = $1",
-    [username],
+    "SELECT * FROM users WHERE username LIKE $1",
+    [username1],
     (error, results) => {
       if (error) {
         throw error;
+        console.log(results.rows);
       }
       if (results.rowCount === 0) {
         console.log("empty array");
@@ -510,18 +513,14 @@ const deleteApplication = (request, response) => {
 
 const deleteFromDb = (request, response) => {
   let key = request.body.key;
-  pool.query(
-    "DELETE from files  where  key=$1",
-    [key],
-    (error, results) => {
-      if (error) {
-        console.log("well that sucks");
-        throw error;
-      }
-      console.log("yay you haven't messed up yet");
-      response.status(200).json(results.rows);
+  pool.query("DELETE from files  where  key=$1", [key], (error, results) => {
+    if (error) {
+      console.log("well that sucks");
+      throw error;
     }
-  );
+    console.log("yay you haven't messed up yet");
+    response.status(200).json(results.rows);
+  });
 };
 
 const deleteAllApplications = (request, response) => {
@@ -693,8 +692,8 @@ module.exports = {
   deleteAllComments,
   createApplication,
   createComment,
-  searchBarUsername,
+  searchBar,
   postFile,
   getFiles,
-  deleteFromDb
+  deleteFromDb,
 };
