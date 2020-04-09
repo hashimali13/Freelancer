@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import Container from "@material-ui/core/Container";
+import Files from "./Files"
 
 function Job(props) {
   let user = props.location.state.uid;
@@ -12,7 +14,6 @@ function Job(props) {
   const [data, setData] = useState([]);
   const history = useHistory();
   console.log(props);
-
   function goBackHandle() {
     history.goBack();
   }
@@ -32,70 +33,77 @@ function Job(props) {
     return data.map((job) => {
       console.log(job);
       return (
-        <div>
+        <Container>
           <Grid container justify="center">
-            <Paper
-              elevation={3}
-              style={{ padding: "50pt", paddingTop: "15px", width: "50%" }}
-            >
-              <Typography>
-                {" "}
-                <h1>{job.title}</h1>
-                <h3>Posted on {new Date(job.postdate).toDateString()}</h3>
-                <h3>Deadline: {new Date(job.deadline).toDateString()}</h3>
-                <p>{job.deliverables}</p>
-                <p>
-                  To reference this job, use this code:
-                  <b>{job.projectid}</b>
-                </p>
-              </Typography>
-              {user === job.uid ? (
+            <Grid style={{ width: "70%" }} item>
+              <Paper
+                elevation={3}
+                style={{ padding: "50pt", paddingTop: "15px" }}
+              >
+                <Typography>
+                  {" "}
+                  <h1>{job.title}</h1>
+                  <h3>Freelancer: {props.location.state.user}</h3>
+                  <h5>Posted: {new Date(job.postdate).toDateString()}</h5>
+                  <h5>Deadline: {new Date(job.deadline).toDateString()}</h5>
+                  <p>{job.deliverables}</p>
+                  <p>
+                    Job reference:
+                    <b>{job.projectid}</b>
+                  </p>
+                </Typography>
+                {user === job.uid ? (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    style={{ marginRight: "5px", backgroundColor:"purple", color:"white" }}
+                    onClick={() =>
+                      props.history.push({
+                        pathname: `/editpost/${job.uid}`,
+                        state: {
+                          jobid: job.jobid,
+                          uid: job.uid,
+                        },
+                      })
+                    }
+                  >
+                    Edit Post
+                  </Button>
+                ) : (
+                  <br />
+                )}
                 <Button
-                  variant="contained"
-                  color="primary"
-                  style={{ marginRight: "5px", backgroundColor:"purple", color:"white" }}
                   onClick={() =>
                     props.history.push({
-                      pathname: `/editpost/${job.uid}`,
+                      pathname: `/fileupload`,
                       state: {
-                        jobid: job.jobid,
-                        uid: job.uid,
+                        user: props.location.state.user,
+                        jobid: job.projectid,
+                        uid: props.location.state.uid,
                       },
                     })
                   }
+                  variant="contained"
+                  style={{ marginRight: "5px", backgroundColor:"green", color:"white" }}
                 >
-                  Edit Post
+                  Upload file
                 </Button>
-              ) : (
-                <br />
-              )}
-              <Button
-                onClick={() =>
-                  props.history.push({
-                    pathname: `/fileupload`,
-                    state: {
-                      user: props.location.state.user,
-                      jobid: job.projectid,
-                      uid: props.location.state.uid,
-                    },
-                  })
-                }
-                variant="contained"
-                style={{ marginRight: "5px", backgroundColor:"green", color:"white" }}
-              >
-                Upload file
-              </Button>
 
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={goBackHandle}
-              >
-                Go Back
-              </Button>
-            </Paper>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={goBackHandle}
+                >
+                  Go Back
+                </Button>
+              </Paper>
+                  <br></br>
+            </Grid>
+            <Grid style={{ width: "70%" }} item>
+                <Files projectid={job.projectid}></Files>
+            </Grid>
           </Grid>
-        </div>
+        </Container>
       );
     });
   };

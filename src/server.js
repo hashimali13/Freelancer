@@ -33,6 +33,7 @@ app.get("/getproject", db.getProjects);
 app.post("/create", db.createUser);
 app.get("/searchproject", db.searchProjects);
 app.get("/seepost", db.seePost);
+app.get("/getfiles/:id", db.getFiles);
 app.get("/getpost", db.getPost);
 app.get("/getprofile/:id", db.getProfile);
 app.get("/getjob/:id", db.getJob);
@@ -52,6 +53,7 @@ app.post("/deletepost", db.deletePost);
 app.post("/deleteapplication", db.deleteApplication);
 app.post("/deleteallcomments", db.deleteAllComments);
 app.post("/deleteallapplications", db.deleteAllApplications);
+app.post("/submitfile", db.postFile);
 app.get("/getfriends", db.getFriends);
 app.get("/searchbarusername", db.searchBarUsername);
 
