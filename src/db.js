@@ -330,6 +330,22 @@ const getFriends = (request, response) => {
   );
 };
 
+
+const getPostedProjects = (request, response) => {
+  let pid = request.query.id;
+  pool.query(
+    "SELECT * FROM project WHERE pid = $1",
+    [pid],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+      console.log(results.rows);
+    }
+  );
+};
+
 const searchProjects = (request, response) => {
   let user = request.query.user;
   let user2 = request.body.user;
@@ -696,5 +712,6 @@ module.exports = {
   searchBarUsername,
   postFile,
   getFiles,
-  deleteFromDb
+  deleteFromDb,
+  getPostedProjects
 };

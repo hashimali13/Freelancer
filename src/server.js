@@ -39,6 +39,7 @@ app.get("/getcomments/:id", db.getComments);
 app.get("/getproject", db.getProjects);
 app.post("/create", db.createUser);
 app.get("/searchproject", db.searchProjects);
+app.get("/searchpostedjobs", db.getPostedProjects);
 app.get("/seepost", db.seePost);
 app.get("/getfiles/:id", db.getFiles);
 app.get("/getpost", db.getPost);
