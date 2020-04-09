@@ -27,6 +27,7 @@ function MyJobs(props) {
 
   useEffect(() => {
     console.log(props.location.state.user)
+    console.log(props.location.state.uid)
     axios
       .get("http://localhost:3001/searchproject", {
         params: {
@@ -48,7 +49,7 @@ function MyJobs(props) {
             <Link
               to={{
                 pathname: `/job/${id}`,
-                state: { uid: props.uid },
+                state: { uid: props.location.state.uid, user:props.location.state.user },
               }}
             >
               {project.title}

@@ -25,6 +25,7 @@ import Job from "./Components/Subcomponent/Job";
 import DeletePost from "./Components/Subcomponent/DeletePost";
 import CreateApplication from "./Components/Subcomponent/CreateApplication";
 import Search from "./Components/Search";
+import FileUpload from "./Components/Subcomponent/FileUpload";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,6 +73,8 @@ function App() {
       <Route path="/deletepost" component={DeletePost} />
       <Route path="/createapplication" component={CreateApplication} />
       <Route path="/search" component={Search} />
+      <Route path="/fileupload" component={FileUpload} />
+
     </div>
   );
 }

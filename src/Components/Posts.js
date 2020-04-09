@@ -104,8 +104,9 @@ function Posts(props) {
                   <Typography
                     onClick={() =>
                       props.history.push({
-                        pathname: `/myprojects/${uid}`,
+                        pathname: `/myprojects`,
                         state: {
+                          uid: props.location.state.uid,
                           user: props.location.state.user,
                         },
                       })

@@ -9,8 +9,6 @@ import Paper from "@material-ui/core/Paper";
 function Job(props) {
   let user = props.location.state.uid;
   const [poster, setPoster] = useState();
-  let { id } = useParams();
-  let jid = { id };
   const [data, setData] = useState([]);
   const history = useHistory();
   console.log(props);
@@ -55,7 +53,7 @@ function Job(props) {
                 <Button
                   variant="contained"
                   color="primary"
-                  style={{ marginRight: "5px" }}
+                  style={{ marginRight: "5px", backgroundColor:"purple", color:"white" }}
                   onClick={() =>
                     props.history.push({
                       pathname: `/editpost/${job.uid}`,
@@ -71,6 +69,23 @@ function Job(props) {
               ) : (
                 <br />
               )}
+              <Button
+                onClick={() =>
+                  props.history.push({
+                    pathname: `/fileupload`,
+                    state: {
+                      user: props.location.state.user,
+                      jobid: job.projectid,
+                      uid: props.location.state.uid,
+                    },
+                  })
+                }
+                variant="contained"
+                style={{ marginRight: "5px", backgroundColor:"green", color:"white" }}
+              >
+                Upload file
+              </Button>
+
               <Button
                 variant="contained"
                 color="primary"
