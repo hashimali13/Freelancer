@@ -31,17 +31,36 @@ function Application (props) {
             
         )
         .catch(err =>
-            console.log("You got so far but in the end it just didn't matter")
+            console.log(err)
         );
     }, []);
 
+    const handleDelete = key =>{
 
+        console.log(key)
+        axios.post('/deletefile', {
+            key: key
+          })
+          .then(function (response) {
+            axios.post('/deletefromdb', {
+                key: key
+              })
+              .then(function (response) {
+                window.location.reload(false);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
 
 
     const getFiles = props =>{
         return data.map(file => {
             let link = file.location
-            console.log(link)
             return (
               <Grid  item  key={file.fileid} item>
                 <a rel="noopener noreferrer" target="_blank" href={link} style={{textDecoration:"none"}}> 
@@ -49,7 +68,7 @@ function Application (props) {
                     <Typography > {file.title}</Typography>
                 </Paper>
                 </a>
-                <Button style={{height:"30px", width:"100px",textTransform:"none", backgroundColor:"darkred", color:"white"}}>
+                <Button onClick={()=>handleDelete(file.key)} style={{height:"30px", width:"100px",textTransform:"none", backgroundColor:"darkred", color:"white"}}>
                     <Typography>Delete </Typography>
                 </Button>
               </Grid>
@@ -60,7 +79,7 @@ function Application (props) {
 
     return(
          <Paper style={{padding:"10px 10px 10px 10px"}} onClick={console.log(5)} >
-              <Typography > <h3 style={{paddingLeft:"10px"}}>Files</h3> </Typography>
+              <Typography > <h3 >Files</h3> </Typography>
             <Grid container spacing={2} > 
                 {getFiles()}
             </Grid>

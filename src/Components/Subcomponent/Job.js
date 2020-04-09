@@ -102,6 +102,10 @@ function Job(props) {
             <Grid style={{ width: "70%" }} item>
                 <Files projectid={job.projectid}></Files>
             </Grid>
+
+            <Grid style={{ width: "70%" }} item>
+              <h1>temp</h1>
+            </Grid>
           </Grid>
         </Container>
       );

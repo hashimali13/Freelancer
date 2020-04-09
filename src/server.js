@@ -24,6 +24,8 @@ app.post('/upload', uploader.upload.array('profile', 1), function(req, res, next
   console.log(req.files[0])
   res.send(req.files[0])
 })
+app.post('/deletefile', uploader.deleteFile)
+app.post('/deletefromdb', db.deleteFromDb)
 app.get("/authuser", db.authUser);
 app.get("/userid/:id", db.searchUser);
 app.get("/users", db.getUsers);

@@ -508,6 +508,22 @@ const deleteApplication = (request, response) => {
   );
 };
 
+const deleteFromDb = (request, response) => {
+  let key = request.body.key;
+  pool.query(
+    "DELETE from files  where  key=$1",
+    [key],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const deleteAllApplications = (request, response) => {
   let postid = request.body.id;
   console.log(postid);
@@ -679,5 +695,6 @@ module.exports = {
   createComment,
   searchBarUsername,
   postFile,
-  getFiles
+  getFiles,
+  deleteFromDb
 };
