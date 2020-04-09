@@ -14,51 +14,47 @@ function Profile(props) {
   const people5467 = ["Bailey", "Hashim", "Nathan", "NotBailey"];
   console.log(props);
   const history = useHistory();
-  console.log(people);
 
-  //small features - not important!!
+  //small feature - not important!!
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  //small features - not important!!
+  //small feature - not important!!
   function goBackHandle() {
     history.goBack();
   }
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/searchbarusername")
-      .then((res) => setPeople(res.data), console.log("call to get all users"))
-      .catch(
-        (error) => console.log(error),
-        console.log("error ping in search.js")
-      );
-    // The axios call below needs to be changed a bit to only get jobposting.title or something
-    //axios
-    //   .get("http://localhost:3001/getproject")
-    //   .then((res) => setData2(res.data), console.log("call to get all posts"))
-    //   .catch(
-    //     (error) => console.log(error),
-    //     console.log("error ping 23345433 in search.js")
-    //   );
+      .get("http://localhost:3001/users")
+      .then((res) => setPeople(res.data), console.log("here we go"))
+      .catch((err) => console.log("projectconsole111111111"));
   }, []);
 
   React.useEffect(() => {
-    const userresults = people5467.filter((idk) =>
+    const userresults = people.filter((idk) =>
       idk.toLowerCase().includes(searchTerm)
     );
     setSearchResults(userresults);
   }, [searchTerm]);
 
+  const showTrial = (props) => {
+    return people.map((profile) => {
+      console.log(profile);
+      return <div>{profile.username}</div>;
+    });
+  };
+
   const showData = (props) => {
     return (
       <div>
+        {showTrial(props)}
         <div>
           <input type="text" value={searchTerm} onChange={handleChange} />
           <ul>
             {searchResults.map((item) => (
-              <li>{item}</li>
+              <li>{item.username}</li>
             ))}
           </ul>
         </div>
