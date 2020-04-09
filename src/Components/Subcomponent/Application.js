@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import TableBody from "@material-ui/core/TableBody"
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
@@ -147,9 +148,12 @@ function Application (props) {
 
     return(
 
-        <div>
+        <Table>
+          <TableBody>
             {getComments()}
-        </div>
+          </TableBody>
+            
+        </Table>
         
         
     )

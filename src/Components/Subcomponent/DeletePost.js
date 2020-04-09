@@ -61,7 +61,7 @@ function DeletePost(props) {
                 cannot be reversed
               </p>
             </Typography>
-            <Button onClick={handleNo} variant="contained" color="primary">
+            <Button style={{marginRight:"5px"}} onClick={handleNo} variant="contained" color="primary">
               Cancel
             </Button>
             <Button onClick={handleYes} variant="contained" color="primary">

@@ -139,7 +139,7 @@ function Friends(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button variant="contained" color="primary" justifyContent="center" onCLick={goBackHandle}>
+            <Button variant="contained" color="primary" justifyContent="center" onCLick={(goBackHandle)}>
                 Go back
             </Button>
         </div>

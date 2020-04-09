@@ -25,7 +25,10 @@ app.post('/upload', uploader.upload.array('profile', 1), function(req, res, next
   console.log(req.files[0])
   res.send(req.files[0])
 })
-app.get("/spam", spam.getSpam);
+
+
+
+app.post("/spam", spam.getSpam);
 app.post('/deletefile', uploader.deleteFile)
 app.post('/deletefromdb', db.deleteFromDb)
 app.get("/authuser", db.authUser);

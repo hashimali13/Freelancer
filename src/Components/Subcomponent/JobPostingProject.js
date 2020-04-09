@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import DeletePost from "./DeletePost";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
-
 import Paper from "@material-ui/core/Paper";
 import Application from "./Application";
 import Comment from "./Comment";
@@ -84,13 +83,13 @@ function JobPostingProject(props) {
       console.log(jobposting);
       return (
         <Container>
-          <Grid container spacing={3} justify="center">
+          <Grid key={jobposting.jobid} container spacing={3} justify="center">
             <Grid style={{ width: "70%" }} item>
               <Paper
                 elevation={3}
                 style={{ padding: "50pt", paddingTop: "15px" }}
               >
-                <Typography>
+                <Typography component={'span'}>
                   {" "}
                   <h1>{jobposting.title}</h1>
                   <h3>
@@ -192,7 +191,7 @@ function JobPostingProject(props) {
                   paddingTop: "15px",
                 }}
               >
-                <Typography>
+                <Typography component={'span'}>
                   <h2> Applications </h2>
                 </Typography>
                 <Application
