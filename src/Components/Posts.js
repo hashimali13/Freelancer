@@ -80,23 +80,6 @@ function Posts(props) {
                   </Typography>
                 </Paper>
               </Grid>
-              {/* <Grid item>
-                // This grid item is for making posts -------------------------------------------------------------------------------------------
-                <Paper>
-                  <Typography
-                    onClick={() =>
-                      props.history.push({
-                        pathname: `/editpost/${uid}`,
-                        state: {
-                          jobid: props.location.state.jobid
-                        }
-                      })
-                    }
-                  >
-                    Edit a post
-                  </Typography>
-                </Paper>
-              </Grid> */}
               <hr />
               <Grid item>
                 {/* This is for Projects the user is working on */}
@@ -135,6 +118,26 @@ function Posts(props) {
                   </Typography>
                 </Paper>
               </Grid>
+
+              <Grid item>
+                {/* This is for the user to view projects from all users */}
+                <Paper>
+                  <Typography
+                    onClick={() =>
+                      props.history.push({
+                        pathname: `/myjobpostings`,
+                        state: {
+                          user: props.location.state.user,
+                          uid: props.location.state.uid,
+                        },
+                      })
+                    }
+                  >
+                    Job postings: <br/>View the jobs  you have posted!
+                  </Typography>
+                </Paper>
+              </Grid>
+
               <Grid item>
                 {/* This is for the user to view projects from all users */}
                 <Paper>

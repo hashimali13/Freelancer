@@ -26,6 +26,7 @@ import DeletePost from "./Components/Subcomponent/DeletePost";
 import CreateApplication from "./Components/Subcomponent/CreateApplication";
 import Search from "./Components/Search";
 import FileUpload from "./Components/Subcomponent/FileUpload";
+import MyJobPostings from "./Components/Subcomponent/MyJobPostings";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +62,7 @@ function App() {
 
   return (
     <div>
-      <AppBarDrawer uid={uid} user={username}></AppBarDrawer>
+      <AppBarDrawer setUid={setUid} setUser={setUser} uid={uid} user={username}></AppBarDrawer>
       <br></br>
       <Route exact path="/" render={(props)=><Login user={handleUser} uid={handleUid}/>} />
       <Route path="/dashboard" component={Dashboard} />
@@ -80,6 +81,7 @@ function App() {
       <Route path="/editpost/:id" component={EditPost} />
       <Route path="/friends" component={Friends} />
       <Route path="/myposts" component={MyPosts} />
+      <Route path="/myjobpostings" component={MyJobPostings} />
       <Route path="/deletepost" component={DeletePost} />
       <Route path="/createapplication" component={CreateApplication} />
       <Route path="/search" component={Search} />

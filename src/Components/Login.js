@@ -83,7 +83,7 @@ const Login = props => {
           </Button>
           <Button
             variant="contained"
-            onClick={() => props.history.push({ pathname: "/register" })}
+            onClick={() => history.push({ pathname: "/register" })}
             style={{ marginLeft: "5px" }}
             color="primary"
           >
