@@ -34,7 +34,7 @@ function ComposeMessage (props) {
         })
         .then(res => setData(res.data), console.log(data))
         .catch(err =>
-            console.log("You got so far but in the end it just didn't matter")
+            console.log("receiver id error")
         );
     }, []);
 

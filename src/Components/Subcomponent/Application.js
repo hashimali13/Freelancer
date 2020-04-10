@@ -46,7 +46,7 @@ function Application (props) {
             
         )
         .catch(err =>
-            console.log("You got so far but in the end it just didn't matter")
+            console.log("getapplication error")
         );
     }, []);
 
@@ -107,7 +107,7 @@ function Application (props) {
                   });
             }
         )
-        .catch((err) => console.log("THAT SUCKS"));
+        .catch((err) => console.log("get post error"));
     }
 
     const handleReject = appid =>{

@@ -36,7 +36,7 @@ function Application (props) {
             
         )
         .catch(err =>
-            console.log("You got so far but in the end it just didn't matter")
+            console.log("get comments error")
         );
     }, []);
 

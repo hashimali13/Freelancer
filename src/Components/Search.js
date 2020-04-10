@@ -39,13 +39,13 @@ function Search(props) {
       })
       .then((res) => setData(res.data), console.log("yello", data))
       .catch((error) => {
-        console.log("error juan", error);
+        console.log("error", error);
       });
     axios
       .post("http://localhost:3001/searchbarp", { search: search })
       .then((res) => setData2(res.data), console.log("second", data))
       .catch((error) => {
-        console.log("error mk2", error);
+        console.log("error 2nd", error);
       });
   };
 

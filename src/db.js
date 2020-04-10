@@ -9,11 +9,9 @@ const pool = new Pool({
 
 const getUsers = (request, response) => {
   pool.query("SELECT * FROM users", (error, results) => {
-    console.log("sdasdaa");
     if (error) {
       throw error;
     }
-    console.log("sdasdasdasdaxa");
 
     response.status(200).json(results.rows);
   });
@@ -93,11 +91,9 @@ const getUsername = (request, response) => {
 
 const getProjects = (request, response) => {
   pool.query("SELECT * FROM jobposting", (error, results) => {
-    console.log("Why did the chicken cross the road?");
     if (error) {
       throw error;
     }
-    console.log("so he didnt get drafted");
 
     response.status(200).json(results.rows);
   });
@@ -130,10 +126,9 @@ const getPost = (request, response) => {
     (error, results) => {
       console.log("please work");
       if (error) {
-        console.log("code didnt work buddy");
+        console.log("error");
         throw error;
       }
-      console.log("yh idk");
 
       response.status(200).json(results.rows);
     }
@@ -188,10 +183,9 @@ const getProfile = (request, response) => {
     (error, results) => {
       console.log("getprofile work check");
       if (error) {
-        console.log("straight outta luck tbh broski");
+        console.log("error");
         throw error;
       }
-      console.log("past the error mark dudette");
 
       response.status(200).json(results.rows);
     }
@@ -207,10 +201,9 @@ const getMessages = (request, response) => {
     (error, results) => {
       console.log("getMessages check");
       if (error) {
-        console.log("unlucky bro, maybe next time");
+        console.log("error");
         throw error;
       }
-      console.log("You blummin well did it");
       response.status(200).json(results.rows);
     }
   );
@@ -292,7 +285,7 @@ const deletePost = (request, response) => {
         console.log("error in deletepost call");
         throw error;
       }
-      console.log("have you tried setting it to wumbo, i.e. success brotha");
+      console.log("passed check");
       response.status(200).json(results.row);
     }
   );
@@ -322,11 +315,9 @@ const searchUser = (request, response) => {
   let user = request.query.id;
   console.log(user);
   pool.query("SELECT * FROM users WHERE uid=$1", [user], (error, results) => {
-    console.log("sdasdaa");
     if (error) {
       throw error;
     }
-    console.log("sdasdasdasdaxa");
 
     response.status(200).json(results.rows);
   });
@@ -340,10 +331,9 @@ const getReceiverId = (request, response) => {
     (error, results) => {
       console.log("receiverid check");
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
       response.status(200).json(results.rows);
     }
   );
@@ -432,10 +422,9 @@ const getJob = (request, response) => {
     (error, results) => {
       console.log("receiverid check");
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
       response.status(200).json(results.rows);
     }
   );
@@ -450,10 +439,9 @@ const getFriend = (request, response) => {
     (error, results) => {
       console.log("receiverid check");
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
       response.status(200).json(results.rows);
     }
   );
@@ -467,10 +455,9 @@ const getApplication = (request, response) => {
     [appid],
     (error, results) => {
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
       response.status(200).json(results.rows);
     }
   );
@@ -538,10 +525,10 @@ const getComments = (request, response) => {
     [postid],
     (error, results) => {
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
+      console.log("passed");
       response.status(200).json(results.rows);
     }
   );
@@ -554,10 +541,9 @@ const getUpdates = (request, response) => {
     [updateid],
     (error, results) => {
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
       response.status(200).json(results.rows);
     }
   );
@@ -570,10 +556,9 @@ const getFiles = (request, response) => {
     [projectid],
     (error, results) => {
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
       response.status(200).json(results.rows);
     }
   );
@@ -587,10 +572,10 @@ const deleteApplication = (request, response) => {
     [postid],
     (error, results) => {
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
+      console.log("passed");
       response.status(200).json(results.rows);
     }
   );
@@ -600,10 +585,9 @@ const deleteFromDb = (request, response) => {
   let key = request.body.key;
   pool.query("DELETE from files  where  key=$1", [key], (error, results) => {
     if (error) {
-      console.log("well that sucks");
+      console.log("error");
       throw error;
     }
-    console.log("yay you haven't messed up yet");
     response.status(200).json(results.rows);
   });
 };
@@ -616,10 +600,9 @@ const deleteAllApplications = (request, response) => {
     [postid],
     (error, results) => {
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
       response.status(200).json(results.rows);
     }
   );
@@ -633,10 +616,9 @@ const deleteAllComments = (request, response) => {
     [postid],
     (error, results) => {
       if (error) {
-        console.log("well that sucks");
+        console.log("error");
         throw error;
       }
-      console.log("yay you haven't messed up yet");
       response.status(200).json(results.rows);
     }
   );
@@ -725,7 +707,6 @@ const editUser = (request, response) => {
         if (error) {
           throw error;
         }
-        console.log("sdasdasdasdaxa");
 
         response.status(200).json(results.rows);
       }
@@ -739,7 +720,6 @@ const editUser = (request, response) => {
         if (error) {
           throw error;
         }
-        console.log("sdasdasdasdaxa");
 
         response.status(200).json(results.rows);
       }
