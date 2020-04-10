@@ -1,5 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import { useParams, useHistory } from "react-router-dom";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Drawer from "@material-ui/core/Drawer";
@@ -76,8 +79,16 @@ const useStyles = makeStyles((theme) => ({
 function AppBarDrawer(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const history = useHistory();
+
   const handleDrawerOpen = () => {
-    setOpen(true);
+    if(props.uid === undefined){
+
+    }
+    else{
+      setOpen(true);
+    }
+    
   };
   const handleDrawerClose = () => {
     setOpen(false);
@@ -108,6 +119,17 @@ function AppBarDrawer(props) {
           >
             FreeLancer
           </Typography>
+          <Button onClick={()=>{
+            props.setUid(undefined)
+            props.setUser(undefined)
+            setOpen(false)
+            history.push({
+              pathname: "/",
+              
+            })
+          }
+          
+          } color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
       <Drawer

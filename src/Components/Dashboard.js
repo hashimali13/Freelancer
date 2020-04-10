@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -17,6 +17,15 @@ function Dashboard(props) {
   let uid = props.location.state.uid;
   console.log(uid);
   console.log(props);
+
+  useEffect(() => {
+    console.log("look here")
+    if(props.location.state.uid===undefined){
+      console.log("UNDEFINED")
+      props.history.push({ pathname: `/` })
+    }
+  });
+
   const useStyles = makeStyles((theme) => ({
     container: {
       display: "flex",

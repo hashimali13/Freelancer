@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div>
-      <AppBarDrawer uid={uid} user={username}></AppBarDrawer>
+      <AppBarDrawer setUid={setUid} setUser={setUser} uid={uid} user={username}></AppBarDrawer>
       <br></br>
       <Route exact path="/" render={(props)=><Login user={handleUser} uid={handleUid}/>} />
       <Route path="/dashboard" component={Dashboard} />
