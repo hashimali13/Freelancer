@@ -477,12 +477,46 @@ const createComment = (request, response) => {
   );
 };
 
+const createUpdate = (request, response) => {
+  let uid = request.body.uid;
+  let date = request.body.date;
+  let jid = request.body.jid;
+  let content = request.body.content;
+  pool.query(
+    "INSERT INTO jobupdates (uid, postdate, jid, content) VALUES ($1, $2, $3, $4)",
+    [uid, date, jid, content],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
+
 const getComments = (request, response) => {
   let postid = request.query.id;
   console.log(postid);
   pool.query(
     "SELECT * from comments join users u on comments.uid = u.uid where  pid=$1",
     [postid],
+    (error, results) => {
+      if (error) {
+        console.log("well that sucks");
+        throw error;
+      }
+      console.log("yay you haven't messed up yet");
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
+const getUpdates = (request, response) => {
+  let updateid = request.query.id;
+  pool.query(
+    "SELECT * from jobupdates join users u on jobupdates.uid = u.uid where  jid=$1",
+    [updateid],
     (error, results) => {
       if (error) {
         console.log("well that sucks");
@@ -696,10 +730,12 @@ module.exports = {
   getPost,
   getUsername,
   getFriend,
+  createUpdate,
   getJob,
   addFriend,
   getFriends,
   getComments,
+  getUpdates,
   getApplication,
   deletePost,
   createJob,

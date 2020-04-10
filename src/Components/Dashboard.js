@@ -155,7 +155,7 @@ function Dashboard(props) {
                     onClick={() =>
                       props.history.push({
                         pathname: `/friends/${uid}`,
-                        state: { user: props.location.state.uid },
+                        state: { user: props.location.state.uid, username:props.location.state.user },
                       })
                     }
                   >
