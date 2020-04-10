@@ -65,7 +65,7 @@ app.post("/deleteallcomments", db.deleteAllComments);
 app.post("/deleteallapplications", db.deleteAllApplications);
 app.post("/submitfile", db.postFile);
 app.get("/getfriends", db.getFriends);
-app.post("/searchbaru", db.searchBarUser);
+app.get("/searchbaru", db.searchBarUser);
 app.post("/searchbarp", db.searchBarPost);
 
 app.listen(port, () => {

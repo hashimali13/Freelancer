@@ -34,7 +34,7 @@ function Search(props) {
   const HandleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/searchbaru", {
+      .get("http://localhost:3001/searchbaru", {
         search: search,
       })
       .then((res) => setData(res.data), console.log("yello", data))
@@ -62,6 +62,7 @@ function Search(props) {
     });
   };
 
+  // this is for the posts one, testing users first
   // const showUsers = (props) => {
   //   return data.map((user) => {
   //     console.log(user.username);

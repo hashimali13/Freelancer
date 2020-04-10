@@ -32,11 +32,12 @@ const searchBarUser = (request, response) => {
         console.log(results.rows);
       }
       if (results.rowCount === 0) {
-        console.log("empty array");
+        console.log("empty array11");
+        console.log(error);
         return response.status(401).json({ error: "User does not exist" });
       }
 
-      console.log("second point");
+      console.log("second point11");
 
       response.status(200).json(results.rows);
     }
@@ -48,7 +49,7 @@ const searchBarPost = (request, response) => {
   let search1 = "%" + search + "%";
   console.log(search1);
   pool.query(
-    "SELECT * FROM jobposting WHERE title LIKE $1 OR content $1 OR jobtype LIKE $1",
+    "SELECT * FROM jobposting WHERE title LIKE $1 OR content LIKE $1 OR jobtype LIKE $1",
     [search1],
     (error, results) => {
       if (error) {
@@ -528,7 +529,6 @@ const createUpdate = (request, response) => {
     }
   );
 };
-
 
 const getComments = (request, response) => {
   let postid = request.query.id;
