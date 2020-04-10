@@ -33,20 +33,33 @@ function Search(props) {
 
   const HandleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .get("http://localhost:3001/searchbaru", {
-        search: search,
-      })
-      .then((res) => setData(res.data), console.log("yello", data))
-      .catch((error) => {
-        console.log("error juan", error);
-      });
-    axios
-      .post("http://localhost:3001/searchbarp", { search: search })
-      .then((res) => setData2(res.data), console.log("second", data))
-      .catch((error) => {
-        console.log("error mk2", error);
-      });
+    console.log(search)
+
+    axios.get('/searchbaru', {
+      params: {
+        id: search
+      }
+    })
+    .then(function (response) {
+      console.log(response)
+      setData(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    axios.get('/searchbarp', {
+      params: {
+        id: search
+      }
+    })
+    .then(function (response) {
+      console.log(response)
+      setData(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
   const showUsers = (props) => {

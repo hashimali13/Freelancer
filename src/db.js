@@ -20,14 +20,14 @@ const getUsers = (request, response) => {
 };
 
 const searchBarUser = (request, response) => {
-  let search = request.body.search;
-  let search1 = "%" + search + "%";
-  console.log(search1);
+  let search = request.query.id;
+  let search1 = '%' + search + '%';
   pool.query(
     "SELECT * FROM users WHERE username LIKE $1 OR description LIKE $1 OR email LIKE $1 OR email LIKE $1 OR industry LIKE $1 OR languages LIKE $1",
     [search1],
     (error, results) => {
       if (error) {
+        console.log("error: ",error)
         throw error;
         console.log(results.rows);
       }
@@ -37,16 +37,15 @@ const searchBarUser = (request, response) => {
         return response.status(401).json({ error: "User does not exist" });
       }
 
-      console.log("second point11");
-
+      console.log("succ")
       response.status(200).json(results.rows);
     }
   );
 };
 
 const searchBarPost = (request, response) => {
-  let search = request.body.search;
-  let search1 = "%" + search + "%";
+  let search = request.query.id;
+  let search1 = '%' + search + '%';
   console.log(search1);
   pool.query(
     "SELECT * FROM jobposting WHERE title LIKE $1 OR content LIKE $1 OR jobtype LIKE $1",

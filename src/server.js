@@ -66,7 +66,7 @@ app.post("/deleteallapplications", db.deleteAllApplications);
 app.post("/submitfile", db.postFile);
 app.get("/getfriends", db.getFriends);
 app.get("/searchbaru", db.searchBarUser);
-app.post("/searchbarp", db.searchBarPost);
+app.get("/searchbarp", db.searchBarPost);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
