@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import DashPosts from "./Subcomponent/Dashprojects";
 import Typography from "@material-ui/core/Typography";
+import { Grid } from "@material-ui/core";
 
 function Profile(props) {
   const [data, setData] = useState([]);
@@ -42,33 +43,17 @@ function Profile(props) {
       );
   }, []);
 
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-    },
-    leftColumn: {
-      order: 0,
-    },
-    rightColumn: {
-      order: 1,
-      flexGrow: 2,
-    },
-  }));
+  
 
-  const style = useStyles();
 
   const showData = (props) => {
     return data.map((profile) => {
       console.log(profile);
       return (
-        <div className={style.container}>
-          <div className={style.leftColumn}>
-            <Paper
-              elevation={3}
-              style={{ padding: "50pt", paddingTop: "15px", width: "25%" }}
-            >
+        <Grid spacing={3} style={{width:"90%"}} justify="center" container >
+          <Grid justify="center" style={{width:"50%"}}item >
+            <Paper style={{padding:"10px 10px 10px 10px "}}
+              elevation={3}>
               <Typography
                 style={{
                   textAlign: "center",
@@ -78,60 +63,51 @@ function Profile(props) {
                 <div>
                   <img
                     src={profile.profilepicture}
-                    style={{ width: "40%" }}
+                    style={{ width: "20%" }}
                   ></img>
                   <h1>
                     {profile.firstname} {""} {profile.lastname}{" "}
                   </h1>
                   <h3>{profile.industry}</h3>
                   <h4>{profile.location}</h4>
-                  <hr />
-                  <Paper>
                     {" "}
+                    <h3>About:</h3>  <p>{profile.description}  </p> 
                     <h3>
-                      <u>About</u>
-                    </h3>
-                    <h5>{profile.description}</h5>
-                  </Paper>
-                  <Paper>
-                    <h3>
-                      <u>Languages</u>
+                      Languages:
                     </h3>
                     <h5>{profile.languages}</h5>
-                  </Paper>
                 </div>
-                <Paper>
                   <h3>
-                    <u>Skills</u>
+                    Skills:
                   </h3>
-                  <ul style={{ listStyleType: "none" }}>{showSkills(props)}</ul>
-                </Paper>
+                  <p >{showSkills(props)}</p>
               </Typography>
             </Paper>
-          </div>
-          <Paper className={style.rightColumn}>
-            <DashPosts user={profile.username}></DashPosts>
-          </Paper>
-        </div>
+          </Grid>
+          <Grid style={{width:"40%"}} item>
+            <Paper  >
+              <DashPosts user={profile.username}></DashPosts>
+            </Paper>
+
+          </Grid>
+        </Grid>
       );
     });
   };
 
   const showSkills = (props) => {
-    return data2.map((skills) => {
+    let skillarr = []
+     data2.map((skills) => {
+      skillarr.push(skills.skill, ", ")
       console.log(skills);
-      return (
-        <li>
-          <h5>{skills.skill}</h5>
-        </li>
-      );
     });
+    return skillarr
   };
 
   return (
     <div>
       {showData(props)}
-      <Button variant="contained" color="primary" onClick={goBackHandle}>
+      <Button style={{marginLeft:"5%", marginTop:"20px"}} variant="contained" color="primary" onClick={goBackHandle}>
         Go Back
       </Button>
     </div>

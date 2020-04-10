@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
@@ -48,12 +48,22 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+  const [username, setUser] = useState();
+  const [uid, setUid] = useState();
+
+  const handleUser = passedUser =>{
+    setUser(passedUser)
+  }
+
+  const handleUid = passedUid =>{
+    setUid(passedUid)
+  }
 
   return (
     <div>
-      <AppBarDrawer></AppBarDrawer>
+      <AppBarDrawer uid={uid} user={username}></AppBarDrawer>
       <br></br>
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" render={(props)=><Login user={handleUser} uid={handleUid}/>} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/register" component={Register} />
       <Route exact path="/projects" component={Projects} />

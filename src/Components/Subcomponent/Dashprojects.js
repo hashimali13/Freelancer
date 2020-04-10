@@ -83,7 +83,7 @@ function MyJobs(props) {
             }}
           >
           </Typography>
-          <TableContainer component={Paper}>
+          <TableContainer style={{width:"100%"}} component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
