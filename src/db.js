@@ -19,21 +19,57 @@ const getUsers = (request, response) => {
   });
 };
 
-const searchBar = (request, response) => {
-  pool.query("SELECT username FROM users", (error, results) => {
-    console.log("sdasdaa12345678");
-    if (error) {
-      throw error;
-    }
-    console.log("sdasdasdasdaxa123456789");
+const searchBarUser = (request, response) => {
+  let search = request.body.search;
+  let search1 = "%" + search + "%";
+  console.log(search1);
+  pool.query(
+    "SELECT * FROM users WHERE username LIKE $1 OR description LIKE $1 OR email LIKE $1 OR email LIKE $1 OR industry LIKE $1 OR languages LIKE $1",
+    [search1],
+    (error, results) => {
+      if (error) {
+        throw error;
+        console.log(results.rows);
+      }
+      if (results.rowCount === 0) {
+        console.log("empty array");
+        return response.status(401).json({ error: "User does not exist" });
+      }
 
-    response.status(200).json(results.rows);
-  });
+      console.log("second point");
+
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
+const searchBarPost = (request, response) => {
+  let search = request.body.search;
+  let search1 = "%" + search + "%";
+  console.log(search1);
+  pool.query(
+    "SELECT * FROM jobposting WHERE title LIKE $1 OR content $1 OR jobtype LIKE $1",
+    [search1],
+    (error, results) => {
+      if (error) {
+        throw error;
+        console.log(results.rows);
+      }
+      if (results.rowCount === 0) {
+        console.log("empty array");
+        return response.status(401).json({ error: "User does not exist" });
+      }
+
+      console.log("second point");
+
+      response.status(200).json(results.rows);
+    }
+  );
 };
 
 const getUsername = (request, response) => {
   let username = request.body.username;
-  let username1 = '%' + username + '%'
+  let username1 = "%" + username + "%";
   console.log(username1);
   pool.query(
     "SELECT * FROM users WHERE username LIKE $1",
@@ -332,7 +368,6 @@ const getFriends = (request, response) => {
     }
   );
 };
-
 
 const getPostedProjects = (request, response) => {
   let pid = request.query.id;
@@ -708,9 +743,10 @@ module.exports = {
   deleteAllComments,
   createApplication,
   createComment,
-  searchBar,
+  searchBarUser,
+  searchBarPost,
   postFile,
   getFiles,
   deleteFromDb,
-  getPostedProjects
+  getPostedProjects,
 };
