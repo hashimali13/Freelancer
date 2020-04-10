@@ -515,7 +515,7 @@ const getComments = (request, response) => {
 const getUpdates = (request, response) => {
   let updateid = request.query.id;
   pool.query(
-    "SELECT * from jobupdates join users u on jobupdates.uid = u.uid where  jid=$1",
+    "SELECT * from jobupdates join users u on jobupdates.uid = u.uid where  jid=$1 ORDER BY postdate DESC",
     [updateid],
     (error, results) => {
       if (error) {

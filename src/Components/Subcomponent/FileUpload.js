@@ -48,7 +48,20 @@ function FileUpload (props) {
                  title: filename
               })
               .then(function (response) {
-                history.goBack();
+                let comment = filename + " was posted on  " + new Date().toLocaleString()
+                axios.post('/createUpdate', {
+                    uid: props.location.state.uid,
+                    date: new Date().toLocaleString(),
+                    jid: props.location.state.jobid,
+                    content: comment
+                  })
+                  .then(function (response) {
+                    history.goBack();
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+                
               })
               .catch(function (error) {
                 console.log(error);
