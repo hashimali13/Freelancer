@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import Files from "./Files"
+import JobUpdate from "./JobUpdate"
 
 function Job(props) {
   let user = props.location.state.uid;
@@ -104,7 +105,7 @@ function Job(props) {
             </Grid>
 
             <Grid style={{ width: "70%" }} item>
-              <h1>temp</h1>
+              <JobUpdate uid={props.location.state.uid} updateid={job.projectid}/>
             </Grid>
           </Grid>
         </Container>
