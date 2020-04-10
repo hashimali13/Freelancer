@@ -62,6 +62,7 @@ function Search(props) {
     });
   };
 
+  // this is for the posts one, testing users first
   // const showUsers = (props) => {
   //   return data.map((user) => {
   //     console.log(user.username);
