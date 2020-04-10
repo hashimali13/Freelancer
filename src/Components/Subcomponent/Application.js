@@ -134,7 +134,9 @@ function Application (props) {
                     </Link> 
                 </TableCell>
                 <TableCell>{comment.content}</TableCell>
-                <TableCell>{comment.cv}</TableCell>
+                <TableCell>
+                <a rel="noopener noreferrer" target="_blank" href={comment.cv} style={{textDecoration:"none"}}>CV </a>
+                </TableCell>
                 <TableCell><Link to={{ pathname: `/profile/${comment.uid}`, state: { uid: comment.uid } }}> {comment.username}</Link></TableCell>
                 <TableCell>£{comment.price}/hr</TableCell>
                 <TableCell><Button onClick={()=>handleAccept(comment)} variant="contained"style={{backgroundColor:"green", color:"white"}}>Accept</Button></TableCell>

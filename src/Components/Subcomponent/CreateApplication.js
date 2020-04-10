@@ -14,10 +14,11 @@ function CreateApplication (props) {
     const [data, setData] = useState([]);
     const [content, setContent] = useState();
     const [cv, setCv] = useState();
-
+    const [file, setFile] = useState();
     const jobid = props.location.state.jobid
     const uid = props.location.state.uid
     const user = props.location.state.user
+    const [uploaded, setUploaded] = useState("None");
     console.log(user, uid, jobid)
     const history = useHistory();
 
@@ -29,13 +30,30 @@ function CreateApplication (props) {
         setCv(event.target.value)
     }
 
+    
+    const handleFile = event =>{
+      if(event.target.files.length!=0){
+         setFile(event.target.files[0])
+         setUploaded(event.target.files[0].name) 
+      }
+      
+  }
+
     const handleSubmit = event => {
         event.preventDefault();
-        console.log("aaa")
-        axios.post('/createapplication', {
+        var form = new FormData();
+        form.append("profile",file)
+        axios.post('/upload', form, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+        })
+          .then(function (response) {
+            console.log(response.data.location);
+            axios.post('/createapplication', {
             uid: uid,
             username: user,
-            cv: cv,
+            cv: response.data.location,
             content: content,
             jobid, jobid
           })
@@ -45,9 +63,11 @@ function CreateApplication (props) {
           .catch(function (error) {
             console.log(error);
           });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
-
-
 
     return(
 
@@ -60,9 +80,15 @@ function CreateApplication (props) {
           <TextField fullWidth="true" multiline rowsMax="4" label="Content" onChange={handleContent} />
           <br></br>
           <br></br>
-          <TextField fullWidth="true" multiline rowsMax="4" label="CV" onChange={handleCv} />
+          <Typography><h4>{uploaded} selected</h4></Typography> 
+
+          <Button style={{marginRight:"5px"}} variant="contained" component="label" >
+              Upload CV
+              <input style={{ display: "none" }} onChange={handleFile} type="file"/>
+          </Button>
           <br></br>
           <br></br>  
+          
           <div>
 
               <Button onClick={()=> history.goBack()} variant="contained"  color="primary" style={{marginRight:"5px"}}>
