@@ -33,40 +33,42 @@ function Search(props) {
 
   const HandleSubmit = (event) => {
     event.preventDefault();
-    console.log(search)
+    console.log(search);
 
-    axios.get('/searchbaru', {
-      params: {
-        id: search
-      }
-    })
-    .then(function (response) {
-      console.log(response)
-      setData(response.data)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .get("/searchbaru", {
+        params: {
+          id: search,
+        },
+      })
+      .then(function (response) {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-    axios.get('/searchbarp', {
-      params: {
-        id: search
-      }
-    })
-    .then(function (response) {
-      console.log(response)
-      setData(response.data)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .get("/searchbarp", {
+        params: {
+          id: search,
+        },
+      })
+      .then(function (response) {
+        console.log(response.data);
+        setData2(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const showUsers = (props) => {
     return data.map((user) => {
       console.log(user.username);
       return (
-        <TableRow key={user.id}>
+        <TableRow>
           <TableCell>
             <Link to={{ pathname: `/profile/${uid}` }}>{user.username}</Link>
           </TableCell>
@@ -131,6 +133,7 @@ function Search(props) {
       >
         Go back
       </Button>
+      {showUsers}
     </div>
   );
 }
