@@ -24,7 +24,6 @@ import MyPosts from "./Components/Subcomponent/MyPosts";
 import Job from "./Components/Subcomponent/Job";
 import DeletePost from "./Components/Subcomponent/DeletePost";
 import CreateApplication from "./Components/Subcomponent/CreateApplication";
-import Search from "./Components/Search";
 import FileUpload from "./Components/Subcomponent/FileUpload";
 import MyJobPostings from "./Components/Subcomponent/MyJobPostings";
 
