@@ -13,6 +13,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableBody from "@material-ui/core/TableBody";
 import TableHead from "@material-ui/core/TableHead";
 import Table from "@material-ui/core/Table";
+import { Container } from "@material-ui/core";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+
 
 function Friends(props) {
     let uid = props.location.state.user;
@@ -113,14 +116,20 @@ function Friends(props) {
             console.log(friend);
             return (
                 <TableRow key={friend.userid}>
-                    <TableCell>{friend.username}</TableCell>
+                    <TableCell><Link to={{
+                        pathname: `/profile/${friend.uid}`,
+                        state: {
+                        uid: uid,
+                        user: props.location.state.username,
+                },
+              }}> {friend.username} </Link></TableCell>
                 </TableRow>
             );
         });
     };
 
     return (
-        <div>
+        <Container>
             <Typography variant="h5">Add Friends</Typography>
             <form onSubmit={HandleSubmit} style={{textAlign: "center"}}>
                 <TextField id="username" label="Enter username" onChange={HandleUsername} />
@@ -139,10 +148,10 @@ function Friends(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button variant="contained" color="primary" justifyContent="center" onCLick={(goBackHandle)}>
+            <Button style={{marginTop:"10px"}}variant="contained" color="primary" justifyContent="center" onCLick={(goBackHandle)}>
                 Go back
             </Button>
-        </div>
+        </Container>
     );
 }
 
