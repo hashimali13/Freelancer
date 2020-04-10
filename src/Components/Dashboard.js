@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -19,10 +19,10 @@ function Dashboard(props) {
   console.log(props);
 
   useEffect(() => {
-    console.log("look here")
-    if(props.location.state.uid===undefined){
-      console.log("UNDEFINED")
-      props.history.push({ pathname: `/` })
+    console.log("look here");
+    if (props.location.state.uid === undefined) {
+      console.log("UNDEFINED");
+      props.history.push({ pathname: `/` });
     }
   });
 
@@ -155,28 +155,14 @@ function Dashboard(props) {
                     onClick={() =>
                       props.history.push({
                         pathname: `/friends/${uid}`,
-                        state: { user: props.location.state.uid, username:props.location.state.user },
-                      })
-                    }
-                  >
-                    Friends
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid item>
-                <Paper>
-                  <Typography
-                    onClick={() =>
-                      props.history.push({
-                        pathname: "/search",
                         state: {
-                          user: props.location.state.user,
-                          uid: props.location.state.uid,
+                          user: props.location.state.uid,
+                          username: props.location.state.user,
                         },
                       })
                     }
                   >
-                    Search
+                    Friends
                   </Typography>
                 </Paper>
               </Grid>

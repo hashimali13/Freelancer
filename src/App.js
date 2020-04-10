@@ -52,19 +52,28 @@ function App() {
   const [username, setUser] = useState();
   const [uid, setUid] = useState();
 
-  const handleUser = passedUser =>{
-    setUser(passedUser)
-  }
+  const handleUser = (passedUser) => {
+    setUser(passedUser);
+  };
 
-  const handleUid = passedUid =>{
-    setUid(passedUid)
-  }
+  const handleUid = (passedUid) => {
+    setUid(passedUid);
+  };
 
   return (
     <div>
-      <AppBarDrawer setUid={setUid} setUser={setUser} uid={uid} user={username}></AppBarDrawer>
+      <AppBarDrawer
+        setUid={setUid}
+        setUser={setUser}
+        uid={uid}
+        user={username}
+      ></AppBarDrawer>
       <br></br>
-      <Route exact path="/" render={(props)=><Login user={handleUser} uid={handleUid}/>} />
+      <Route
+        exact
+        path="/"
+        render={(props) => <Login user={handleUser} uid={handleUid} />}
+      />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/register" component={Register} />
       <Route exact path="/projects" component={Projects} />
@@ -84,9 +93,7 @@ function App() {
       <Route path="/myjobpostings" component={MyJobPostings} />
       <Route path="/deletepost" component={DeletePost} />
       <Route path="/createapplication" component={CreateApplication} />
-      <Route path="/search" component={Search} />
       <Route path="/fileupload" component={FileUpload} />
-
     </div>
   );
 }
