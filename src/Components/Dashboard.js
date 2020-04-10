@@ -103,18 +103,6 @@ function Dashboard(props) {
                   </Typography>
                 </Paper>
               </Grid>
-              <Grid item></Grid>
-              <Grid item>
-                <Paper>
-                  <Typography
-                    onClick={() =>
-                      props.history.push({ pathname: "/newsfeed" })
-                    }
-                  >
-                    News Feed
-                  </Typography>
-                </Paper>
-              </Grid>
               <Grid item>
                 <Paper>
                   <Typography

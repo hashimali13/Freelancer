@@ -8,7 +8,6 @@ import { Container } from "@material-ui/core";
 import Register from "./Components/Register";
 import AllProjects from "./Components/Subcomponent/MyJobs";
 import Projects from "./Components/Subcomponent/Projects";
-import Newsfeed from "./Components/Newsfeed";
 import JobPostingProject from "./Components/Subcomponent/JobPostingProject";
 import AppBarDrawer from "./Components/AppBarDrawer";
 import Profile from "./Components/Profile";
@@ -76,7 +75,6 @@ function App() {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/register" component={Register} />
       <Route exact path="/projects" component={Projects} />
-      <Route path="/newsfeed" component={Newsfeed} />
       <Route path="/myprojects/" component={MyJobs} />
       <Route path="/jobpost/:id" component={JobPostingProject} />
       <Route path="/job/:id" component={Job} />
