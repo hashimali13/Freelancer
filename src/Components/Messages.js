@@ -33,9 +33,9 @@ function Messages(props) {
             id: props.location.state.user
           }
         })
-        .then(res => setUser(res.data), console.log("you here bruv"))
+        .then(res => setUser(res.data), console.log("user check"))
         .catch(err =>
-          console.log("you just activated my trap card, go errorsaur")
+          console.log("user error")
         );
 
         axios
@@ -46,7 +46,7 @@ function Messages(props) {
         })
         .then(res => setData(res.data), console.log(data))
         .catch(err =>
-          console.log("You got so far but in the end it just didn't matter")
+          console.log("user error")
         );
     }, []);
 

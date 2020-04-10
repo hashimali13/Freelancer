@@ -26,9 +26,9 @@ function Profile(props) {
           id: props.match.params.id,
         },
       })
-      .then((res) => setData(res.data), console.log("you here bruv"))
+      .then((res) => setData(res.data), console.log("user check"))
       .catch((err) =>
-        console.log("you just activated my trap card, go errorsaur")
+        console.log("user error")
       );
 
     axios
@@ -39,7 +39,7 @@ function Profile(props) {
       })
       .then((res) => setData2(res.data), console.log("adsfsaf"))
       .catch((err) =>
-        console.log("you just activated my trap card, go errorsxaur")
+        console.log("user error")
       );
   }, []);
 
